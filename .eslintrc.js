@@ -1,5 +1,6 @@
 module.exports = {
   env: {
+    node: true,
     browser: true,
     es6: true,
   },
@@ -10,8 +11,11 @@ module.exports = {
     chrome: true,
   },
   parserOptions: {
-    ecmaVersion: 11,
+    ecmaVersion: 2019,
     sourceType: "module",
+    ecmaFeatures: {
+      jsx: true,
+    },
   },
   rules: {
     eqeqeq: "error",

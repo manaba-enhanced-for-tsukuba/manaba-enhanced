@@ -10,7 +10,7 @@
     "lintfix": "eslint --fix src/**/*.js"
   },
   "devDependencies": {
-    "copy-webpack-plugin": "^6.0.1",
+    "copy-webpack-plugin": "^5.1.1",
     "css-loader": "^3.5.3",
     "eslint": "^7.1.0",
     "eslint-config-prettier": "^6.11.0",

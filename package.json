@@ -1,7 +1,7 @@
 {
   "name": "manaba-deadline-highlight",
-  "version": "0.1.0",
-  "description": "My Chrome Extension",
+  "version": "0.1",
+  "description": "Easily check for upcoming assignments in manaba",
   "private": true,
   "scripts": {
     "watch": "webpack --mode=development --watch --config config/webpack.config.js",

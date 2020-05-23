@@ -9,27 +9,17 @@
     "48": "icons/icon_48.png",
     "128": "icons/icon_128.png"
   },
-  "background": {
-    "scripts": [
-      "background.js"
-    ],
-    "persistent": false
-  },
-  "browser_action": {
-    "default_title": "Manaba Deadline-highlight",
-    "default_popup": "popup.html"
-  },
   "permissions": [
     "storage"
   ],
   "content_scripts": [
     {
       "matches": [
-        "<all_urls>"
+        "https://manaba.tsukuba.ac.jp/*"
       ],
-      "run_at": "document_idle",
+      "run_at": "document_end",
       "js": [
-        "contentScript.js"
+        "manaba.js"
       ]
     }
   ]

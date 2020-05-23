@@ -2,29 +2,29 @@ $red-bg: #ffdce0
 $yellow-bg: #fff0c2
 $green-bg: #d3ebd3
 
+table.stdlist tr.one-day-before
+  background-color: $red-bg !important
 table.stdlist tr.one-day-before.row1
   background-color: lighten($red-bg, 2%) !important
-table.stdlist tr.one-day-before.row0
-  background-color: $red-bg !important
-table.stdlist tr.one-day-before:hover
+table.stdlist tr.one-day-before:hover, table.stdlist tr.one-day-before.hilitecolor td
   background-color: darken($red-bg, 2%) !important
 .one-day-before a
   color: darken($red-bg, 75%) !important
   
+table.stdlist tr.three-days-before
+  background-color: $yellow-bg !important
 table.stdlist tr.three-days-before.row1
   background-color: lighten($yellow-bg, 3%) !important
-table.stdlist tr.three-days-before.row0
-  background-color: $yellow-bg !important
-table.stdlist tr.three-days-before:hover
+table.stdlist tr.three-days-before:hover, table.stdlist tr.three-days-before.hilitecolor td
   background-color: darken($yellow-bg, 2%) !important
 .three-days-before a
   color: darken($yellow-bg, 75%) !important
 
+table.stdlist tr.seven-days-before
+  background-color: $green-bg !important
 table.stdlist tr.seven-days-before.row1
   background-color: lighten($green-bg, 3%) !important
-table.stdlist tr.seven-days-before.row0
-  background-color: $green-bg !important
-table.stdlist tr.seven-days-before:hover
+table.stdlist tr.seven-days-before:hover, table.stdlist tr.seven-days-before.hilitecolor td
   background-color: darken($green-bg, 2%) !important
 .seven-days-before a
   color: darken($green-bg, 65%) !important

@@ -1,7 +1,7 @@
 {
-  "name": "manaba-deadline-highlight",
-  "version": "1.0",
-  "description": "Easily check for upcoming assignments in manaba",
+  "name": "manaba-enhanced",
+  "version": "1.1",
+  "description": "Make your manaba a little bit more comfortable",
   "private": true,
   "scripts": {
     "watch": "webpack --mode=development --watch --config config/webpack.config.js",

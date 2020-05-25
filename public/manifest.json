@@ -1,8 +1,8 @@
 {
   "manifest_version": 2,
-  "name": "manaba Deadline Highlight",
-  "version": "1.0",
-  "description": "Easily check for upcoming assignments in manaba",
+  "name": "manaba Enhanced",
+  "version": "1.1",
+  "description": "Make your manaba a little bit more comfortable",
   "icons": {
     "16": "icons/icon_16.png",
     "32": "icons/icon_32.png",

@@ -1,6 +1,6 @@
-# manaba Deadline Highlight
+# manaba Enhanced
 
-Chrome extension to easily check for upcoming assignments in manaba.
+Make your manaba a little bit more comfortable.
 
 Git it via [Chrome Web Store](https://chrome.google.com/webstore/detail/manaba-deadline-highlight/fldngcbchlbfgbccilklplmhljilhfch).
 

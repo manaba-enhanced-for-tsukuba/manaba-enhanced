@@ -7,6 +7,8 @@ dayjs.extend(customParseFormat)
 import "./manaba.sass"
 
 window.onload = () => {
+  removeLinkBalloon()
+
   const url = window.location.href
   if (url.indexOf("home_library_query") !== -1) {
     colorizeDeadline({})
@@ -16,6 +18,23 @@ window.onload = () => {
     url.lastIndexOf("report") === url.length - 6
   ) {
     colorizeDeadline({ checkStatus: true })
+  }
+}
+
+const removeLinkBalloon = () => {
+  const links = document.getElementsByTagName("a")
+
+  for (const link of links) {
+    if (link.href.indexOf("link_iframe_balloon") !== -1) {
+      const linkNew = document.createElement("a")
+      linkNew.href = link.innerHTML
+      linkNew.innerHTML = link.innerHTML
+      linkNew.target = "_blank"
+      linkNew.rel = "noopener noreferrer"
+
+      link.parentElement.appendChild(linkNew)
+      link.remove()
+    }
   }
 }
 

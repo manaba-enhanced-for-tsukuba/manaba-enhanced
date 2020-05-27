@@ -27,12 +27,12 @@ const removeLinkBalloon = () => {
   for (const link of links) {
     if (link.href.indexOf("link_iframe_balloon") !== -1) {
       const linkNew = document.createElement("a")
-      linkNew.href = link.innerHTML
-      linkNew.innerHTML = link.innerHTML
+      linkNew.href = link.innerText
+      linkNew.innerHTML = link.innerText
       linkNew.target = "_blank"
       linkNew.rel = "noopener noreferrer"
 
-      link.parentElement.appendChild(linkNew)
+      link.parentElement.insertBefore(linkNew, link)
       link.remove()
     }
   }

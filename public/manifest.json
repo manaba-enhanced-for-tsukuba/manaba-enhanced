@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "manaba Enhanced",
-  "version": "1.1",
+  "version": "1.2",
   "description": "Make your manaba a little bit more comfortable",
   "icons": {
     "16": "icons/icon_16.png",

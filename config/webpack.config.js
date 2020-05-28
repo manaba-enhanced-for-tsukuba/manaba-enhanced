@@ -8,7 +8,8 @@ const PATHS = require("./paths")
 // Merge webpack configuration files
 const config = merge(common, {
   entry: {
-    manaba: PATHS.src + "/manaba.js",
+    "manaba-document_start": PATHS.src + "/manaba-document_start.js",
+    "manaba-document_end": PATHS.src + "/manaba-document_end.js",
   },
 })
 

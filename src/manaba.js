@@ -35,8 +35,10 @@ const removeLinkBalloon = () => {
   for (const link of links) {
     if (link.href.indexOf("link_iframe_balloon") !== -1) {
       const linkNew = document.createElement("a")
-      linkNew.href = link.innerText
-      linkNew.innerHTML = urlClamp(link.innerText)
+      const url = unescape(link.href.substr(56))
+      linkNew.href = url
+      linkNew.innerHTML =
+        link.innerHTML.indexOf("http") === -1 ? link.innerHTML : urlClamp(url)
       linkNew.target = "_blank"
       linkNew.rel = "noopener noreferrer"
 

@@ -91,6 +91,7 @@ const syncReportText = () => {
     chrome.storage.local.get("reportText", (result) => {
       if (!Object.keys(result).length) {
         result = {}
+        chrome.storage.local.set({ reportText: {} })
       }
       if (!Object.keys(result.reportText).length) {
         result.reportText = {}

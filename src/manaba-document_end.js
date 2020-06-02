@@ -8,6 +8,7 @@ import "./manaba.sass"
 
 window.onload = () => {
   const url = window.location.href
+
   if (url.indexOf("home_library_query") !== -1) {
     colorizeDeadline({})
   } else if (
@@ -16,6 +17,15 @@ window.onload = () => {
     url.lastIndexOf("report") === url.length - 6
   ) {
     colorizeDeadline({ checkStatus: true })
+  }
+
+  if (url.indexOf("report") !== -1) {
+    const submitBtn = document.querySelector(
+      "input[name='action_ReportStudent_submitdone']"
+    )
+    if (submitBtn) {
+      syncReportText()
+    }
   }
 }
 
@@ -53,6 +63,43 @@ const colorizeDeadline = ({ checkStatus = false }) => {
       }
     } else {
       evalDeadline(row)
+    }
+  }
+}
+
+const syncReportText = () => {
+  const textarea = document.getElementsByTagName("textarea")[0]
+
+  const getId = () => {
+    const url = window.location.href
+    return url.substr(url.indexOf("manaba.tsukuba.ac.jp/ct/") + 24)
+  }
+
+  chrome.storage.local.get(getId(), (result) => {
+    if (result) {
+      textarea.value = result[getId()].text
+    }
+  })
+
+  const writeReportText = (id, text) => {
+    chrome.storage.local.set({
+      [id]: {
+        text: text,
+        modified: Date.now(),
+      },
+    })
+  }
+
+  if (textarea) {
+    textarea.addEventListener("input", (e) => {
+      if (!e.isComposing) {
+        writeReportText(getId(), textarea.value)
+      }
+    })
+    window.onkeyup = (e) => {
+      if (e.code === "Enter") {
+        writeReportText(getId(), textarea.value)
+      }
     }
   }
 }

@@ -25,6 +25,12 @@ window.onload = () => {
     )
     if (submitBtn) {
       syncReportText()
+
+      chrome.storage.local.getBytesInUse((bytesInUse) => {
+        if (bytesInUse > 4500000) {
+          clearStorage()
+        }
+      })
     }
   }
 }
@@ -110,4 +116,26 @@ const syncReportText = () => {
       }
     }
   }
+}
+
+const clearStorage = () => {
+  let curOldestKey
+  let curMinModified = 99999999999999
+
+  chrome.storage.local.get("reportText", (result) => {
+    for (const key of Object.keys(result.reportText)) {
+      if (result.reportText[key].modified < curMinModified) {
+        curOldestKey = key
+        curMinModified = result.reportText[key].modified
+      }
+    }
+    delete result.reportText[curOldestKey]
+    chrome.storage.local.set(result)
+
+    chrome.storage.local.getBytesInUse((bytesInUse) => {
+      if (bytesInUse > 4500000) {
+        clearStorage()
+      }
+    })
+  })
 }

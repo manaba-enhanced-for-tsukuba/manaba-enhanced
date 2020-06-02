@@ -10,9 +10,9 @@ Git it via [Chrome Web Store](https://chrome.google.com/webstore/detail/manaba-d
 
 1. Assignments will be colored according to the time to the deadline.
 
-Red: 1 day remaining  
-Yellow: 3 days remaining  
-Green: 7 days remaining
+    Red: 1 day remaining  
+    Yellow: 3 days remaining  
+    Green: 7 days remaining
 
 2. The report entered in the report input screen will not disappear even if the page is closed.
 
@@ -22,9 +22,9 @@ Green: 7 days remaining
 
 1. manabaに表示される課題一覧を、締切までの時間によって色分けします
 
-赤: 期限まであと1日  
-黄: 期限まであと3日  
-緑: 期限まであと7日
+    赤: 期限まであと1日  
+    黄: 期限まであと3日  
+    緑: 期限まであと7日
 
 2. レポート入力画面で入力しているレポートがページを閉じても消えないようにします
 

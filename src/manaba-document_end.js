@@ -75,18 +75,26 @@ const syncReportText = () => {
     return url.substr(url.indexOf("manaba.tsukuba.ac.jp/ct/") + 24)
   }
 
-  chrome.storage.local.get(getId(), (result) => {
-    if (result) {
-      textarea.value = result[getId()].text
+  chrome.storage.local.get("reportText", (result) => {
+    if (Object.keys(result).length) {
+      textarea.value = result.reportText[getId()].text
     }
   })
 
   const writeReportText = (id, text) => {
-    chrome.storage.local.set({
-      [id]: {
+    chrome.storage.local.get("reportText", (result) => {
+      if (!Object.keys(result).length) {
+        result = {}
+      }
+      if (!Object.keys(result.reportText).length) {
+        result.reportText = {}
+      }
+      result.reportText[id] = {
         text: text,
         modified: Date.now(),
-      },
+      }
+
+      chrome.storage.local.set(result)
     })
   }
 

@@ -8,17 +8,29 @@ Git it via [Chrome Web Store](https://chrome.google.com/webstore/detail/manaba-d
 
 ![Screenshot](./bin/dist/thumbnail1.png)
 
-Assignments will be colored according to the time to the deadline.
+1. Assignments will be colored according to the time to the deadline.
 
 Red: 1 day remaining  
 Yellow: 3 days remaining  
 Green: 7 days remaining
 
-manabaに表示される課題一覧を、締切までの時間によって色分けします
+2. The report entered in the report input screen will not disappear even if the page is closed.
+
+3. Remove the confirmation dialogue when you click links.
+
+---
+
+1. manabaに表示される課題一覧を、締切までの時間によって色分けします
 
 赤: 期限まであと1日  
 黄: 期限まであと3日  
 緑: 期限まであと7日
+
+2. レポート入力画面で入力しているレポートがページを閉じても消えないようにします
+
+3. 外部リンクをクリックした際の確認ダイアログを取り除きます
+
+---
 
 ## Development
 
@@ -31,6 +43,8 @@ yarn watch // Run in dev mode
 
 yarn build // When the app is ready to publish in store
 ```
+
+---
 
 ## How to add support for your univ.
 
@@ -50,9 +64,13 @@ Then you can create PR to publish the compatible version in Chrome Web Store. Wr
 
 正常に動作することが確認できた場合、PRを作成していただければ大学対応バージョンをChrome Web Storeに公開することも可能です。PRに対応大学を追加する旨、大学名を明記してください。
 
+---
+
 ## Contribution
 
 Suggestions and pull requests are welcomed!
+
+---
 
 ## License
 

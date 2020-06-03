@@ -2,7 +2,7 @@
 
 Make your manaba a little bit more comfortable.
 
-Git it via [Chrome Web Store](https://chrome.google.com/webstore/detail/manaba-deadline-highlight/fldngcbchlbfgbccilklplmhljilhfch).
+Get it via [Chrome Web Store](https://chrome.google.com/webstore/detail/manaba-deadline-highlight/fldngcbchlbfgbccilklplmhljilhfch).
 
 **Mainly for students of University of Tsukuba.**
 

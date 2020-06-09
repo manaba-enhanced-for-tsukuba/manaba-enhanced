@@ -8,6 +8,15 @@ Get it via [Chrome Web Store](https://chrome.google.com/webstore/detail/manaba-d
 
 ![Screenshot](./bin/dist/thumbnail1.png)
 
+## Supported Univ. / 対応大学
+- University of Tsukuba / 筑波大学
+
+If you want to add support for your univ., please follow the [instruction](https://github.com/mkobayashime/manaba-enhanced#how-to-add-support-for-your-univ) below. 
+
+---
+
+## Features / 機能
+
 1. Assignments will be colored according to the time to the deadline.
 
     Red: 1 day remaining  

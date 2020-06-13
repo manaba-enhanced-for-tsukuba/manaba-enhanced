@@ -23,9 +23,11 @@ If you want to add support for your univ., please follow the [instruction](https
     Yellow: 3 days remaining  
     Green: 7 days remaining
 
-2. The report entered in the report input screen will not disappear even if the page is closed.
+1. The report entered in the report input screen will not disappear even if the page is closed.
 
-3. Remove the confirmation dialogue when you click links.
+1. Highlight the publication deadline of course newses and course contents.
+
+1. Remove the confirmation dialogue when you click links.
 
 ---
 
@@ -35,9 +37,11 @@ If you want to add support for your univ., please follow the [instruction](https
     黄: 期限まであと3日  
     緑: 期限まであと7日
 
-2. レポート入力画面で入力しているレポートがページを閉じても消えないようにします
+1. レポート入力画面で入力しているレポートがページを閉じても消えないようにします
 
-3. 外部リンクをクリックした際の確認ダイアログを取り除きます
+1. コースニュースやコンテンツの公開期限を強調表示します
+
+1. 外部リンクをクリックした際の確認ダイアログを取り除きます
 
 ---
 

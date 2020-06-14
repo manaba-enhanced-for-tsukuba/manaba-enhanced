@@ -74,7 +74,6 @@ const evalDiff = (now, deadline) => {
 }
 
 const checkPagePubDeadline = (div) => {
-  div.innerText = "公開期間: 2020-06-12 22:45:00 ～ 2020-06-17 20:40:00"
   const match = new RegExp(
     "(\\d{4}-+\\d{2}-+\\d{2} \\d{2}:+\\d{2}:+\\d{2})",
     "g"

@@ -194,7 +194,12 @@ const checkAssignmentDeadline = () => {
     }
   }
 
-  if (notSubmitted) {
+  const validateDeadlineString = (string) => {
+    const match = new RegExp("(\\d{4}-+\\d{2}-+\\d{2} \\d{2}:+\\d{2})", "g")
+    return match.test(string)
+  }
+
+  if (notSubmitted && validateDeadlineString(deadlineString)) {
     const now = dayjs()
     const deadline = dayjs(deadlineString, "YYYY-MM-DD HH:mm")
 

@@ -29,7 +29,7 @@ If you want to add support for your univ., please follow the [instruction](https
 
 ## 機能
 
-1. マイページ表示される課題一覧を、締切までの時間によって色分けします
+1. マイページに表示される課題一覧を、締切までの時間によって色分けします
 
     赤: 期限まであと1日  
     黄: 期限まであと3日  

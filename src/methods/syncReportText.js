@@ -68,4 +68,4 @@ const clearStorage = () => {
   })
 }
 
-export default { syncReportText, clearStorage }
+export { syncReportText, clearStorage }

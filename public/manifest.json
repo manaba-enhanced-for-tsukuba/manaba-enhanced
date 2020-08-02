@@ -10,8 +10,15 @@
     "128": "icons/icon_128.png"
   },
   "permissions": [
-    "storage"
+    "storage",
+    "contextMenus"
   ],
+  "background": {
+    "scripts": [
+      "createContextMenu.js"
+    ],
+    "persistent": false
+  },
   "content_scripts": [
     {
       "matches": [

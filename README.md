@@ -27,6 +27,8 @@ If you want to use it in your univ., please follow the [instruction](https://git
 
 1. Remove the confirmation dialogue when you click links.
 
+1. Add a context menu to open the attend code in Respon.
+
 ## 機能
 
 1. マイページに表示される課題一覧を、締切までの時間によって色分けします
@@ -40,6 +42,8 @@ If you want to use it in your univ., please follow the [instruction](https://git
 1. コースニュースやコンテンツの公開期限を強調表示します
 
 1. 外部リンクをクリックした際の確認ダイアログを取り除きます
+
+1. 出席コードをResponで開く右クリックメニューを追加します
 
 ## Development
 

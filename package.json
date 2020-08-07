@@ -1,6 +1,6 @@
 {
-  "name": "manaba-enhanced",
-  "version": "1.8",
+  "name": "manaba-enhanced-for-tsukuba",
+  "version": "2.0",
   "description": "Make your manaba a little bit more comfortable",
   "private": true,
   "scripts": {

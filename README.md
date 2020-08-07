@@ -1,17 +1,17 @@
-# manaba Enhanced
+# manaba Enhanced for Tsukuba
 
 Make your manaba a little bit more comfortable.
 
 Get it via [Chrome Web Store](https://chrome.google.com/webstore/detail/manaba-enhanced/fldngcbchlbfgbccilklplmhljilhfch).
 
-**Mainly for students of University of Tsukuba.**
+**For students of University of Tsukuba.**
 
 ![Screenshot](./bin/dist/thumbnail1.png)
 
 ## Supported Univ. / 対応大学
 - University of Tsukuba / 筑波大学
 
-If you want to add support for your univ., please follow the [instruction](https://github.com/mkobayashime/manaba-enhanced#how-to-add-support-for-your-univ) below. 
+If you want to use it in your univ., please follow the [instruction](https://github.com/mkobayashime/manaba-enhanced#how-to-add-support-for-your-univ) below. 
 
 ## Features
 
@@ -57,19 +57,17 @@ yarn build // When the app is ready to publish in store
 
 If your univ. is using manaba and there is "Assignments" tab in the mypage, please follow the instruction below to use this extension.
 
-1. Add the url of manaba of your univ. to `matches` of `content_scripts` in `manifest.json`.
+1. Fork this repository.
+1. Replace `matches` of `content_scripts` in `manifest.json` with the url of manaba of your univ..
 1. Build and install in Chrome.  
 Please see [chrome-extension-cli](https://github.com/dutiyesh/chrome-extension-cli) for more detailed information.
 
-Then you can create PR to publish the compatible version in Chrome Web Store. Write your univ. name in PR.
-
 あなたの大学がmanabaを導入しており、マイページに「未提出課題」タブが存在する場合、以下の手順で対応が可能です。
 
-1. `manifest.json`に記述されている`content_scripts`の`matches`にあなたの大学のmanabaのURLを追加する。
+1. このレポジトリをフォークする。
+1. `manifest.json`に記述されている`content_scripts`の`matches`をあなたの大学のmanabaのURLに変更する。
 1. ビルドしChromeにインストールする。  
 詳細は前項の[chrome-extension-cli](https://github.com/dutiyesh/chrome-extension-cli)を参照してください。
-
-正常に動作することが確認できた場合、PRを作成していただければ大学対応バージョンをChrome Web Storeに公開することも可能です。PRに対応大学を追加する旨、大学名を明記してください。
 
 ## Contribution
 

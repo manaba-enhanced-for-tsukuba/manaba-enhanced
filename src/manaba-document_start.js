@@ -1,12 +1,18 @@
 "use strict"
 
 import removeLinkBalloon from "./methods/removeLinkBalloon.js"
+import filterCourses from "./methods/filterCourses.js"
 import checkPagePubDeadline from "./methods/checkPagePubDeadline.js"
 import checkAssignmentDeadline from "./methods/checkAssignmentDeadline.js"
 import openCodeInRespon from "./methods/openCodeInRespon.js"
 
 window.addEventListener("DOMContentLoaded", () => {
   removeLinkBalloon()
+
+  const coursesContainer = document.getElementsByClassName("mycourses-body")[0]
+  if (coursesContainer) {
+    filterCourses()
+  }
 
   const pageLimitView = document.getElementsByClassName("pagelimitview")[0]
   if (pageLimitView) {

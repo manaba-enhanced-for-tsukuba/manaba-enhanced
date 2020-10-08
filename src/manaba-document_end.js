@@ -8,7 +8,7 @@ import "./manaba.sass"
 window.onload = () => {
   const url = window.location.href
 
-  if (url.indexOf("home_library_query") !== -1) {
+  if (url.includes("home_library_query")) {
     colorizeDeadline({})
   } else if (
     url.lastIndexOf("query") === url.length - 5 ||
@@ -18,7 +18,7 @@ window.onload = () => {
     colorizeDeadline({ checkStatus: true })
   }
 
-  if (url.indexOf("report") !== -1) {
+  if (url.includes("report")) {
     const submitBtn = document.querySelector(
       "input[name='action_ReportStudent_submitdone']"
     )

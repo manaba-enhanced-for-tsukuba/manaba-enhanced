@@ -16,8 +16,8 @@ const checkAssignmentDeadline = () => {
       if (th.nextElementSibling) {
         const innerText = th.nextElementSibling.innerText
         if (
-          innerText.indexOf("提出していません") !== -1 ||
-          innerText.indexOf("Not submitted") !== -1
+          innerText.includes("提出していません") ||
+          innerText.includes("Not submitted")
         ) {
           notSubmitted = true
         }

@@ -29,10 +29,8 @@ const colorizeDeadline = ({ checkStatus = false }) => {
     if (checkStatus) {
       const status = row.childNodes[row.childNodes.length - 6].innerHTML
       if (
-        (status.indexOf("未提出") !== -1 &&
-          status.indexOf("受付終了") === -1) ||
-        (status.indexOf("Not submitted") !== -1 &&
-          status.indexOf("Closed") === -1)
+        (status.includes("未提出") && !status.includes("受付終了")) ||
+        (status.includes("Not submitted") && !status.includes("Closed"))
       ) {
         evalDeadline(row)
       }

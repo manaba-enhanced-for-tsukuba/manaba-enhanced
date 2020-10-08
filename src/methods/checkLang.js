@@ -1,5 +1,9 @@
 "use strict"
 
+/**
+ * Returns current display language
+ * @return {string} - "ja" or "en"
+ */
 const checkLang = () => {
   const mylang = document.getElementById("mylang")
   if (mylang.className.includes("mylang-ja")) {

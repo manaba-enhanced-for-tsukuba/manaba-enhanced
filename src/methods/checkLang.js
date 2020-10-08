@@ -2,10 +2,19 @@
 
 const checkLang = () => {
   const mylang = document.getElementById("mylang")
-  if (mylang.className.indexOf("ja") !== -1) {
+  if (mylang.className.includes("mylang-ja")) {
     return "ja"
-  } else if (mylang.className.indexOf("en") !== -1) {
+  } else if (mylang.className.includes("mylang-en")) {
     return "en"
+  } else if (mylang.innerText.includes("English")) {
+    // mylangのクラス名がサービス側で変更されたケースがあったため、フォールバック
+    return "ja"
+  } else if (mylang.innerText.includes("日本語")) {
+    // mylangのクラス名がサービス側で変更されたケースがあったため、フォールバック
+    return "en"
+  } else {
+    // 日本語をデフォルトに
+    return "ja"
   }
 }
 

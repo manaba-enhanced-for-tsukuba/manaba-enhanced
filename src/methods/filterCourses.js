@@ -70,7 +70,7 @@ const createModuleSelector = () => {
 
     if (moduleCode === "all") {
       if (lang === "ja") {
-        return "全てのモジュール"
+        return "すべてのモジュール"
       } else if (lang === "en") {
         return "All modules"
       }

@@ -25,6 +25,8 @@ If you want to use it in your univ., please follow the [instruction](https://git
 
 1. Highlight the publication deadline of course newses and course contents.
 
+1. Enable filtering of courses in mypage by terms/modules.
+
 1. Remove the confirmation dialogue when you click links.
 
 1. Add a context menu to open the attend code in Respon.
@@ -40,6 +42,8 @@ If you want to use it in your univ., please follow the [instruction](https://git
 1. レポート入力画面で入力しているレポートを自動保存し、ページを閉じても消えないようにします
 
 1. コースニュースやコンテンツの公開期限を強調表示します
+
+1. マイページのコースをモジュールでフィルターする機能を追加します
 
 1. 外部リンクをクリックした際の確認ダイアログを取り除きます
 

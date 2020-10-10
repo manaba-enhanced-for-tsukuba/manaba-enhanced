@@ -4,6 +4,7 @@ const SizePlugin = require("size-plugin")
 const CopyWebpackPlugin = require("copy-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer")
+const LodashModuleReplacementPlugin = require("lodash-webpack-plugin")
 
 const PATHS = require("./paths")
 
@@ -65,6 +66,7 @@ const common = {
       filename: "[name].css",
     }),
     new BundleAnalyzerPlugin(),
+    new LodashModuleReplacementPlugin(),
   ],
 }
 

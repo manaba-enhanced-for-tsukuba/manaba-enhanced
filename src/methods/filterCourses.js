@@ -115,8 +115,24 @@ const createModuleSelector = () => {
 }
 
 const applyFilter = (moduleCode) => {
-  const coursesContainer = document.querySelector(".courselist tbody")
-  const courses = Array.from(coursesContainer.children)
+  let viewMode, courses
+
+  const coursesListContainer = document.querySelector(".courselist tbody")
+  const coursesThumbnailContainer = document.querySelector(
+    ".mycourses-body .section"
+  )
+
+  if (coursesListContainer) {
+    viewMode = "list"
+  } else if (coursesThumbnailContainer) {
+    viewMode = "thumbnail"
+  }
+
+  if (viewMode === "list") {
+    courses = Array.from(coursesListContainer.children)
+  } else if (viewMode === "thumbnail") {
+    courses = Array.from(coursesThumbnailContainer.children)
+  }
   courses.shift()
 
   /**
@@ -181,13 +197,40 @@ const applyFilter = (moduleCode) => {
     isOdd = !isOdd
   }
 
+  const showCourse = (course) => {
+    if (viewMode === "list") {
+      course.style.display = "table-row"
+      handleOddRow(course)
+    } else if (viewMode === "thumbnail") {
+      course.style.display = "block"
+    }
+  }
+
+  const hideCourse = (course) => {
+    course.style.display = "none"
+  }
+
   if (moduleCode !== "all") {
     const parsedModuleCode = parseModuleCode(moduleCode)
 
     courses.forEach((course) => {
+      let courseInfoString
+
       course.style.display = "table-row"
 
-      const courseInfoString = course.children[2].innerText
+      if (viewMode === "list") {
+        courseInfoString = course.children[2].innerText
+      } else if (viewMode === "thumbnail") {
+        const courseInfoStringElm = course.querySelector(
+          ".courseitemdetail-date span"
+        )
+        if (courseInfoStringElm) {
+          courseInfoString = courseInfoStringElm.title
+        } else {
+          courseInfoString = ""
+        }
+      }
+
       if (/^.+\s.+$/.test(courseInfoString)) {
         const courseInfo = parseCourseInfoString(courseInfoString)
 
@@ -195,20 +238,17 @@ const applyFilter = (moduleCode) => {
           courseInfo.season[parsedModuleCode.season] &&
           courseInfo.module.includes(parsedModuleCode.module)
         ) {
-          course.style.display = "table-row"
-          handleOddRow(course)
+          showCourse(course)
         } else {
-          course.style.display = "none"
+          hideCourse(course)
         }
       } else {
-        course.style.display = "table-row"
-        handleOddRow(course)
+        showCourse(course)
       }
     })
   } else {
     courses.forEach((course) => {
-      course.style.display = "table-row"
-      handleOddRow(course)
+      showCourse(course)
     })
   }
 }

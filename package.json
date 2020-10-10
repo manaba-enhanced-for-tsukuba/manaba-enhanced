@@ -10,6 +10,7 @@
     "lintfix": "eslint --fix src/**/*.js"
   },
   "devDependencies": {
+    "adm-zip": "^0.4.16",
     "copy-webpack-plugin": "^5.1.1",
     "css-loader": "^3.5.3",
     "dayjs": "^1.8.27",

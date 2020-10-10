@@ -1,6 +1,5 @@
 "use strict"
 
-// import _ from "lodash"
 import { throttle } from "lodash/throttle"
 
 const syncReportText = () => {

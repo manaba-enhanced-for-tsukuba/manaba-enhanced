@@ -1,5 +1,8 @@
 "use strict"
 
+// import _ from "lodash"
+import { throttle } from "lodash/throttle"
+
 const syncReportText = () => {
   const textarea = document.getElementsByTagName("textarea")[0]
 
@@ -14,7 +17,7 @@ const syncReportText = () => {
     }
   })
 
-  const writeReportText = (id, text) => {
+  const writeReportText = throttle((id, text) => {
     chrome.storage.local.get("reportText", (result) => {
       if (!Object.keys(result).length) {
         result = {}
@@ -30,7 +33,7 @@ const syncReportText = () => {
 
       chrome.storage.local.set(result)
     })
-  }
+  }, 2000)
 
   if (textarea) {
     textarea.addEventListener("input", (e) => {

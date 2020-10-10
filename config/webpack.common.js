@@ -3,6 +3,7 @@
 const SizePlugin = require("size-plugin")
 const CopyWebpackPlugin = require("copy-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer")
 
 const PATHS = require("./paths")
 
@@ -63,6 +64,7 @@ const common = {
     new MiniCssExtractPlugin({
       filename: "[name].css",
     }),
+    new BundleAnalyzerPlugin(),
   ],
 }
 

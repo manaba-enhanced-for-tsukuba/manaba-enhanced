@@ -36,7 +36,7 @@ const parseModuleCode = (moduleCode) => {
 }
 
 /**
- * Convert season code to the text for UI
+ * Convert season code to the text for UI according to the display language
  * @param {string} seasonCode "spring" or "autumn"
  * @return {string} "春", "Spring", etc...
  */

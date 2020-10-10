@@ -170,6 +170,17 @@ const applyFilter = (moduleCode) => {
     }
   }
 
+  let isOdd = true
+
+  const handleOddRow = (course) => {
+    if (isOdd) {
+      course.classList.replace("row0", "row1")
+    } else {
+      course.classList.replace("row1", "row0")
+    }
+    isOdd = !isOdd
+  }
+
   if (moduleCode !== "all") {
     const parsedModuleCode = parseModuleCode(moduleCode)
 
@@ -185,16 +196,19 @@ const applyFilter = (moduleCode) => {
           courseInfo.module.includes(parsedModuleCode.module)
         ) {
           course.style.display = "table-row"
+          handleOddRow(course)
         } else {
           course.style.display = "none"
         }
       } else {
         course.style.display = "table-row"
+        handleOddRow(course)
       }
     })
   } else {
     courses.forEach((course) => {
       course.style.display = "table-row"
+      handleOddRow(course)
     })
   }
 }

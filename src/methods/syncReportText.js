@@ -1,6 +1,6 @@
 "use strict"
 
-import { throttle } from "lodash/throttle"
+import { throttle } from "lodash-es"
 
 const syncReportText = () => {
   const textarea = document.getElementsByTagName("textarea")[0]

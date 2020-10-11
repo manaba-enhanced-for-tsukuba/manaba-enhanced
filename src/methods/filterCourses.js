@@ -130,10 +130,11 @@ const applyFilter = (moduleCode) => {
 
   if (viewMode === "list") {
     courses = Array.from(coursesListContainer.children)
+    courses.shift()
   } else if (viewMode === "thumbnail") {
     courses = Array.from(coursesThumbnailContainer.children)
+    courses.pop()
   }
-  courses.shift()
 
   /**
    * Parse course info string on the UI

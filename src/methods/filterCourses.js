@@ -187,15 +187,15 @@ const applyFilter = (moduleCode) => {
     }
   }
 
-  let isOdd = true
+  let isOddRow = true
 
   const handleOddRow = (course) => {
-    if (isOdd) {
+    if (isOddRow) {
       course.classList.replace("row0", "row1")
     } else {
       course.classList.replace("row1", "row0")
     }
-    isOdd = !isOdd
+    isOddRow = !isOddRow
   }
 
   const showCourse = (course) => {

@@ -217,7 +217,9 @@ const applyFilter = (moduleCode) => {
     courses.forEach((course) => {
       let courseInfoString
 
-      course.style.display = "table-row"
+      if (viewMode === "list") {
+        course.style.display = "table-row"
+      }
 
       if (viewMode === "list") {
         courseInfoString = course.children[2].innerText

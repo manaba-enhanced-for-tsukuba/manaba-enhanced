@@ -17,3 +17,9 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
     chrome.tabs.sendMessage(tab.id, { kind: "open-in-respon" })
   }
 })
+
+chrome.runtime.onMessage.addListener((message) => {
+  if (message.action === "openOptionsPage") {
+    chrome.runtime.openOptionsPage()
+  }
+})

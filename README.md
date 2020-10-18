@@ -49,6 +49,16 @@ If you want to use it in your univ., please follow the [instruction](https://git
 
 1. 出席コードをResponで開く右クリックメニューを追加します
 
+## Disclaimer / 免責事項
+
+This is an unofficial software and has nothing to do with the administration of the University of Tsukuba.
+
+We will not be held responsible for any damages and troubles caused by this software.
+
+これは大学非公式のソフトウェアであり、筑波大学とは無関係です
+
+私達はこのソフトウェアを利用したことによるいかなる損害、トラブルに対する責任を負いません
+
 ## Development
 
 This extension is built on top of awesome [chrome-extension-cli](https://github.com/dutiyesh/chrome-extension-cli).

@@ -73,7 +73,7 @@ yarn build // When the app is ready to publish in store
 
 ## How to add support for your univ.
 
-If your univ. is using manaba and there is "Assignments" tab in the mypage, please follow the instruction below to use this extension.
+If your univ. is using manaba and there is *Assignments* tab in the mypage, please follow the instruction below to use this extension.
 
 1. Fork this repository.
 1. Replace `matches` of `content_scripts` in `manifest.json` with the url of manaba of your univ..

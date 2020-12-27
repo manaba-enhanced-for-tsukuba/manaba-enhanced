@@ -15,7 +15,8 @@
   ],
   "background": {
     "scripts": [
-      "createContextMenu.js"
+      "createContextMenu.js",
+      "listenShortcuts.js"
     ],
     "persistent": false
   },
@@ -38,5 +39,13 @@
         "manaba-document_end.js"
       ]
     }
-  ]
+  ],
+  "commands":   {
+    "manaba-enhanced:open-in-respon": {
+      "suggested_key": {
+        "default": "Alt+R"
+      },
+      "description": "Open selected Respon code in Respon"
+    }
+  }
 }

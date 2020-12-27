@@ -27,7 +27,7 @@
       ],
       "run_at": "document_start",
       "js": [
-        "manaba-document_start.js"
+        "manabaDocumentStart.js"
       ]
     },
     {
@@ -36,7 +36,7 @@
       ],
       "run_at": "document_end",
       "js": [
-        "manaba-document_end.js"
+        "manabaDocumentEnd.js"
       ]
     }
   ],

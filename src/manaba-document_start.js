@@ -24,10 +24,13 @@ window.addEventListener("DOMContentLoaded", () => {
     checkAssignmentDeadline()
   }
 
-  window.onkeydown = (e) => {
-    if (e.altKey && e.code === "KeyR") {
-      const selectedText = window.getSelection().toString()
-      openCodeInRespon(selectedText)
+  chrome.runtime.onMessage.addListener((msg) => {
+    switch (msg.kind) {
+      case "open-in-respon": {
+        const selectedText = window.getSelection().toString()
+        openCodeInRespon(selectedText)
+        break
+      }
     }
-  }
+  })
 })

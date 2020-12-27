@@ -13,6 +13,10 @@ const validateCode = (code) => {
   return match.test(code)
 }
 
+/**
+ * Open Respon code in the new tab
+ * @param {string} code Respon code like "123 456 789"
+ */
 const openCodeInRespon = (code) => {
   const trimmedCode = trimCode(code)
   if (validateCode(trimmedCode)) {

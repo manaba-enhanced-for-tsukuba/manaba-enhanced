@@ -1,7 +1,5 @@
 "use strict"
 
-import openCodeInRespon from "./methods/openCodeInRespon.js"
-
 chrome.runtime.onInstalled.addListener(() => {
   chrome.contextMenus.create({
     id: "respon",
@@ -16,6 +14,6 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
     info.menuItemId === "respon" &&
     tab.url.includes("manaba.tsukuba.ac.jp")
   ) {
-    openCodeInRespon(info.selectionText)
+    chrome.tabs.sendMessage(tab.id, { kind: "open-in-respon" })
   }
 })

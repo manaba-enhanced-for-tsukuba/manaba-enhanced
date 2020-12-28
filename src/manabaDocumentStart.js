@@ -7,24 +7,38 @@ import checkPagePubDeadline from "./methods/checkPagePubDeadline.js"
 import checkAssignmentDeadline from "./methods/checkAssignmentDeadline.js"
 import openCodeInRespon from "./methods/openCodeInRespon.js"
 
+let storageSync
+chrome.storage.sync.get((result) => {
+  storageSync = result
+})
+
 window.addEventListener("DOMContentLoaded", () => {
   createLinkToOptions()
 
-  removeLinkBalloon()
-
-  const coursesContainer = document.getElementsByClassName("mycourses-body")[0]
-  if (coursesContainer) {
-    filterCourses()
+  if (storageSync["features-remove-confirmation"]) {
+    removeLinkBalloon()
   }
 
-  const pageLimitView = document.getElementsByClassName("pagelimitview")[0]
-  if (pageLimitView) {
-    checkPagePubDeadline(pageLimitView)
+  if (storageSync["features-filter-courses"]) {
+    const coursesContainer = document.getElementsByClassName(
+      "mycourses-body"
+    )[0]
+
+    if (coursesContainer) {
+      filterCourses()
+    }
   }
 
-  const stdlist = document.getElementsByClassName("stdlist")[0]
-  if (stdlist) {
-    checkAssignmentDeadline()
+  if (storageSync["features-deadline-highlighting"]) {
+    const pageLimitView = document.getElementsByClassName("pagelimitview")[0]
+    if (pageLimitView) {
+      checkPagePubDeadline(pageLimitView)
+    }
+
+    const stdlist = document.getElementsByClassName("stdlist")[0]
+    if (stdlist) {
+      checkAssignmentDeadline()
+    }
   }
 
   chrome.runtime.onMessage.addListener((msg) => {

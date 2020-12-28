@@ -5,6 +5,20 @@ chrome.runtime.onInstalled.addListener((details) => {
     chrome.runtime.openOptionsPage()
   }
 
+  ;[
+    "features-assignments-coloring",
+    "features-autosave-reports",
+    "features-deadline-highlighting",
+    "features-remove-confirmation",
+    "features-respon",
+  ].map((key) => {
+    chrome.storage.sync.get([key], (result) => {
+      if (result[key] === undefined) {
+        chrome.storage.sync.set({ [key]: true })
+      }
+    })
+  })
+
   chrome.contextMenus.create({
     id: "respon",
     type: "normal",

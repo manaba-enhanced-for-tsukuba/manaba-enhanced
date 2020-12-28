@@ -12,6 +12,7 @@ const config = merge(common, {
     manabaDocumentEnd: PATHS.src + "/manabaDocumentEnd.js",
     listenShortcuts: PATHS.src + "/listenShortcuts.js",
     background: PATHS.src + "/background.js",
+    options: PATHS.src + "/options.js",
   },
 })
 

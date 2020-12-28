@@ -1,6 +1,10 @@
 "use strict"
 
-chrome.runtime.onInstalled.addListener(() => {
+chrome.runtime.onInstalled.addListener((details) => {
+  if (["install", "update"].includes(details.reason)) {
+    chrome.runtime.openOptionsPage()
+  }
+
   chrome.contextMenus.create({
     id: "respon",
     type: "normal",

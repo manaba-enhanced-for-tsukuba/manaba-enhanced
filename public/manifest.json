@@ -13,10 +13,11 @@
     "storage",
     "contextMenus"
   ],
+  "options_page": "options.html",
   "background": {
     "scripts": [
-      "createContextMenu.js",
-      "listenShortcuts.js"
+      "listenShortcuts.js",
+      "background.js"
     ],
     "persistent": false
   },

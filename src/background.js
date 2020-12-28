@@ -27,6 +27,12 @@ chrome.runtime.onInstalled.addListener((details) => {
   })
 })
 
+chrome.runtime.onMessage.addListener((message) => {
+  if (message.action === "openOptionsPage") {
+    chrome.runtime.openOptionsPage()
+  }
+})
+
 chrome.contextMenus.onClicked.addListener((info, tab) => {
   if (
     info.menuItemId === "respon" &&
@@ -36,8 +42,11 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
   }
 })
 
-chrome.runtime.onMessage.addListener((message) => {
-  if (message.action === "openOptionsPage") {
-    chrome.runtime.openOptionsPage()
+chrome.commands.onCommand.addListener((cmd, tab) => {
+  switch (cmd) {
+    case "manaba-enhanced:open-in-respon": {
+      chrome.tabs.sendMessage(tab.id, { kind: "open-in-respon" })
+      break
+    }
   }
 })

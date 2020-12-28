@@ -10,7 +10,7 @@ chrome.runtime.onInstalled.addListener((details) => {
     "features-autosave-reports",
     "features-deadline-highlighting",
     "features-remove-confirmation",
-    "features-respon",
+    "features-filter-courses",
   ].map((key) => {
     chrome.storage.sync.get([key], (result) => {
       if (result[key] === undefined) {

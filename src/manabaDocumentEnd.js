@@ -3,7 +3,7 @@
 import colorizeDeadline from "./methods/colorizeDeadline.js"
 import { syncReportText, clearStorage } from "./methods/syncReportText.js"
 
-import "./manaba.sass"
+import "./style/manaba.sass"
 
 let storageSync
 chrome.storage.sync.get((result) => {

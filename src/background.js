@@ -4,7 +4,6 @@ chrome.runtime.onInstalled.addListener((details) => {
   if (["install", "update"].includes(details.reason)) {
     const query = new URLSearchParams({
       event: details.reason,
-      version: chrome.runtime.getManifest().version,
     })
 
     chrome.tabs.create({

@@ -5,7 +5,8 @@ import "./style/options.sass"
 window.onload = () => {
   const query = new URLSearchParams(window.location.search)
   const queryEvent = query.get("event")
-  const queryVersion = query.get("version")
+
+  const versionNum = chrome.runtime.getManifest().version
 
   if (["install", "update"].includes(queryEvent)) {
     const noticeDom = document.getElementById("notice")
@@ -13,16 +14,16 @@ window.onload = () => {
 
     switch (queryEvent) {
       case "install":
-        noticeDom.innerText = `Thanks for installing manaba Enhanced version ${queryVersion}`
+        noticeDom.innerText = `Thanks for installing manaba Enhanced version ${versionNum}`
         break
       case "update":
-        noticeDom.innerText = `manaba Enhanced is updated for version ${queryVersion}`
+        noticeDom.innerText = `manaba Enhanced is updated for version ${versionNum}`
         break
     }
   }
 
   const versionNumDom = document.getElementById("version-number")
-  versionNumDom.innerText = queryVersion || chrome.runtime.getManifest().version
+  versionNumDom.innerText = versionNum
 
   const linkToShortcutsSettings = document.getElementById(
     "link-to-shortcuts-settings"

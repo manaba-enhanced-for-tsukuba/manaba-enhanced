@@ -20,6 +20,9 @@ window.onload = () => {
     }
   }
 
+  const versionNumDom = document.getElementById("version-number")
+  versionNumDom.innerText = queryVersion || chrome.runtime.getManifest().version
+
   const linkToShortcutsSettings = document.getElementById(
     "link-to-shortcuts-settings"
   )

@@ -2,7 +2,14 @@
 
 chrome.runtime.onInstalled.addListener((details) => {
   if (["install", "update"].includes(details.reason)) {
-    chrome.runtime.openOptionsPage()
+    const query = new URLSearchParams({
+      event: details.reason,
+      version: chrome.runtime.getManifest().version,
+    })
+
+    chrome.tabs.create({
+      url: `${chrome.runtime.getURL("options.html")}?${query.toString()}`,
+    })
   }
 
   ;[

@@ -3,6 +3,23 @@
 import "./style/options.sass"
 
 window.onload = () => {
+  const query = new URLSearchParams(window.location.search)
+  const queryEvent = query.get("event")
+  const queryVersion = query.get("version")
+
+  if (["install", "update"].includes(queryEvent)) {
+    const noticeDom = document.getElementById("notice")
+    noticeDom.parentElement.style.display = "block"
+
+    switch (queryEvent) {
+      case "install":
+        noticeDom.innerText = `Thanks for installing manaba Enhanced version ${queryVersion}`
+        break
+      case "update":
+        noticeDom.innerText = `manaba Enhanced is updated for version ${queryVersion}`
+    }
+  }
+
   const linkToShortcutsSettings = document.getElementById(
     "link-to-shortcuts-settings"
   )

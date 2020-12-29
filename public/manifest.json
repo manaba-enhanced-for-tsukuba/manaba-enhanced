@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "manaba Enhanced for Tsukuba",
-  "version": "2.4",
+  "version": "2.5",
   "description": "Make your manaba a little bit more comfortable",
   "icons": {
     "16": "icons/icon_16.png",
@@ -9,38 +9,25 @@
     "48": "icons/icon_48.png",
     "128": "icons/icon_128.png"
   },
-  "permissions": [
-    "storage",
-    "contextMenus"
-  ],
+  "permissions": ["storage", "contextMenus"],
   "options_page": "options.html",
   "background": {
-    "scripts": [
-      "background.js"
-    ],
+    "scripts": ["background.js"],
     "persistent": false
   },
   "content_scripts": [
     {
-      "matches": [
-        "https://manaba.tsukuba.ac.jp/*"
-      ],
+      "matches": ["https://manaba.tsukuba.ac.jp/*"],
       "run_at": "document_start",
-      "js": [
-        "manabaDocumentStart.js"
-      ]
+      "js": ["manabaDocumentStart.js"]
     },
     {
-      "matches": [
-        "https://manaba.tsukuba.ac.jp/*"
-      ],
+      "matches": ["https://manaba.tsukuba.ac.jp/*"],
       "run_at": "document_end",
-      "js": [
-        "manabaDocumentEnd.js"
-      ]
+      "js": ["manabaDocumentEnd.js"]
     }
   ],
-  "commands":   {
+  "commands": {
     "manaba-enhanced:open-in-respon": {
       "suggested_key": {
         "default": "Alt+R"

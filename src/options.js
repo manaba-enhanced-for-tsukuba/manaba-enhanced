@@ -17,6 +17,7 @@ window.onload = () => {
         break
       case "update":
         noticeDom.innerText = `manaba Enhanced is updated for version ${queryVersion}`
+        break
     }
   }
 

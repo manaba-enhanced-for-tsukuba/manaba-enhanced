@@ -1,18 +1,20 @@
 "use strict"
 
+const path = require("path")
 const merge = require("webpack-merge")
+const glob = require("glob")
 
 const common = require("./webpack.common.js")
-const PATHS = require("./paths")
+
+const entries = glob.sync("./src/*.js").reduce((acc, cur) => {
+  const key = path.basename(cur, ".js")
+  acc[key] = cur
+  return acc
+}, {})
 
 // Merge webpack configuration files
 const config = merge(common, {
-  entry: {
-    manabaDocumentStart: PATHS.src + "/manabaDocumentStart.js",
-    manabaDocumentEnd: PATHS.src + "/manabaDocumentEnd.js",
-    background: PATHS.src + "/background.js",
-    options: PATHS.src + "/options.js",
-  },
+  entry: entries,
 })
 
 module.exports = config

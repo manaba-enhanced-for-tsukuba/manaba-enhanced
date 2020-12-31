@@ -1,11 +1,10 @@
 "use strict"
 
+const path = require("path")
 const SizePlugin = require("size-plugin")
 const CopyWebpackPlugin = require("copy-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer")
-
-const PATHS = require("./paths")
 
 // To re-use webpack configuration across templates,
 // CLI maintains a common webpack configuration file - `webpack.common.js`.
@@ -13,9 +12,7 @@ const PATHS = require("./paths")
 // in template's `config` folder
 const common = {
   output: {
-    // the build folder to output bundles and assets in.
-    path: PATHS.build,
-    // the filename template for entry chunks
+    path: path.resolve(__dirname, "../build"),
     filename: "[name].js",
   },
   devtool: "source-map",

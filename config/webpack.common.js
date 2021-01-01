@@ -24,7 +24,6 @@ const common = {
     filename: "[name].js",
   },
   entry: entries,
-  devtool: "source-map",
   stats: {
     all: false,
     errors: true,

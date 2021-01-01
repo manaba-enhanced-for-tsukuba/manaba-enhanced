@@ -1,10 +1,18 @@
 "use strict"
 
 const path = require("path")
+const glob = require("glob")
+
 const SizePlugin = require("size-plugin")
 const CopyWebpackPlugin = require("copy-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer")
+
+const entries = glob.sync("./src/*.js").reduce((acc, cur) => {
+  const key = path.basename(cur, ".js")
+  acc[key] = cur
+  return acc
+}, {})
 
 // To re-use webpack configuration across templates,
 // CLI maintains a common webpack configuration file - `webpack.common.js`.
@@ -15,6 +23,7 @@ const common = {
     path: path.resolve(__dirname, "../build"),
     filename: "[name].js",
   },
+  entry: entries,
   devtool: "source-map",
   stats: {
     all: false,

@@ -4,8 +4,8 @@
   "description": "Make your manaba a little bit more comfortable",
   "private": true,
   "scripts": {
-    "watch": "webpack --mode=development --watch --config config/webpack.config.js",
-    "build": "webpack --mode=production --config config/webpack.config.js",
+    "watch": "webpack --mode=development --watch --config config/webpack.dev.js",
+    "build": "webpack --mode=production --config config/webpack.prod.js",
     "lint": "eslint src/**/*.js",
     "lintfix": "eslint --fix src/**/*.js",
     "bundle": "node ./config/bundleToZip.js"

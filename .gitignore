@@ -13,3 +13,6 @@ npm-debug.log*
 .env.js
 
 size-plugin.json
+
+# dist zip
+manabaEnhanced-*.zip

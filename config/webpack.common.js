@@ -9,7 +9,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer")
 
 const entries = Object.fromEntries(
-  glob.sync("./src/*.js").map((entry) => [entry, entry])
+  glob.sync("./src/*.ts").map((entry) => [entry, entry])
 )
 
 // To re-use webpack configuration across templates,
@@ -29,6 +29,10 @@ const common = {
   },
   module: {
     rules: [
+      {
+        test: /\.ts$/,
+        use: "ts-loader",
+      },
       // Help webpack in understanding CSS files imported in .js files
       {
         test: /\.css$/,
@@ -52,6 +56,9 @@ const common = {
         ],
       },
     ],
+  },
+  resolve: {
+    extensions: [".js", ".ts"],
   },
   plugins: [
     // Print file sizes

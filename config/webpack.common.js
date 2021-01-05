@@ -8,9 +8,11 @@ const CopyWebpackPlugin = require("copy-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer")
 
-const entries = Object.fromEntries(
-  glob.sync("./src/*.ts").map((entry) => [entry, entry])
-)
+const entries = glob.sync("./src/*.ts").reduce((acc, cur) => {
+  const key = path.basename(cur, ".ts")
+  acc[key] = cur
+  return acc
+}, {})
 
 // To re-use webpack configuration across templates,
 // CLI maintains a common webpack configuration file - `webpack.common.js`.

@@ -4,10 +4,11 @@
   "description": "Make your manaba a little bit more comfortable",
   "private": true,
   "scripts": {
-    "watch": "webpack --mode=development --watch --config config/webpack.dev.js",
-    "build": "webpack --mode=production --config config/webpack.prod.js",
+    "watch": "yarn clear && webpack --mode=development --watch --config config/webpack.dev.js",
+    "build": "yarn clear && webpack --mode=production --config config/webpack.prod.js",
     "lint": "eslint src/**/*.ts",
-    "lintfix": "eslint --fix src/**/*.ts"
+    "lintfix": "eslint --fix src/**/*.ts",
+    "clear": "rimraf build"
   },
   "devDependencies": {
     "copy-webpack-plugin": "^5.1.1",
@@ -24,6 +25,7 @@
     "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.14.1",
     "prettier": "^2.0.5",
+    "rimraf": "^3.0.2",
     "sass-loader": "^8.0.2",
     "size-plugin": "^2.0.1",
     "style-loader": "^1.2.1",

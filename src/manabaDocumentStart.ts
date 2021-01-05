@@ -1,11 +1,11 @@
 "use strict"
 
-import createLinkToOptions from "./methods/createLinkToOptions.js"
-import removeLinkBalloon from "./methods/removeLinkBalloon.js"
-import filterCourses from "./methods/filterCourses.js"
-import checkPagePubDeadline from "./methods/checkPagePubDeadline.js"
-import checkAssignmentDeadline from "./methods/checkAssignmentDeadline.js"
-import openCodeInRespon from "./methods/openCodeInRespon.js"
+import createLinkToOptions from "./methods/createLinkToOptions"
+import removeLinkBalloon from "./methods/removeLinkBalloon"
+import filterCourses from "./methods/filterCourses"
+import checkPagePubDeadline from "./methods/checkPagePubDeadline"
+import checkAssignmentDeadline from "./methods/checkAssignmentDeadline"
+import openCodeInRespon from "./methods/openCodeInRespon"
 
 let storageSync
 chrome.storage.sync.get((result) => {

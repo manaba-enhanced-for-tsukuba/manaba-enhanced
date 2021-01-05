@@ -6,8 +6,8 @@
   "scripts": {
     "watch": "webpack --mode=development --watch --config config/webpack.dev.js",
     "build": "webpack --mode=production --config config/webpack.prod.js",
-    "lint": "eslint src/**/*.js",
-    "lintfix": "eslint --fix src/**/*.js"
+    "lint": "eslint src/**/*.ts",
+    "lintfix": "eslint --fix src/**/*.ts"
   },
   "devDependencies": {
     "copy-webpack-plugin": "^5.1.1",
@@ -41,7 +41,7 @@
     }
   },
   "lint-staged": {
-    "*.js": [
+    "*.ts": [
       "eslint"
     ]
   }

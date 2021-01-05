@@ -4,8 +4,8 @@ import dayjs from "dayjs"
 import customParseFormat from "dayjs/plugin/customParseFormat"
 dayjs.extend(customParseFormat)
 
-import checkLang from "./checkLang.js"
-import evalDiff from "./evalDiff.js"
+import checkLang from "./checkLang.ts"
+import evalDiff from "./evalDiff.ts"
 
 const checkPagePubDeadline = (div) => {
   const match = new RegExp(

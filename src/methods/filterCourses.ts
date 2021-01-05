@@ -1,6 +1,6 @@
 "use strict"
 
-import checkLang from "./checkLang.js"
+import checkLang from "./checkLang.ts"
 let lang
 
 const filterCourses = () => {

@@ -1,7 +1,7 @@
 "use strict"
 
-import colorizeDeadline from "./methods/colorizeDeadline.js"
-import { syncReportText, clearStorage } from "./methods/syncReportText.js"
+import colorizeDeadline from "./methods/colorizeDeadline"
+import { syncReportText, clearStorage } from "./methods/syncReportText"
 
 import "./style/colorizeDeadline.sass"
 

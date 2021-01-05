@@ -4,8 +4,8 @@ import dayjs from "dayjs"
 import customParseFormat from "dayjs/plugin/customParseFormat"
 dayjs.extend(customParseFormat)
 
-import checkLang from "./checkLang.ts"
-import evalDiff from "./evalDiff.ts"
+import checkLang from "./checkLang"
+import evalDiff from "./evalDiff"
 
 const checkAssignmentDeadline = () => {
   let notSubmitted, deadlineString, deadlineTh

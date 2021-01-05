@@ -7,7 +7,7 @@ import checkPagePubDeadline from "./methods/checkPagePubDeadline"
 import checkAssignmentDeadline from "./methods/checkAssignmentDeadline"
 import openCodeInRespon from "./methods/openCodeInRespon"
 
-let storageSync
+let storageSync: { [key: string]: string }
 chrome.storage.sync.get((result) => {
   storageSync = result
 })
@@ -30,7 +30,7 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   if (storageSync["features-deadline-highlighting"]) {
-    const pageLimitView = document.getElementsByClassName("pagelimitview")[0]
+    const pageLimitView = document.getElementsByClassName("pagelimitview")[0] as HTMLElement
     if (pageLimitView) {
       checkPagePubDeadline(pageLimitView)
     }
@@ -44,8 +44,8 @@ window.addEventListener("DOMContentLoaded", () => {
   chrome.runtime.onMessage.addListener((msg) => {
     switch (msg.kind) {
       case "open-in-respon": {
-        const selectedText = window.getSelection().toString()
-        openCodeInRespon(selectedText)
+        const selectedText = window.getSelection()?.toString()
+        if (selectedText) openCodeInRespon(selectedText)
         break
       }
     }

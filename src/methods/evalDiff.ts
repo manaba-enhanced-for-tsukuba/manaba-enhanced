@@ -1,6 +1,13 @@
 "use strict"
 
-const evalDiff = (now, deadline) => {
+import dayjs from "dayjs"
+
+interface diff {
+  value: number
+  unit: "day" | "hour" | "minute" | ""
+}
+
+const evalDiff = (now: dayjs.Dayjs, deadline: dayjs.Dayjs): diff => {
   const diffDays = deadline.diff(now, "day")
   if (diffDays > 0) {
     return { value: diffDays, unit: "day" }

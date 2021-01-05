@@ -7,14 +7,18 @@ dayjs.extend(customParseFormat)
 import checkLang from "./checkLang"
 import evalDiff from "./evalDiff"
 
-const checkAssignmentDeadline = () => {
-  let notSubmitted, deadlineString, deadlineTh
+const checkAssignmentDeadline = (): void => {
+  let notSubmitted = false
+  let deadlineString = ""
+  let deadlineTh: HTMLElement
 
-  const ths = document.querySelectorAll(".stdlist th")
+  const ths = Array.from(
+    document.querySelectorAll(".stdlist th")
+  ) as HTMLElement[]
   for (const th of ths) {
     if (th.innerText === "状態" || th.innerText === "Status") {
       if (th.nextElementSibling) {
-        const innerText = th.nextElementSibling.innerText
+        const innerText = (th.nextElementSibling as HTMLElement).innerText
         if (
           innerText.includes("提出していません") ||
           innerText.includes("Not submitted")
@@ -25,13 +29,13 @@ const checkAssignmentDeadline = () => {
     }
     if (th.innerText === "受付終了日時" || th.innerText === "End") {
       if (th.nextElementSibling) {
-        deadlineString = th.nextElementSibling.innerText
+        deadlineString = (th.nextElementSibling as HTMLElement).innerText
         deadlineTh = th
       }
     }
   }
 
-  const validateDeadlineString = (string) => {
+  const validateDeadlineString = (string: string) => {
     const match = new RegExp("(\\d{4}-+\\d{2}-+\\d{2} \\d{2}:+\\d{2})", "g")
     return match.test(string)
   }
@@ -42,7 +46,10 @@ const checkAssignmentDeadline = () => {
 
     const lang = checkLang()
 
-    const createMessage = (text, msgStatus) => {
+    const createMessage = (
+      text: string,
+      msgStatus: "normal" | "caution" | "danger"
+    ) => {
       const message = document.createElement("span")
       message.innerText = text
       message.style.marginLeft = "1em"
@@ -57,10 +64,12 @@ const checkAssignmentDeadline = () => {
         message.style.backgroundColor = "#ffdce0"
         message.style.color = "#5d000b"
       }
-      deadlineTh.nextElementSibling.appendChild(message)
+      if (deadlineTh && deadlineTh.nextElementSibling) {
+        deadlineTh.nextElementSibling.appendChild(message)
+      }
     }
 
-    const diff = evalDiff(now, deadline, createMessage)
+    const diff = evalDiff(now, deadline)
 
     if (diff.value > 0) {
       switch (diff.unit) {

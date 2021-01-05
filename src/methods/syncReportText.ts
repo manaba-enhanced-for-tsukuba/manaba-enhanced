@@ -2,7 +2,7 @@
 
 import { throttle } from "lodash-es"
 
-const syncReportText = () => {
+const syncReportText = (): void => {
   const textarea = document.getElementsByTagName("textarea")[0]
 
   const getId = () => {
@@ -36,11 +36,12 @@ const syncReportText = () => {
 
   if (textarea) {
     textarea.addEventListener("input", (e) => {
-      if (!e.isComposing) {
+      if (!(e as KeyboardEvent).isComposing) {
         writeReportText(getId(), textarea.value)
       }
     })
-    window.onkeyup = (e) => {
+
+    window.onkeyup = (e: KeyboardEvent) => {
       if (e.code === "Enter") {
         writeReportText(getId(), textarea.value)
       }
@@ -48,8 +49,8 @@ const syncReportText = () => {
   }
 }
 
-const clearStorage = () => {
-  let curOldestKey
+const clearStorage = (): void => {
+  let curOldestKey: string
   let curMinModified = 99999999999999
 
   chrome.storage.local.get("reportText", (result) => {

@@ -8,22 +8,24 @@ window.onload = () => {
 
   const versionNum = chrome.runtime.getManifest().version
 
-  if (["install", "update"].includes(queryEvent)) {
+  if (queryEvent && ["install", "update"].includes(queryEvent)) {
     const noticeDom = document.getElementById("notice")
-    noticeDom.parentElement.style.display = "block"
+    if (noticeDom && noticeDom.parentElement) {
+      noticeDom.parentElement.style.display = "block"
 
-    switch (queryEvent) {
-      case "install":
-        noticeDom.innerText = `Thanks for installing manaba Enhanced version ${versionNum}`
-        break
-      case "update":
-        noticeDom.innerText = `manaba Enhanced is updated for version ${versionNum}`
-        break
+      switch (queryEvent) {
+        case "install":
+          noticeDom.innerText = `Thanks for installing manaba Enhanced version ${versionNum}`
+          break
+        case "update":
+          noticeDom.innerText = `manaba Enhanced is updated for version ${versionNum}`
+          break
+      }
     }
   }
 
   const versionNumDom = document.getElementById("version-number")
-  versionNumDom.innerText = versionNum
+  if (versionNumDom) versionNumDom.innerText = versionNum
 
   const linkToShortcutsSettings = document.getElementById(
     "link-to-shortcuts-settings"
@@ -36,7 +38,7 @@ window.onload = () => {
     }
   }
 
-  Array.from(document.getElementsByClassName("checkbox-features")).map(
+  (Array.from(document.getElementsByClassName("checkbox-features")) as HTMLInputElement[]).map(
     (dom) => {
       const key = dom.id
 
@@ -47,7 +49,8 @@ window.onload = () => {
       })
 
       dom.addEventListener("change", (event) => {
-        chrome.storage.sync.set({ [key]: event.srcElement.checked })
+        const target = event.target as HTMLInputElement
+        chrome.storage.sync.set({ [key]: target.checked })
       })
     }
   )

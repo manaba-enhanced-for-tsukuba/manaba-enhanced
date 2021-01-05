@@ -7,7 +7,7 @@ dayjs.extend(customParseFormat)
 import checkLang from "./checkLang"
 import evalDiff from "./evalDiff"
 
-const checkPagePubDeadline = (div) => {
+const checkPagePubDeadline = (div: HTMLElement): void => {
   const match = new RegExp(
     "(\\d{4}-+\\d{2}-+\\d{2} \\d{2}:+\\d{2}:+\\d{2})",
     "g"
@@ -15,7 +15,7 @@ const checkPagePubDeadline = (div) => {
 
   const timeStrings = div.innerText.match(match)
 
-  if (timeStrings.length === 2) {
+  if (timeStrings && timeStrings.length === 2) {
     const deadlineString = timeStrings[1]
 
     const now = dayjs()
@@ -23,7 +23,7 @@ const checkPagePubDeadline = (div) => {
 
     const lang = checkLang()
 
-    const createMessage = (text, caution) => {
+    const createMessage = (text: string, caution: boolean) => {
       const message = document.createElement("span")
       message.innerText = text
       message.style.marginLeft = "1em"
@@ -38,7 +38,7 @@ const checkPagePubDeadline = (div) => {
       div.appendChild(message)
     }
 
-    const diff = evalDiff(now, deadline, createMessage)
+    const diff = evalDiff(now, deadline)
 
     if (diff.value > 0) {
       switch (diff.unit) {

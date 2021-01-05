@@ -1,9 +1,9 @@
 "use strict"
 
-const removeLinkBalloon = () => {
+const removeLinkBalloon = (): void => {
   const links = document.getElementsByTagName("a")
 
-  const urlClamp = (url) => {
+  const urlClamp = (url: string) => {
     if (url.length > 100) {
       return `${url.substr(0, 75)}...`
     } else {
@@ -11,7 +11,7 @@ const removeLinkBalloon = () => {
     }
   }
 
-  for (const link of links) {
+  for (const link of Array.from(links)) {
     if (link.href.includes("link_iframe_balloon")) {
       const linkNew = document.createElement("a")
       const url = unescape(link.href.substr(56))
@@ -22,7 +22,7 @@ const removeLinkBalloon = () => {
       linkNew.target = "_blank"
       linkNew.rel = "noopener noreferrer"
 
-      link.parentElement.insertBefore(linkNew, link)
+      if (link.parentElement) link.parentElement.insertBefore(linkNew, link)
       link.remove()
     }
   }

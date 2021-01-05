@@ -1,6 +1,6 @@
 "use strict"
 
-const createLinkToOptions = () => {
+const createLinkToOptions = (): void => {
   const myLinksContainer = document.getElementById("mylinks")
 
   const linkContainer = document.createElement("span")
@@ -30,14 +30,16 @@ const createLinkToOptions = () => {
   separater.innerText = "|"
   separater.classList.add("mylinks-sep")
 
-  myLinksContainer.insertBefore(
-    linkContainer,
-    Array.from(myLinksContainer.children).pop()
-  )
-  myLinksContainer.insertBefore(
-    separater,
-    Array.from(myLinksContainer.children).pop()
-  )
+  if (myLinksContainer) {
+    myLinksContainer.insertBefore(
+      linkContainer,
+      Array.from(myLinksContainer.children).pop() as Node
+    )
+    myLinksContainer.insertBefore(
+      separater,
+      Array.from(myLinksContainer.children).pop() as Node
+    )
+  }
 }
 
 export default createLinkToOptions

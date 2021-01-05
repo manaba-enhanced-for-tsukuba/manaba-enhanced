@@ -42,16 +42,20 @@ chrome.runtime.onMessage.addListener((message) => {
 chrome.contextMenus.onClicked.addListener((info, tab) => {
   if (
     info.menuItemId === "respon" &&
+    tab &&
+    tab.url &&
     tab.url.includes("manaba.tsukuba.ac.jp")
   ) {
-    chrome.tabs.sendMessage(tab.id, { kind: "open-in-respon" })
+    if (tab.id) {
+      chrome.tabs.sendMessage(tab.id, { kind: "open-in-respon" })
+    }
   }
 })
 
-chrome.commands.onCommand.addListener((cmd, tab) => {
+chrome.commands.onCommand.addListener((cmd: string, tab: chrome.tabs.Tab) => {
   switch (cmd) {
     case "manaba-enhanced:open-in-respon": {
-      chrome.tabs.sendMessage(tab.id, { kind: "open-in-respon" })
+      if (tab.id) chrome.tabs.sendMessage(tab.id, { kind: "open-in-respon" })
       break
     }
   }

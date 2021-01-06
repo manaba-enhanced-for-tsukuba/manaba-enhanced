@@ -12,7 +12,6 @@ module.exports = {
     ecmaFeatures: {
       jsx: true,
     },
-    project: './tsconfig.json'
   },
   extends: [
     "eslint:recommended",
@@ -28,5 +27,6 @@ module.exports = {
   rules: {
     eqeqeq: "error",
     "no-console": "warn",
+    "@typescript-eslint/no-var-requires": 0
   },
 }

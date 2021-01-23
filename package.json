@@ -8,6 +8,7 @@
     "build": "yarn clear && webpack --mode=production --config config/webpack.prod.js",
     "lint": "eslint src/**/*.ts",
     "lintfix": "eslint --fix src/**/*.ts",
+    "format": "prettier --write src/**/*.ts",
     "clear": "rimraf build"
   },
   "devDependencies": {

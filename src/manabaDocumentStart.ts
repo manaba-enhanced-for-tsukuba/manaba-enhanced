@@ -30,7 +30,9 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   if (storageSync["features-deadline-highlighting"]) {
-    const pageLimitView = document.getElementsByClassName("pagelimitview")[0] as HTMLElement
+    const pageLimitView = document.getElementsByClassName(
+      "pagelimitview"
+    )[0] as HTMLElement
     if (pageLimitView) {
       checkPagePubDeadline(pageLimitView)
     }

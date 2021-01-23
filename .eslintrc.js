@@ -27,6 +27,6 @@ module.exports = {
   rules: {
     eqeqeq: "error",
     "no-console": "warn",
-    "@typescript-eslint/no-var-requires": 0
+    "@typescript-eslint/no-var-requires": 0,
   },
 }

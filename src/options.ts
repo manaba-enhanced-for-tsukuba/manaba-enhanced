@@ -38,20 +38,20 @@ window.onload = () => {
     }
   }
 
-  (Array.from(document.getElementsByClassName("checkbox-features")) as HTMLInputElement[]).map(
-    (dom) => {
-      const key = dom.id
+  ;(Array.from(
+    document.getElementsByClassName("checkbox-features")
+  ) as HTMLInputElement[]).map((dom) => {
+    const key = dom.id
 
-      chrome.storage.sync.get([key], (result) => {
-        if (result[key] === false) {
-          dom.checked = false
-        }
-      })
+    chrome.storage.sync.get([key], (result) => {
+      if (result[key] === false) {
+        dom.checked = false
+      }
+    })
 
-      dom.addEventListener("change", (event) => {
-        const target = event.target as HTMLInputElement
-        chrome.storage.sync.set({ [key]: target.checked })
-      })
-    }
-  )
+    dom.addEventListener("change", (event) => {
+      const target = event.target as HTMLInputElement
+      chrome.storage.sync.set({ [key]: target.checked })
+    })
+  })
 }

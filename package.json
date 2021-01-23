@@ -40,9 +40,6 @@
     }
   },
   "lint-staged": {
-    "*.ts": [
-      "eslint",
-      "prettier --check"
-    ]
+    "*.ts": ["eslint", "prettier --check"]
   }
 }

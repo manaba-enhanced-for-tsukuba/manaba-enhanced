@@ -20,9 +20,13 @@ const checkLang = (): "ja" | "en" => {
       return "en"
     } else {
       // 日本語をデフォルトに
-      return "ja"
+      retur "ja"
     }
   }
+
+  console.log(
+    "hoge"
+  )
 
   return "ja"
 }

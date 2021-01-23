@@ -3,14 +3,6 @@
   "version": "2.5",
   "description": "Make your manaba a little bit more comfortable",
   "private": true,
-  "scripts": {
-    "watch": "yarn clear && webpack --mode=development --watch --config config/webpack.dev.js",
-    "build": "yarn clear && webpack --mode=production --config config/webpack.prod.js",
-    "lint": "eslint src/**/*.ts",
-    "lintfix": "eslint --fix src/**/*.ts",
-    "format": "prettier --write src/**/*.ts",
-    "clear": "rimraf build"
-  },
   "devDependencies": {
     "@types/chrome": "^0.0.127",
     "@types/lodash-es": "^4.17.4",

@@ -1,34 +1,37 @@
 "use strict"
 
-import checkLang from "./checkLang"
-let lang: "en" | "ja"
+import { checkLang } from "./checkLang"
+let lang: checkLang.langCode
 
-type seasonCode = "spring" | "autumn"
+export declare namespace filterCourses {
+  type seasonCode = "spring" | "autumn"
 
-type moduleCode =
-  | "all"
-  | "spring-a"
-  | "spring-b"
-  | "spring-c"
-  | "autumn-a"
-  | "autumn-b"
-  | "autumn-c"
+  type moduleCode =
+    | "all"
+    | "spring-a"
+    | "spring-b"
+    | "spring-c"
+    | "autumn-a"
+    | "autumn-b"
+    | "autumn-c"
+}
 
-const filterCourses = (): void => {
+export const filterCourses = (): void => {
   lang = checkLang()
 
   const moduleSelector = createModuleSelector()
 
   chrome.storage.sync.get("filterConfigForModule", (result) => {
     if (result.filterConfigForModule) {
-      moduleSelector.value = result.filterConfigForModule as moduleCode
+      moduleSelector.value = result.filterConfigForModule as filterCourses.moduleCode
       applyFilter(result.filterConfigForModule)
     }
   })
 
   moduleSelector.addEventListener("change", (e) => {
     if (e.target) {
-      const curModuleCode = (e.target as HTMLInputElement).value as moduleCode
+      const curModuleCode = (e.target as HTMLInputElement)
+        .value as filterCourses.moduleCode
       applyFilter(curModuleCode)
 
       chrome.storage.sync.set({ filterConfigForModule: curModuleCode })
@@ -41,9 +44,9 @@ const filterCourses = (): void => {
  * @param {string} moduleCode Module code: {season-module}
  * @return {{season: string, module: string}}
  */
-const parseModuleCode = (moduleCode: moduleCode) => {
-  const season = moduleCode.split("-")[0] as seasonCode
-  const module = moduleCode.split("-")[1] as moduleCode
+const parseModuleCode = (moduleCode: filterCourses.moduleCode) => {
+  const season = moduleCode.split("-")[0] as filterCourses.seasonCode
+  const module = moduleCode.split("-")[1] as filterCourses.moduleCode
 
   return { season, module }
 }
@@ -53,7 +56,7 @@ const parseModuleCode = (moduleCode: moduleCode) => {
  * @param {string} seasonCode "spring" or "autumn"
  * @return {string} "春", "Spring", etc...
  */
-const seasonCodeToText = (seasonCode: seasonCode) => {
+const seasonCodeToText = (seasonCode: filterCourses.seasonCode) => {
   switch (seasonCode) {
     case "spring": {
       if (lang === "ja") {
@@ -86,7 +89,7 @@ const createModuleSelector = () => {
   const moduleSelector = document.createElement("select")
   moduleSelector.name = "select"
 
-  const moduleCodes: moduleCode[] = [
+  const moduleCodes: filterCourses.moduleCode[] = [
     "all",
     "spring-a",
     "spring-b",
@@ -96,7 +99,7 @@ const createModuleSelector = () => {
     "autumn-c",
   ]
 
-  const moduleCodeToText = (moduleCode: moduleCode) => {
+  const moduleCodeToText = (moduleCode: filterCourses.moduleCode) => {
     if (moduleCode === "all") {
       if (lang === "ja") {
         return "すべてのモジュール"
@@ -112,7 +115,7 @@ const createModuleSelector = () => {
     return `${season}${parsedModuleCode.module.toUpperCase()}`
   }
 
-  moduleCodes.forEach((moduleCode: moduleCode) => {
+  moduleCodes.forEach((moduleCode: filterCourses.moduleCode) => {
     const optionDom = document.createElement("option")
     optionDom.value = moduleCode
     optionDom.innerText = moduleCodeToText(moduleCode)
@@ -133,7 +136,7 @@ const createModuleSelector = () => {
   return moduleSelector
 }
 
-const applyFilter = (moduleCode: moduleCode): void => {
+const applyFilter = (moduleCode: filterCourses.moduleCode): void => {
   let viewMode: "list" | "thumbnail"
   let courses: HTMLElement[]
 
@@ -289,5 +292,3 @@ const applyFilter = (moduleCode: moduleCode): void => {
     })
   }
 }
-
-export default filterCourses

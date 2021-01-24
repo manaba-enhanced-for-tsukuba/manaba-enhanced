@@ -1,10 +1,10 @@
 "use strict"
 
-/**
- * Returns current display language
- * @return {string} - "ja" or "en"
- */
-const checkLang = (): "ja" | "en" => {
+export declare namespace checkLang {
+  type langCode = "ja" | "en"
+}
+
+export const checkLang = (): checkLang.langCode => {
   const mylang = document.getElementById("mylang")
 
   if (mylang) {
@@ -26,5 +26,3 @@ const checkLang = (): "ja" | "en" => {
 
   return "ja"
 }
-
-export default checkLang

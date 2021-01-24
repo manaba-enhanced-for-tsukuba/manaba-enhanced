@@ -2,7 +2,7 @@
 
 import createLinkToOptions from "./methods/createLinkToOptions"
 import removeLinkBalloon from "./methods/removeLinkBalloon"
-import filterCourses from "./methods/filterCourses"
+import { filterCourses } from "./methods/filterCourses"
 import checkPagePubDeadline from "./methods/checkPagePubDeadline"
 import checkAssignmentDeadline from "./methods/checkAssignmentDeadline"
 import openCodeInRespon from "./methods/openCodeInRespon"

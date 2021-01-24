@@ -28,5 +28,6 @@ module.exports = {
     eqeqeq: "error",
     "no-console": "warn",
     "@typescript-eslint/no-var-requires": 0,
+    "@typescript-eslint/no-namespace": 0,
   },
 }

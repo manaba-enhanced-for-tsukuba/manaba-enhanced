@@ -61,14 +61,18 @@ We will not be held responsible for any damages and troubles caused by this soft
 
 ## Development
 
-This extension is built on top of awesome [chrome-extension-cli](https://github.com/dutiyesh/chrome-extension-cli).
-
 ```
-yarn // Install dependencies
+make // Install dependencies
 
-yarn watch // Run in dev mode
+make watch // Run in dev mode
 
-yarn build // When the app is ready to publish in store
+make build // When the app is ready to publish in store
+
+make format // Run Prettier
+
+make lint // Run ESLint
+
+make typecheck // Run typecheck
 ```
 
 ## How to add support for your univ.
@@ -78,14 +82,12 @@ If your univ. is using manaba and there is *Assignments* tab in the mypage, plea
 1. Fork this repository.
 1. Replace `matches` of `content_scripts` in `manifest.json` with the url of manaba of your univ..
 1. Build and install in Chrome.  
-Please see [chrome-extension-cli](https://github.com/dutiyesh/chrome-extension-cli) for more detailed information.
 
 あなたの大学がmanabaを導入しており、マイページに「未提出課題」タブが存在する場合、以下の手順で対応が可能です。
 
 1. このレポジトリをフォークする。
 1. `manifest.json`に記述されている`content_scripts`の`matches`をあなたの大学のmanabaのURLに変更する。
 1. ビルドしChromeにインストールする。  
-詳細は前項の[chrome-extension-cli](https://github.com/dutiyesh/chrome-extension-cli)を参照してください。
 
 ## Contribution
 

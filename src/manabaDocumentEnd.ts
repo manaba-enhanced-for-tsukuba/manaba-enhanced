@@ -3,8 +3,6 @@
 import colorizeDeadline from "./methods/colorizeDeadline"
 import { syncReportText, clearStorage } from "./methods/syncReportText"
 
-// import "typed-query-selector"
-
 import "./style/colorizeDeadline.sass"
 
 let storageSync: { [key: string]: string }

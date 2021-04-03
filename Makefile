@@ -15,7 +15,7 @@ lint.fix:
 
 autofix: format lint.fix
 
-watch: install
+dev: install
 	yarn run webpack --mode=development --watch --config config/webpack.dev.js
 
 build: install clear

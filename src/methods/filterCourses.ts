@@ -66,7 +66,6 @@ const seasonCodeToText = (seasonCode: filterCourses.seasonCode) => {
       } else {
         return ""
       }
-      break
     }
     case "autumn": {
       if (lang === "ja") {
@@ -76,7 +75,6 @@ const seasonCodeToText = (seasonCode: filterCourses.seasonCode) => {
       } else {
         return ""
       }
-      break
     }
   }
 }

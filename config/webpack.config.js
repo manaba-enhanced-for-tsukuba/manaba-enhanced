@@ -3,7 +3,6 @@
 const path = require("path")
 const glob = require("glob")
 
-const SizePlugin = require("size-plugin")
 const CopyWebpackPlugin = require("copy-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer")
@@ -72,15 +71,15 @@ const common = {
     extensions: [".js", ".ts"],
   },
   plugins: [
-    // Print file sizes
-    new SizePlugin(),
     // Copy static assets from `public` folder to `build` folder
-    new CopyWebpackPlugin([
-      {
-        from: "**/*",
-        context: "public",
-      },
-    ]),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: "**/*",
+          context: "public",
+        },
+      ],
+    }),
     // Extract CSS into separate files
     new MiniCssExtractPlugin({
       filename: "[name].css",

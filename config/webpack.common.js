@@ -66,12 +66,14 @@ const common = {
     // Print file sizes
     new SizePlugin(),
     // Copy static assets from `public` folder to `build` folder
-    new CopyWebpackPlugin([
-      {
-        from: "**/*",
-        context: "public",
-      },
-    ]),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: "**/*",
+          context: "public",
+        },
+      ],
+    }),
     // Extract CSS into separate files
     new MiniCssExtractPlugin({
       filename: "[name].css",

@@ -76,7 +76,7 @@ const common = {
     new MiniCssExtractPlugin({
       filename: "[name].css",
     }),
-    new BundleAnalyzerPlugin(),
+    new BundleAnalyzerPlugin({ analyzerMode: "static" }),
   ],
 }
 

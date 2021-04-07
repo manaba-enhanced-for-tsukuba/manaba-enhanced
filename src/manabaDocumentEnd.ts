@@ -17,9 +17,9 @@ window.onload = () => {
     if (url.includes("home_library_query")) {
       colorizeDeadline({})
     } else if (
-      url.lastIndexOf("query") === url.length - 5 ||
-      url.lastIndexOf("survey") === url.length - 6 ||
-      url.lastIndexOf("report") === url.length - 6
+      url.endsWith("query") ||
+      url.endsWith("survey") ||
+      url.endsWith("report")
     ) {
       colorizeDeadline({ checkStatus: true })
     }

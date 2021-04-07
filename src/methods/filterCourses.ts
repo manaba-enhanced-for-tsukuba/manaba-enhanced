@@ -3,18 +3,16 @@
 import { checkLang } from "./checkLang"
 let lang: checkLang.langCode
 
-export declare namespace filterCourses {
-  type seasonCode = "spring" | "autumn"
+type SeasonCode = "spring" | "autumn"
 
-  type moduleCode =
-    | "all"
-    | "spring-a"
-    | "spring-b"
-    | "spring-c"
-    | "autumn-a"
-    | "autumn-b"
-    | "autumn-c"
-}
+type ModuleCode =
+  | "all"
+  | "spring-a"
+  | "spring-b"
+  | "spring-c"
+  | "autumn-a"
+  | "autumn-b"
+  | "autumn-c"
 
 export const filterCourses = (): void => {
   lang = checkLang()
@@ -23,15 +21,14 @@ export const filterCourses = (): void => {
 
   chrome.storage.sync.get("filterConfigForModule", (result) => {
     if (result.filterConfigForModule) {
-      moduleSelector.value = result.filterConfigForModule as filterCourses.moduleCode
+      moduleSelector.value = result.filterConfigForModule as ModuleCode
       applyFilter(result.filterConfigForModule)
     }
   })
 
   moduleSelector.addEventListener("change", (e) => {
     if (e.target) {
-      const curModuleCode = (e.target as HTMLInputElement)
-        .value as filterCourses.moduleCode
+      const curModuleCode = (e.target as HTMLSelectElement).value as ModuleCode
       applyFilter(curModuleCode)
 
       chrome.storage.sync.set({ filterConfigForModule: curModuleCode })
@@ -42,11 +39,12 @@ export const filterCourses = (): void => {
 /**
  * Parse module code
  * @param {string} moduleCode Module code: {season-module}
- * @return {{season: string, module: string}}
  */
-const parseModuleCode = (moduleCode: filterCourses.moduleCode) => {
-  const season = moduleCode.split("-")[0] as filterCourses.seasonCode
-  const module = moduleCode.split("-")[1] as filterCourses.moduleCode
+const parseModuleCode = (
+  moduleCode: ModuleCode
+): { season: SeasonCode; module: ModuleCode } => {
+  const season = moduleCode.split("-")[0] as SeasonCode
+  const module = moduleCode.split("-")[1] as ModuleCode
 
   return { season, module }
 }
@@ -56,7 +54,7 @@ const parseModuleCode = (moduleCode: filterCourses.moduleCode) => {
  * @param {string} seasonCode "spring" or "autumn"
  * @return {string} "春", "Spring", etc...
  */
-const seasonCodeToText = (seasonCode: filterCourses.seasonCode) => {
+const seasonCodeToText = (seasonCode: SeasonCode) => {
   switch (seasonCode) {
     case "spring": {
       if (lang === "ja") {
@@ -87,7 +85,7 @@ const createModuleSelector = () => {
   const moduleSelector = document.createElement("select")
   moduleSelector.name = "select"
 
-  const moduleCodes: filterCourses.moduleCode[] = [
+  const moduleCodes: ModuleCode[] = [
     "all",
     "spring-a",
     "spring-b",
@@ -97,7 +95,7 @@ const createModuleSelector = () => {
     "autumn-c",
   ]
 
-  const moduleCodeToText = (moduleCode: filterCourses.moduleCode) => {
+  const moduleCodeToText = (moduleCode: ModuleCode) => {
     if (moduleCode === "all") {
       if (lang === "ja") {
         return "すべてのモジュール"
@@ -113,7 +111,7 @@ const createModuleSelector = () => {
     return `${season}${parsedModuleCode.module.toUpperCase()}`
   }
 
-  moduleCodes.forEach((moduleCode: filterCourses.moduleCode) => {
+  moduleCodes.forEach((moduleCode: ModuleCode) => {
     const optionDom = document.createElement("option")
     optionDom.value = moduleCode
     optionDom.innerText = moduleCodeToText(moduleCode)
@@ -134,7 +132,7 @@ const createModuleSelector = () => {
   return moduleSelector
 }
 
-const applyFilter = (moduleCode: filterCourses.moduleCode): void => {
+const applyFilter = (moduleCode: ModuleCode): void => {
   let viewMode: "list" | "thumbnail"
   let courses: HTMLElement[]
 
@@ -162,56 +160,47 @@ const applyFilter = (moduleCode: filterCourses.moduleCode): void => {
    * @param {string} courseInfoString Something like "秋A 水5,6" or "Spring AB Mon. 2"
    * @return {{ season: Object.<string, boolean>, module: Array.<string>, dayOfWeek: Object.<string, boolean>, period: Array.<string>}}
    */
-  const parseCourseInfoString = (courseInfoString: string) => {
+  const parseCourseInfoString = (
+    courseInfoString: string
+  ): {
+    season: { [key in SeasonCode]: boolean }
+    module: string[]
+  } | void => {
     if (lang === "ja") {
-      const splitted = courseInfoString.match(
-        /^([春秋]+)([abc]+)\s([月火水木金土日]+)([\d,]+)$/i
-      )
-      if (splitted && splitted.length >= 4) {
-        return {
-          season: {
-            spring: splitted[1].includes("春"),
-            autumn: splitted[1].includes("秋"),
-          },
-          module: splitted[2].split("").map((str) => str.toLowerCase()),
-          dayOfWeek: {
-            mon: splitted[3].includes("月"),
-            tue: splitted[3].includes("火"),
-            wed: splitted[3].includes("水"),
-            thu: splitted[3].includes("木"),
-            fri: splitted[3].includes("金"),
-            sat: splitted[3].includes("土"),
-            sun: splitted[3].includes("日"),
-          },
-          period: splitted[4].split(","),
+      const courseInfoRegex = /^([春秋])([abc]+)/i
+
+      if (courseInfoRegex.test(courseInfoString)) {
+        const match = courseInfoString.match(courseInfoRegex)
+
+        if (match) {
+          const [, season, module] = match
+
+          return {
+            season: {
+              spring: season.includes("春"),
+              autumn: season.includes("秋"),
+            },
+            module: module.split("").map((str) => str.toLowerCase()),
+          }
         }
-      } else {
-        throw "invalid courseInfoString"
       }
     } else if (lang === "en") {
-      const splitted = courseInfoString.match(
-        /^([Spring|Autumn]+)\s([abc]+)\s([Mon.|Tue.|Wed.|Thu.|Fri.|Sat.|Sun.|\s]+)\s([\d,]+)$/i
-      )
-      if (splitted && splitted.length >= 4) {
-        return {
-          season: {
-            spring: splitted[1].includes("Spring"),
-            autumn: splitted[1].includes("Autumn"),
-          },
-          module: splitted[2].split("").map((str) => str.toLowerCase()),
-          dayOfWeek: {
-            mon: splitted[3].includes("Mon"),
-            tue: splitted[3].includes("Tue"),
-            wed: splitted[3].includes("Wed"),
-            thu: splitted[3].includes("Thu"),
-            fri: splitted[3].includes("Fri"),
-            sat: splitted[3].includes("Sat"),
-            sun: splitted[3].includes("Sun"),
-          },
-          period: splitted[4].split(","),
+      const courseInfoRegex = /^(Spring|Autumn)\s([abc]+)/i
+
+      if (courseInfoRegex.test(courseInfoString)) {
+        const match = courseInfoString.match(courseInfoRegex)
+
+        if (match) {
+          const [, season, module] = match
+
+          return {
+            season: {
+              spring: season === "Spring",
+              autumn: season === "Autumn",
+            },
+            module: module.split("").map((str) => str.toLowerCase()),
+          }
         }
-      } else {
-        throw "invalid courseInfoString"
       }
     } else {
       throw "invalid lang"
@@ -273,6 +262,7 @@ const applyFilter = (moduleCode: filterCourses.moduleCode): void => {
         const courseInfo = parseCourseInfoString(courseInfoString)
 
         if (
+          courseInfo &&
           courseInfo.season[parsedModuleCode.season] &&
           courseInfo.module.includes(parsedModuleCode.module)
         ) {

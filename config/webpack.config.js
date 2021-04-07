@@ -20,11 +20,7 @@ const entries = glob.sync("./src/*.ts").reduce((acc, cur) => {
 
 const version = require("../package.json").version
 
-// To re-use webpack configuration across templates,
-// CLI maintains a common webpack configuration file - `webpack.common.js`.
-// Whenever user creates an extension, CLI adds `webpack.common.js` file
-// in template's `config` folder
-const common = {
+module.exports = {
   mode: nodeEnv === "development" ? "development" : "production",
   output: {
     path: path.resolve(__dirname, "../build"),
@@ -43,7 +39,6 @@ const common = {
         test: /\.ts$/,
         use: "ts-loader",
       },
-      // Help webpack in understanding CSS files imported in .js files
       {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, "css-loader"],
@@ -52,7 +47,6 @@ const common = {
         test: /\.sass$/,
         use: ["style-loader", "css-loader", "sass-loader"],
       },
-      // Check for images imported in .js files and
       {
         test: /\.(png|jpe?g|gif)$/i,
         use: [
@@ -71,7 +65,6 @@ const common = {
     extensions: [".js", ".ts"],
   },
   plugins: [
-    // Copy static assets from `public` folder to `build` folder
     new CopyWebpackPlugin({
       patterns: [
         {
@@ -80,7 +73,6 @@ const common = {
         },
       ],
     }),
-    // Extract CSS into separate files
     new MiniCssExtractPlugin({
       filename: "[name].css",
     }),
@@ -95,5 +87,3 @@ const common = {
       : []),
   ],
 }
-
-module.exports = common

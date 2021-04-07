@@ -6,7 +6,6 @@ const glob = require("glob")
 const SizePlugin = require("size-plugin")
 const CopyWebpackPlugin = require("copy-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer")
 
 const entries = glob.sync("./src/*.ts").reduce((acc, cur) => {
   const key = path.basename(cur, ".ts")
@@ -76,7 +75,6 @@ const common = {
     new MiniCssExtractPlugin({
       filename: "[name].css",
     }),
-    new BundleAnalyzerPlugin({ analyzerMode: "static" }),
   ],
 }
 

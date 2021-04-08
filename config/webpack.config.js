@@ -80,7 +80,7 @@ module.exports = {
       ? [
           new BundleAnalyzerPlugin({ analyzerMode: "static" }),
           new ZipPlugin({
-            path: path.resolve(__dirname, "../"),
+            path: path.resolve(__dirname, "../build"),
             filename: `manabaEnhanced-${version}`,
           }),
         ]

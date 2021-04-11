@@ -4,24 +4,11 @@
   "singleQuote": false,
   "trailingComma": "es5",
   "semi": false,
-  "parser": "typescript",
   "overrides": [
     {
-      "files": "*.json",
+      "files": ["*.tsx", "*.ts"],
       "options": {
-        "parser": "json"
-      }
-    },
-    {
-      "files": "*.html",
-      "options": {
-        "parser": "html"
-      }
-    },
-    {
-      "files": "*.yaml",
-      "options": {
-        "parser": "yaml"
+        "parser": "typescript"
       }
     }
   ]

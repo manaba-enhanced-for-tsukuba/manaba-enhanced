@@ -18,12 +18,12 @@ const entries = glob.sync("./src/*.ts").reduce((acc, cur) => {
   return acc
 }, {})
 
-const version = require("../package.json").version
+const version = require("./package.json").version
 
 module.exports = {
   mode: nodeEnv === "development" ? "development" : "production",
   output: {
-    path: path.resolve(__dirname, "../build"),
+    path: path.resolve(__dirname, "./build"),
     filename: "[name].js",
   },
   entry: entries,
@@ -80,7 +80,7 @@ module.exports = {
       ? [
           new BundleAnalyzerPlugin({ analyzerMode: "static" }),
           new ZipPlugin({
-            path: path.resolve(__dirname, "../build"),
+            path: path.resolve(__dirname, "./build"),
             filename: `manabaEnhanced-${version}`,
           }),
         ]

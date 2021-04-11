@@ -38,9 +38,11 @@
     }
   },
   "lint-staged": {
-    "*.ts": [
-      "eslint",
+    "*": [
       "prettier --check"
+    ],
+    "*.{js,jsx,ts,tsx}": [
+      "eslint"
     ]
   }
 }

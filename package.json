@@ -10,7 +10,7 @@
     "@typescript-eslint/eslint-plugin": "4.22.0",
     "@typescript-eslint/parser": "4.22.0",
     "copy-webpack-plugin": "8.1.1",
-    "css-loader": "5.2.3",
+    "css-loader": "5.2.4",
     "dayjs": "1.10.4",
     "eslint": "7.24.0",
     "eslint-config-prettier": "8.2.0",

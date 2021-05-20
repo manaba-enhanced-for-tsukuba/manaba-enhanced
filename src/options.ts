@@ -38,9 +38,11 @@ window.onload = () => {
     }
   }
 
-  ;(Array.from(
-    document.getElementsByClassName("checkbox-features")
-  ) as HTMLInputElement[]).map((dom) => {
+  ;(
+    Array.from(
+      document.getElementsByClassName("checkbox-features")
+    ) as HTMLInputElement[]
+  ).map((dom) => {
     const key = dom.id
 
     chrome.storage.sync.get([key], (result) => {

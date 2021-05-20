@@ -20,9 +20,8 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 
   if (storageSync["features-filter-courses"]) {
-    const coursesContainer = document.getElementsByClassName(
-      "mycourses-body"
-    )[0]
+    const coursesContainer =
+      document.getElementsByClassName("mycourses-body")[0]
 
     if (coursesContainer) {
       filterCourses()

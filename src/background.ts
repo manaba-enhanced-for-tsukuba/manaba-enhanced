@@ -17,6 +17,7 @@ chrome.runtime.onInstalled.addListener((details) => {
     "features-deadline-highlighting",
     "features-remove-confirmation",
     "features-filter-courses",
+    "featuresDragAndDrop",
   ].map((key) => {
     chrome.storage.sync.get([key], (result) => {
       if (result[key] === undefined) {

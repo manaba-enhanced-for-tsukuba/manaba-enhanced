@@ -2,12 +2,13 @@
 
 import type { StorageSync } from "./types/storage"
 
-import createLinkToOptions from "./methods/createLinkToOptions"
-import removeLinkBalloon from "./methods/removeLinkBalloon"
-import { filterCourses } from "./methods/filterCourses"
-import checkPagePubDeadline from "./methods/checkPagePubDeadline"
 import checkAssignmentDeadline from "./methods/checkAssignmentDeadline"
+import checkPagePubDeadline from "./methods/checkPagePubDeadline"
+import createLinkToOptions from "./methods/createLinkToOptions"
+import { dragAndDrop } from "./methods/dragAndDrop"
+import { filterCourses } from "./methods/filterCourses"
 import openCodeInRespon from "./methods/openCodeInRespon"
+import removeLinkBalloon from "./methods/removeLinkBalloon"
 
 const withStorageSync = (func: (storage: StorageSync) => void) => {
   chrome.storage.sync.get((storage) => {
@@ -47,6 +48,10 @@ const main = (storageSync: StorageSync) => {
     if (stdlist) {
       checkAssignmentDeadline()
     }
+  }
+
+  if (storageSync.featuresDragAndDrop) {
+    dragAndDrop()
   }
 
   chrome.runtime.onMessage.addListener((msg) => {

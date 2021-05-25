@@ -3,16 +3,7 @@
 import { checkLang } from "./checkLang"
 let lang: checkLang.langCode
 
-type SeasonCode = "spring" | "autumn"
-
-type ModuleCode =
-  | "all"
-  | "spring-a"
-  | "spring-b"
-  | "spring-c"
-  | "autumn-a"
-  | "autumn-b"
-  | "autumn-c"
+import type { SeasonCode, ModuleCode } from "../types/filterCources"
 
 export const filterCourses = (): void => {
   lang = checkLang()

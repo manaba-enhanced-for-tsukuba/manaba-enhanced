@@ -1,5 +1,7 @@
 "use strict"
 
+import type { StorageSync } from "./types/storage"
+
 import createLinkToOptions from "./methods/createLinkToOptions"
 import removeLinkBalloon from "./methods/removeLinkBalloon"
 import { filterCourses } from "./methods/filterCourses"
@@ -7,12 +9,17 @@ import checkPagePubDeadline from "./methods/checkPagePubDeadline"
 import checkAssignmentDeadline from "./methods/checkAssignmentDeadline"
 import openCodeInRespon from "./methods/openCodeInRespon"
 
-let storageSync: { [key: string]: string }
-chrome.storage.sync.get((result) => {
-  storageSync = result
-})
+const withStorageSync = (func: (storage: StorageSync) => void) => {
+  chrome.storage.sync.get((storage) => {
+    func(storage as StorageSync)
+  })
+}
 
 window.addEventListener("DOMContentLoaded", () => {
+  withStorageSync(main)
+})
+
+const main = (storageSync: StorageSync) => {
   createLinkToOptions()
 
   if (storageSync["features-remove-confirmation"]) {
@@ -51,4 +58,4 @@ window.addEventListener("DOMContentLoaded", () => {
       }
     }
   })
-})
+}

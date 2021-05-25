@@ -1,16 +1,17 @@
 "use strict"
 
+import type { StorageSync } from "./types/storage"
+
 import colorizeDeadline from "./methods/colorizeDeadline"
 import { syncReportText, clearStorage } from "./methods/syncReportText"
 
 import "./style/colorizeDeadline.sass"
 
-let storageSync: { [key: string]: string }
-chrome.storage.sync.get((result) => {
-  storageSync = result
+chrome.storage.sync.get((storage) => {
+  main(storage as StorageSync)
 })
 
-window.onload = () => {
+const main = (storageSync: StorageSync) => {
   const url = window.location.href
 
   if (storageSync["features-assignments-coloring"]) {

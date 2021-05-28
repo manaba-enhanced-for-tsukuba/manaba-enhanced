@@ -85,10 +85,10 @@
   resolved "https://registry.yarnpkg.com/@polka/url/-/url-1.0.0-next.12.tgz#431ec342a7195622f86688bbda82e3166ce8cb28"
   integrity sha512-6RglhutqrGFMO1MNUXp95RBuYIuc8wTnMAV5MUhLmjTOy78ncwOw7RgeQ/HeymkKXRhZd0s2DNrM1rL7unk3MQ==
 
-"@types/chrome@0.0.142":
-  version "0.0.142"
-  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.0.142.tgz#63acab9b0f037324ff2f40efe12636cd63dc906d"
-  integrity sha512-fUbewXxe6vKVHij/fRXrwbbVMjetEcbiEJFAuuOd/OkLW9BCqB+M1SvV7U5sufZNLIA+dNmbXMUKJLGgVbtH3A==
+"@types/chrome@0.0.143":
+  version "0.0.143"
+  resolved "https://registry.yarnpkg.com/@types/chrome/-/chrome-0.0.143.tgz#0722fd6c76a73003fa220d869d2dbc8afd581810"
+  integrity sha512-tkPDutWjEl/9hPnfR48IJLpH2Xg1Zs/vxfODRp7duY5a4frkULOHvEED8moJsELTrFkiEciwCxAjxVk2XhKSsA==
   dependencies:
     "@types/filesystem" "*"
     "@types/har-format" "*"

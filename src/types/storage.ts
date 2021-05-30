@@ -8,6 +8,11 @@ export type StorageSync = Readonly<{
   "features-deadline-highlighting": boolean
   "features-remove-confirmation": boolean
   "features-filter-courses": boolean
+  featuresAssignmentsColoring?: boolean
+  featuresDeadlineHighlighting?: boolean
+  featuresAutoSaveReports?: boolean
+  featuresRemoveConfirmation?: boolean
+  featuresFilterCourses?: boolean
   featuresDragAndDrop: boolean
   filterConfigForModule?: ModuleCode
 }>

@@ -1,5 +1,8 @@
 "use strict"
 
+import type { StorageSync } from "./types/storage"
+import { getStorage, setStorage } from "./network/storage"
+
 import "./style/options.sass"
 
 window.onload = () => {
@@ -43,12 +46,23 @@ window.onload = () => {
       document.getElementsByClassName("checkbox-features")
     ) as HTMLInputElement[]
   ).map((dom) => {
-    const key = dom.id
+    const key = dom.id as keyof Pick<
+      StorageSync,
+      | "features-assignments-coloring"
+      | "features-autosave-reports"
+      | "features-deadline-highlighting"
+      | "features-remove-confirmation"
+      | "features-filter-courses"
+      | "featuresDragAndDrop"
+    >
 
-    chrome.storage.sync.get([key], (result) => {
-      if (result[key] === false) {
-        dom.checked = false
-      }
+    getStorage({
+      kind: "sync",
+      keys: key,
+      callback: (storage) => {
+        const value = storage[key]
+        if (typeof value === "boolean") dom.checked = value
+      },
     })
 
     dom.addEventListener("change", (event) => {

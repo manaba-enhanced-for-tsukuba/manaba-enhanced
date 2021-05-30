@@ -1,5 +1,7 @@
 "use strict"
 
+import { getStorage, setStorage } from "./network/storage"
+
 chrome.runtime.onInstalled.addListener((details) => {
   if (["install", "update"].includes(details.reason)) {
     const query = new URLSearchParams({
@@ -11,19 +13,26 @@ chrome.runtime.onInstalled.addListener((details) => {
     })
   }
 
-  ;[
-    "features-assignments-coloring",
-    "features-autosave-reports",
-    "features-deadline-highlighting",
-    "features-remove-confirmation",
-    "features-filter-courses",
-    "featuresDragAndDrop",
-  ].map((key) => {
-    chrome.storage.sync.get([key], (result) => {
-      if (result[key] === undefined) {
-        chrome.storage.sync.set({ [key]: true })
-      }
-    })
+  getStorage({
+    kind: "sync",
+    keys: null,
+    callback: (storage) => {
+      setStorage({
+        kind: "sync",
+        items: {
+          "features-assignments-coloring":
+            storage["features-assignments-coloring"] ?? true,
+          "features-deadline-highlighting":
+            storage["features-deadline-highlighting"] ?? true,
+          "features-autosave-reports":
+            storage["features-autosave-reports"] ?? true,
+          "features-remove-confirmation":
+            storage["features-remove-confirmation"] ?? true,
+          "features-filter-courses": storage["features-filter-courses"] ?? true,
+          featuresDragAndDrop: storage.featuresDragAndDrop ?? true,
+        },
+      })
+    },
   })
 
   chrome.contextMenus.create({

@@ -1,5 +1,7 @@
 "use strict"
 
+import { getStorage, setStorage } from "../network/storage"
+
 import { checkLang } from "./checkLang"
 let lang: checkLang.langCode
 
@@ -10,11 +12,15 @@ export const filterCourses = (): void => {
 
   const moduleSelector = createModuleSelector()
 
-  chrome.storage.sync.get("filterConfigForModule", (result) => {
-    if (result.filterConfigForModule) {
-      moduleSelector.value = result.filterConfigForModule as ModuleCode
-      applyFilter(result.filterConfigForModule)
-    }
+  getStorage({
+    kind: "sync",
+    keys: "filterConfigForModule",
+    callback: (storage) => {
+      if (storage.filterConfigForModule) {
+        moduleSelector.value = storage.filterConfigForModule as ModuleCode
+        applyFilter(storage.filterConfigForModule)
+      }
+    },
   })
 
   moduleSelector.addEventListener("change", (e) => {
@@ -22,7 +28,12 @@ export const filterCourses = (): void => {
       const curModuleCode = (e.target as HTMLSelectElement).value as ModuleCode
       applyFilter(curModuleCode)
 
-      chrome.storage.sync.set({ filterConfigForModule: curModuleCode })
+      setStorage({
+        kind: "sync",
+        items: {
+          filterConfigForModule: curModuleCode,
+        },
+      })
     }
   })
 }

@@ -23,8 +23,10 @@ window.addEventListener("DOMContentLoaded", () => {
   })
 })
 
-const withDocumentHead = (storageSync: Partial<StorageSync>) => {
+const main = (storageSync: Partial<StorageSync>) => {
   const url = window.location.href
+
+  createLinkToOptions()
 
   if (storageSync["features-assignments-coloring"]) {
     if (url.includes("home_library_query")) {
@@ -54,22 +56,6 @@ const withDocumentHead = (storageSync: Partial<StorageSync>) => {
       }
     }
   }
-}
-
-const main = (storageSync: Partial<StorageSync>) => {
-  if (document.head) {
-    withDocumentHead(storageSync)
-  } else {
-    let headFound = false
-    new MutationObserver(() => {
-      if (!headFound && document.head) {
-        headFound = true
-        withDocumentHead(storageSync)
-      }
-    }).observe(document.documentElement, { childList: true })
-  }
-
-  createLinkToOptions()
 
   if (storageSync["features-remove-confirmation"]) {
     removeLinkBalloon()

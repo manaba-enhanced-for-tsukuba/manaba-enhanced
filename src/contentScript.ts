@@ -4,11 +4,15 @@ import type { StorageSync } from "./types/storage"
 
 import checkAssignmentDeadline from "./methods/checkAssignmentDeadline"
 import checkPagePubDeadline from "./methods/checkPagePubDeadline"
+import colorizeDeadline from "./methods/colorizeDeadline"
 import createLinkToOptions from "./methods/createLinkToOptions"
 import { dragAndDrop } from "./methods/dragAndDrop"
 import { filterCourses } from "./methods/filterCourses"
 import openCodeInRespon from "./methods/openCodeInRespon"
 import removeLinkBalloon from "./methods/removeLinkBalloon"
+import { syncReportText, clearStorage } from "./methods/syncReportText"
+
+import "./style/colorizeDeadline.sass"
 
 const withStorageSync = (func: (storage: StorageSync) => void) => {
   chrome.storage.sync.get((storage) => {
@@ -20,7 +24,52 @@ window.addEventListener("DOMContentLoaded", () => {
   withStorageSync(main)
 })
 
+const withDocumentHead = (storageSync: StorageSync) => {
+  const url = window.location.href
+
+  if (storageSync["features-assignments-coloring"]) {
+    if (url.includes("home_library_query")) {
+      colorizeDeadline({})
+    } else if (
+      url.endsWith("query") ||
+      url.endsWith("survey") ||
+      url.endsWith("report")
+    ) {
+      colorizeDeadline({ checkStatus: true })
+    }
+  }
+
+  if (storageSync["features-autosave-reports"]) {
+    if (url.includes("report")) {
+      const submitBtn = document.querySelector(
+        "input[name='action_ReportStudent_submitdone']"
+      )
+      if (submitBtn) {
+        syncReportText()
+
+        chrome.storage.local.getBytesInUse((bytesInUse) => {
+          if (bytesInUse > 4500000) {
+            clearStorage()
+          }
+        })
+      }
+    }
+  }
+}
+
 const main = (storageSync: StorageSync) => {
+  if (document.head) {
+    withDocumentHead(storageSync)
+  } else {
+    let headFound = false
+    new MutationObserver(() => {
+      if (!headFound && document.head) {
+        headFound = true
+        withDocumentHead(storageSync)
+      }
+    }).observe(document.documentElement, { childList: true })
+  }
+
   createLinkToOptions()
 
   if (storageSync["features-remove-confirmation"]) {

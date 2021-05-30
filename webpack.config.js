@@ -45,6 +45,20 @@ module.exports = {
       },
       {
         test: /\.sass$/,
+        exclude: /options\.sass$/,
+        use: [
+          {
+            loader: "style-loader",
+            options: {
+              insert: "html",
+            },
+          },
+          "css-loader",
+          "sass-loader",
+        ],
+      },
+      {
+        test: /options\.sass$/,
         use: ["style-loader", "css-loader", "sass-loader"],
       },
       {

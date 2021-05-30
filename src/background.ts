@@ -22,13 +22,21 @@ chrome.runtime.onInstalled.addListener((details) => {
         items: {
           "features-assignments-coloring":
             storage["features-assignments-coloring"] ?? true,
+          featuresAssignmentsColoring:
+            storage["features-assignments-coloring"] ?? true,
           "features-deadline-highlighting":
+            storage["features-deadline-highlighting"] ?? true,
+          featuresDeadlineHighlighting:
             storage["features-deadline-highlighting"] ?? true,
           "features-autosave-reports":
             storage["features-autosave-reports"] ?? true,
+          featuresAutoSaveReports: storage["features-autosave-reports"] ?? true,
           "features-remove-confirmation":
             storage["features-remove-confirmation"] ?? true,
+          featuresRemoveConfirmation:
+            storage["features-remove-confirmation"] ?? true,
           "features-filter-courses": storage["features-filter-courses"] ?? true,
+          featuresFilterCourses: storage["features-filter-courses"] ?? true,
           featuresDragAndDrop: storage.featuresDragAndDrop ?? true,
         },
       })

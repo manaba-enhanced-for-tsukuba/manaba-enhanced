@@ -1,5 +1,7 @@
 import type { ModuleCode } from "./filterCources"
 
+export type StorageKind = "sync" | "local"
+
 export type StorageSync = Readonly<{
   "features-assignments-coloring": boolean
   "features-autosave-reports": boolean
@@ -8,4 +10,13 @@ export type StorageSync = Readonly<{
   "features-filter-courses": boolean
   featuresDragAndDrop: boolean
   filterConfigForModule?: ModuleCode
+}>
+
+export type StorageLocal = Readonly<{
+  reportText?: {
+    [reportId: string]: {
+      modified: number
+      text: string
+    }
+  }
 }>

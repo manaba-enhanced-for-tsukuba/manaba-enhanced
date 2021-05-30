@@ -1,6 +1,7 @@
 "use strict"
 
 import type { StorageSync } from "./types/storage"
+import { getStorage } from "./network/storage"
 
 import checkAssignmentDeadline from "./methods/checkAssignmentDeadline"
 import checkPagePubDeadline from "./methods/checkPagePubDeadline"
@@ -14,17 +15,15 @@ import { syncReportText, clearStorage } from "./methods/syncReportText"
 
 import "./style/colorizeDeadline.sass"
 
-const withStorageSync = (func: (storage: StorageSync) => void) => {
-  chrome.storage.sync.get((storage) => {
-    func(storage as StorageSync)
-  })
-}
-
 window.addEventListener("DOMContentLoaded", () => {
-  withStorageSync(main)
+  getStorage({
+    kind: "sync",
+    keys: null,
+    callback: main,
+  })
 })
 
-const withDocumentHead = (storageSync: StorageSync) => {
+const withDocumentHead = (storageSync: Partial<StorageSync>) => {
   const url = window.location.href
 
   if (storageSync["features-assignments-coloring"]) {
@@ -57,7 +56,7 @@ const withDocumentHead = (storageSync: StorageSync) => {
   }
 }
 
-const main = (storageSync: StorageSync) => {
+const main = (storageSync: Partial<StorageSync>) => {
   if (document.head) {
     withDocumentHead(storageSync)
   } else {

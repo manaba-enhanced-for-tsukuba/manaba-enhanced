@@ -2,6 +2,8 @@
 
 import { throttle } from "lodash-es"
 
+import { getStorage, setStorage } from "../network/storage"
+
 const syncReportText = (): void => {
   const textarea = document.getElementsByTagName("textarea")[0]
 
@@ -10,42 +12,40 @@ const syncReportText = (): void => {
     return url.substr(url.indexOf("manaba.tsukuba.ac.jp/ct/") + 24)
   }
 
-  chrome.storage.local.get("reportText", (result) => {
-    if (Object.keys(result).length) {
-      textarea.value = result.reportText[getId()].text
-    }
+  getStorage({
+    kind: "local",
+    keys: "reportText",
+    callback: (storage) => {
+      const savedText = storage.reportText?.[getId()]?.text ?? ""
+      textarea.value = savedText
+    },
   })
 
   const writeReportText = throttle((id, text) => {
-    chrome.storage.local.get("reportText", (result) => {
-      if (!Object.keys(result).length) {
-        result = {}
-        chrome.storage.local.set({ reportText: {} })
-      }
-      if (!Object.keys(result.reportText).length) {
-        result.reportText = {}
-      }
-      result.reportText[id] = {
-        text: text,
-        modified: Date.now(),
-      }
-
-      chrome.storage.local.set(result)
+    getStorage({
+      kind: "local",
+      keys: "reportText",
+      callback: (storage) => {
+        setStorage({
+          kind: "local",
+          items: {
+            reportText: {
+              ...storage.reportText,
+              [id]: {
+                text,
+                modified: Date.now(),
+              },
+            },
+          },
+        })
+      },
     })
   }, 2000)
 
   if (textarea) {
-    textarea.addEventListener("input", (e) => {
-      if (!(e as KeyboardEvent).isComposing) {
-        writeReportText(getId(), textarea.value)
-      }
+    textarea.addEventListener("input", () => {
+      writeReportText(getId(), textarea.value)
     })
-
-    window.onkeyup = (e: KeyboardEvent) => {
-      if (e.code === "Enter") {
-        writeReportText(getId(), textarea.value)
-      }
-    }
   }
 }
 

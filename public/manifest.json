@@ -19,12 +19,7 @@
     {
       "matches": ["https://manaba.tsukuba.ac.jp/*"],
       "run_at": "document_start",
-      "js": ["manabaDocumentStart.js"]
-    },
-    {
-      "matches": ["https://manaba.tsukuba.ac.jp/*"],
-      "run_at": "document_end",
-      "js": ["manabaDocumentEnd.js"]
+      "js": ["contentScript.js"]
     }
   ],
   "commands": {

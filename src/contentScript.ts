@@ -13,7 +13,7 @@ import openCodeInRespon from "./methods/openCodeInRespon"
 import removeLinkBalloon from "./methods/removeLinkBalloon"
 import { syncReportText, clearStorage } from "./methods/syncReportText"
 
-import "./style/colorizeDeadline.sass"
+import colorizeDeadlineStyles from "./style/colorizeDeadline.sass"
 
 window.addEventListener("DOMContentLoaded", () => {
   getStorage({
@@ -23,10 +23,25 @@ window.addEventListener("DOMContentLoaded", () => {
   })
 })
 
-const main = (storageSync: Partial<StorageSync>) => {
+const insertStyle = ({
+  styleString,
+  id,
+}: {
+  styleString: string
+  id?: string
+}) => {
+  const style = document.createElement("style")
+  style.innerHTML = styleString
+  if (id) style.id = id
+  document.head.appendChild(style)
+}
+
+const withDocumentHead = (storageSync: Partial<StorageSync>) => {
   const url = window.location.href
 
-  createLinkToOptions()
+  insertStyle({
+    styleString: colorizeDeadlineStyles.toString(),
+  })
 
   if (storageSync["features-assignments-coloring"]) {
     if (url.includes("home_library_query")) {
@@ -56,6 +71,22 @@ const main = (storageSync: Partial<StorageSync>) => {
       }
     }
   }
+}
+
+const main = (storageSync: Partial<StorageSync>) => {
+  if (document.head) {
+    withDocumentHead(storageSync)
+  } else {
+    let headFound = false
+    new MutationObserver(() => {
+      if (!headFound && document.head) {
+        headFound = true
+        withDocumentHead(storageSync)
+      }
+    }).observe(document.documentElement, { childList: true })
+  }
+
+  createLinkToOptions()
 
   if (storageSync["features-remove-confirmation"]) {
     removeLinkBalloon()

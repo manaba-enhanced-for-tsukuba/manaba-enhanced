@@ -13,7 +13,7 @@ import openCodeInRespon from "./methods/openCodeInRespon"
 import removeLinkBalloon from "./methods/removeLinkBalloon"
 import { syncReportText, clearStorage } from "./methods/syncReportText"
 
-import "./style/colorizeDeadline.sass"
+import colorizeDeadlineStyles from "./style/colorizeDeadline.sass"
 
 window.addEventListener("DOMContentLoaded", () => {
   getStorage({
@@ -23,8 +23,25 @@ window.addEventListener("DOMContentLoaded", () => {
   })
 })
 
+const insertStyle = ({
+  styleString,
+  id,
+}: {
+  styleString: string
+  id?: string
+}) => {
+  const style = document.createElement("style")
+  style.innerHTML = styleString
+  if (id) style.id = id
+  document.head.appendChild(style)
+}
+
 const withDocumentHead = (storageSync: Partial<StorageSync>) => {
   const url = window.location.href
+
+  insertStyle({
+    styleString: colorizeDeadlineStyles.toString(),
+  })
 
   if (storageSync["features-assignments-coloring"]) {
     if (url.includes("home_library_query")) {

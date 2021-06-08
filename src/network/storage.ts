@@ -5,7 +5,7 @@ export const getStorage = <
   KL extends keyof StorageLocal
 >(
   // 分割代入すると callback がうまく推論されない
-  args:
+  params:
     | {
         kind: Extract<StorageKind, "sync">
         keys: KS | KS[] | null
@@ -17,13 +17,13 @@ export const getStorage = <
         callback: (storage: Partial<StorageLocal>) => void
       }
 ): void => {
-  if (args.kind === "sync") {
-    chrome.storage.sync.get(args.keys, (storage: Partial<StorageSync>) => {
-      args.callback(storage)
+  if (params.kind === "sync") {
+    chrome.storage.sync.get(params.keys, (storage: Partial<StorageSync>) => {
+      params.callback(storage)
     })
   } else {
-    chrome.storage.local.get(args.keys, (storage: Partial<StorageLocal>) => {
-      args.callback(storage)
+    chrome.storage.local.get(params.keys, (storage: Partial<StorageLocal>) => {
+      params.callback(storage)
     })
   }
 }

@@ -49,3 +49,40 @@ export const setStorage = ({
     chrome.storage.local.set(items, callback)
   }
 }
+
+export const onStorageChanged = ({
+  kind,
+  callback,
+}:
+  | {
+      kind: Extract<StorageKind, "sync">
+      callback: (
+        changed: Partial<
+          {
+            [key in keyof StorageSync]: {
+              newValue?: boolean
+              oldValue?: boolean
+            }
+          }
+        >
+      ) => void
+    }
+  | {
+      kind: Extract<StorageKind, "local">
+      callback: (
+        changed: Partial<
+          {
+            [key in keyof StorageSync]: {
+              newValue?: boolean
+              oldValue?: boolean
+            }
+          }
+        >
+      ) => void
+    }): void => {
+  chrome.storage.onChanged.addListener((changed, changedKind) => {
+    if (changedKind === kind) {
+      callback(changed)
+    }
+  })
+}

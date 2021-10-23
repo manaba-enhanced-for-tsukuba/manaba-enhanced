@@ -1,6 +1,54 @@
 "use strict"
 
-import { getStorage, setStorage } from "./network/storage"
+import { getStorage, setStorage, onStorageChanged } from "./network/storage"
+
+const removeAttachmentHeader = (
+  details: chrome.webRequest.WebResponseHeadersDetails
+) => {
+  const headers = details.responseHeaders
+
+  const contentDispositionHeaderIndex = headers?.findIndex(
+    (header) => header.name.toLowerCase() === "content-disposition"
+  )
+  if (
+    !headers ||
+    !contentDispositionHeaderIndex ||
+    contentDispositionHeaderIndex === -1
+  ) {
+    return
+  }
+
+  const contentDisposition = headers[contentDispositionHeaderIndex].value
+  if (contentDisposition?.startsWith("attachment;")) {
+    headers.splice(contentDispositionHeaderIndex, 1)
+    return { responseHeaders: headers }
+  }
+
+  return
+}
+
+const disableForceFileSaving = () => {
+  chrome.webRequest.onHeadersReceived.addListener(
+    removeAttachmentHeader,
+    { urls: ["*://manaba.tsukuba.ac.jp/*"] },
+    ["blocking", "responseHeaders"]
+  )
+}
+
+const stopDisablingForceFileSaving = () => {
+  chrome.webRequest.onHeadersReceived.removeListener(removeAttachmentHeader)
+}
+
+onStorageChanged({
+  kind: "sync",
+  callback: ({ featuresDisableForceFileSaving }) => {
+    if (featuresDisableForceFileSaving?.newValue === true) {
+      disableForceFileSaving()
+    } else if (featuresDisableForceFileSaving?.newValue === false) {
+      stopDisablingForceFileSaving()
+    }
+  },
+})
 
 chrome.runtime.onInstalled.addListener((details) => {
   if (["install", "update"].includes(details.reason)) {
@@ -42,6 +90,10 @@ chrome.runtime.onInstalled.addListener((details) => {
             storage.featuresDisableForceFileSaving ?? true,
         },
       })
+
+      if (storage.featuresDisableForceFileSaving) {
+        disableForceFileSaving()
+      }
     },
   })
 

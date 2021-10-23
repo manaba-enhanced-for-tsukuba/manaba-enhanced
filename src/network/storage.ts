@@ -57,27 +57,23 @@ export const onStorageChanged = ({
   | {
       kind: Extract<StorageKind, "sync">
       callback: (
-        changed: Partial<
-          {
-            [key in keyof StorageSync]: {
-              newValue?: boolean
-              oldValue?: boolean
-            }
+        changed: Partial<{
+          [key in keyof StorageSync]: {
+            newValue?: boolean
+            oldValue?: boolean
           }
-        >
+        }>
       ) => void
     }
   | {
       kind: Extract<StorageKind, "local">
       callback: (
-        changed: Partial<
-          {
-            [key in keyof StorageSync]: {
-              newValue?: boolean
-              oldValue?: boolean
-            }
+        changed: Partial<{
+          [key in keyof StorageSync]: {
+            newValue?: boolean
+            oldValue?: boolean
           }
-        >
+        }>
       ) => void
     }): void => {
   chrome.storage.onChanged.addListener((changed, changedKind) => {

@@ -14,6 +14,7 @@ export type StorageSync = Readonly<{
   featuresRemoveConfirmation?: boolean
   featuresFilterCourses?: boolean
   featuresDragAndDrop: boolean
+  featuresDisableForceFileSaving?: boolean
   filterConfigForModule?: ModuleCode
 }>
 

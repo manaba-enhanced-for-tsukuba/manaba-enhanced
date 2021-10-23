@@ -38,6 +38,8 @@ chrome.runtime.onInstalled.addListener((details) => {
           "features-filter-courses": storage["features-filter-courses"] ?? true,
           featuresFilterCourses: storage["features-filter-courses"] ?? true,
           featuresDragAndDrop: storage.featuresDragAndDrop ?? true,
+          featuresDisableForceFileSaving:
+            storage.featuresDisableForceFileSaving ?? true,
         },
       })
     },

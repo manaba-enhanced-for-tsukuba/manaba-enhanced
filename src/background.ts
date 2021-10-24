@@ -91,7 +91,7 @@ chrome.runtime.onInstalled.addListener((details) => {
         },
       })
 
-      if (storage.featuresDisableForceFileSaving) {
+      if (storage.featuresDisableForceFileSaving !== false) {
         disableForceFileSaving()
       }
     },

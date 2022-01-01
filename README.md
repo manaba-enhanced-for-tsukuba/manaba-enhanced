@@ -15,39 +15,43 @@ If you want to use it in your univ., please follow the [instruction](https://git
 
 ## Features
 
-1. Assignments will be colored according to the time to the deadline.
+1. Color assignments with colors according to the time remaining
 
     Red: 1 day remaining  
     Yellow: 3 days remaining  
     Green: 7 days remaining
 
-1. The report entered in the report input screen will be auto-saved, and not disappear even if the page is closed.
+1. Auto-save report text
 
-1. Highlight the publication deadline of course newses and course contents.
+1. Highlight the publication deadline of course news and course contents
 
-1. Enable filtering of courses in mypage by terms/modules.
+1. Filter of courses in mypage by terms/modules
 
-1. Remove the confirmation dialogue when you click links.
+1. Drag & Drop file upload
 
-1. Add a context menu to open the attend code in Respon.
+1. Remove the confirmation dialogue of external links
+
+1. Add a context menu to open the attend code in Respon
 
 ## 機能
 
-1. マイページに表示される課題一覧を、締切までの時間によって色分けします
+1. 締め切りまでの時間による課題一覧の色分け
 
     赤: 期限まであと1日  
     黄: 期限まであと3日  
     緑: 期限まであと7日
 
-1. レポート入力画面で入力しているレポートを自動保存し、ページを閉じても消えないようにします
+1. レポート入力画面でのレポート自動保存
 
-1. コースニュースやコンテンツの公開期限を強調表示します
+1. コースニュースやコンテンツの公開期限を強調表示
 
-1. マイページのコースをモジュールでフィルターする機能を追加します
+1. コースのモジュール別フィルタリング
 
-1. 外部リンクをクリックした際の確認ダイアログを取り除きます
+1. ドラッグアンドドロップでのファイルアップロード
 
-1. 出席コードをResponで開く右クリックメニューを追加します
+1. 外部リンククリック時の確認ダイアログ排除
+
+1. 出席コードをResponで開く右クリックメニューを追加
 
 ## Disclaimer / 免責事項
 

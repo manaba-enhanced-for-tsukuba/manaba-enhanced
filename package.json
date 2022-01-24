@@ -4,7 +4,7 @@
   "description": "Make your manaba a little bit more comfortable",
   "private": true,
   "devDependencies": {
-    "@types/chrome": "0.0.173",
+    "@types/chrome": "0.0.177",
     "@types/lodash-es": "4.17.5",
     "@types/node": "16.11.21",
     "@typescript-eslint/eslint-plugin": "5.3.0",

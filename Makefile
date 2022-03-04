@@ -29,3 +29,6 @@ typecheck: install
 
 typecheck.watch: install
 	yarn run tsc --noEmit --watch
+
+version.update:
+	@./bin/version-update.sh

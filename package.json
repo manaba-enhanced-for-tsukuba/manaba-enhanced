@@ -5,7 +5,7 @@
   "private": true,
   "devDependencies": {
     "@types/chrome": "0.0.179",
-    "@types/lodash-es": "4.17.5",
+    "@types/lodash-es": "4.17.6",
     "@types/node": "16.11.26",
     "@typescript-eslint/eslint-plugin": "5.13.0",
     "@typescript-eslint/parser": "5.13.0",

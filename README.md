@@ -65,18 +65,18 @@ We will not be held responsible for any damages and troubles caused by this soft
 
 ## Development
 
-```
-make // Install dependencies
+```sh
+make # Install dependencies
 
-make watch // Run in dev mode
+make watch # Run in dev mode
 
-make build // When the app is ready to publish in store
+make build # When the app is ready to publish in store
 
-make format // Run Prettier
+make format # Run Prettier
 
-make lint // Run ESLint
+make lint # Run ESLint
 
-make typecheck // Run typecheck
+make typecheck # Run typecheck
 ```
 
 ## How to add support for your univ.
@@ -85,13 +85,13 @@ If your univ. is using manaba and there is *Assignments* tab in the mypage, plea
 
 1. Fork this repository.
 1. Replace `matches` of `content_scripts` in `manifest.json` with the url of manaba of your univ..
-1. Build and install in Chrome.  
+1. Build and install in Chrome.
 
 あなたの大学がmanabaを導入しており、マイページに「未提出課題」タブが存在する場合、以下の手順で対応が可能です。
 
 1. このレポジトリをフォークする。
 1. `manifest.json`に記述されている`content_scripts`の`matches`をあなたの大学のmanabaのURLに変更する。
-1. ビルドしChromeにインストールする。  
+1. ビルドしChromeにインストールする。
 
 ## Contribution
 

@@ -11,6 +11,7 @@ import { dragAndDrop } from "./methods/dragAndDrop"
 import { filterCourses } from "./methods/filterCourses"
 import openCodeInRespon from "./methods/openCodeInRespon"
 import removeLinkBalloon from "./methods/removeLinkBalloon"
+import { setUsermemoShortcuts } from "./methods/usermemo"
 import { syncReportText, clearStorage } from "./methods/syncReportText"
 
 import colorizeDeadlineStyles from "./style/colorizeDeadline.sass"
@@ -117,6 +118,10 @@ const main = (storageSync: Partial<StorageSync>) => {
 
   if (storageSync.featuresDragAndDrop) {
     dragAndDrop()
+  }
+
+  if (window.location.href.includes("usermemo")) {
+    setUsermemoShortcuts()
   }
 
   chrome.runtime.onMessage.addListener((msg) => {

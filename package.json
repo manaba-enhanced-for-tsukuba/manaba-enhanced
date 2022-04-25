@@ -1,6 +1,6 @@
 {
   "name": "manaba-enhanced-for-tsukuba",
-  "version": "2.8.1",
+  "version": "2.9.0",
   "description": "Make your manaba a little bit more comfortable",
   "private": true,
   "devDependencies": {

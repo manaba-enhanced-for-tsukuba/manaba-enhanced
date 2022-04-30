@@ -6,7 +6,7 @@
   "devDependencies": {
     "@types/chrome": "0.0.181",
     "@types/lodash-es": "4.17.6",
-    "@types/node": "16.11.28",
+    "@types/node": "16.11.32",
     "@typescript-eslint/eslint-plugin": "5.20.0",
     "@typescript-eslint/parser": "5.20.0",
     "copy-webpack-plugin": "10.2.4",

@@ -20,6 +20,7 @@ const entries = glob.sync("./src/*.ts").reduce((acc, cur) => {
 
 const version = require("./package.json").version
 
+/** @type {import('webpack').Configuration} */
 module.exports = {
   mode: nodeEnv === "development" ? "development" : "production",
   output: {

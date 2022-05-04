@@ -5,7 +5,6 @@ const glob = require("glob")
 
 const CopyWebpackPlugin = require("copy-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
-const { BundleAnalyzerPlugin } = require("webpack-bundle-analyzer")
 const ZipPlugin = require("zip-webpack-plugin")
 
 process.traceDeprecation = true
@@ -84,7 +83,6 @@ module.exports = {
     }),
     ...(nodeEnv === "production"
       ? [
-          new BundleAnalyzerPlugin({ analyzerMode: "static" }),
           new ZipPlugin({
             path: path.resolve(__dirname, "./build"),
             filename: `manabaEnhanced-${version}`,

@@ -5,7 +5,7 @@
   "private": true,
   "devDependencies": {
     "@tsconfig/recommended": "1.0.1",
-    "@types/chrome": "0.0.184",
+    "@types/chrome": "0.0.185",
     "@types/lodash-es": "4.17.6",
     "@types/node": "16.11.34",
     "@typescript-eslint/eslint-plugin": "5.22.0",

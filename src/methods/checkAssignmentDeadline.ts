@@ -2,10 +2,11 @@
 
 import dayjs from "dayjs"
 import customParseFormat from "dayjs/plugin/customParseFormat"
-dayjs.extend(customParseFormat)
 
 import { checkLang } from "./checkLang"
 import evalDiff from "./evalDiff"
+
+dayjs.extend(customParseFormat)
 
 const checkAssignmentDeadline = (): void => {
   let notSubmitted = false

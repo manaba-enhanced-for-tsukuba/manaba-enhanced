@@ -1,16 +1,16 @@
 "use strict"
 
-const path = require("path")
 const CopyWebpackPlugin = require("copy-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+const path = require("path")
 const ZipPlugin = require("zip-webpack-plugin")
 
 process.traceDeprecation = true
 
 const nodeEnv = process.env.NODE_ENV
 
-const manifestJson = require("./src/manifest.ts")
 const version = require("./package.json").version
+const manifestJson = require("./src/manifest.ts")
 
 /** @type {import('webpack').Configuration} */
 module.exports = {

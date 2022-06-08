@@ -1,7 +1,7 @@
 "use strict"
 
-import type { StorageSync } from "./types/storage"
 import { getStorage, setStorage } from "./network/storage"
+import type { StorageSync } from "./types/storage"
 
 import "./style/options.sass"
 

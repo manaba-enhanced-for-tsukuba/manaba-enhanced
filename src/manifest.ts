@@ -1,5 +1,7 @@
 const packageJson = require("../package.json")
 
+const browserEnv = process.env.BROWSER_ENV
+
 const generateManifest = () => {
   if (!packageJson.version) {
     throw new Error("Version not found in package.json")
@@ -44,11 +46,15 @@ const generateManifest = () => {
           description: "Open selected Respon code in Respon",
         },
       },
-      browser_specific_settings: {
-        gecko: {
-          id: "{9FD229B7-1BD6-4095-965E-BE30EBFAD40E}",
-        },
-      },
+      ...(browserEnv === "firefox"
+        ? {
+            browser_specific_settings: {
+              gecko: {
+                id: "{9FD229B7-1BD6-4095-965E-BE30EBFAD40E}",
+              },
+            },
+          }
+        : {}),
     },
     null,
     2

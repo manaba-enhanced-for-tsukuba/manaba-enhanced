@@ -1,8 +1,6 @@
 "use strict"
 
 const path = require("path")
-const glob = require("glob")
-
 const CopyWebpackPlugin = require("copy-webpack-plugin")
 const MiniCssExtractPlugin = require("mini-css-extract-plugin")
 const ZipPlugin = require("zip-webpack-plugin")
@@ -10,12 +8,6 @@ const ZipPlugin = require("zip-webpack-plugin")
 process.traceDeprecation = true
 
 const nodeEnv = process.env.NODE_ENV
-
-const entries = glob.sync("./src/*.ts").reduce((acc, cur) => {
-  const key = path.basename(cur, ".ts")
-  acc[key] = cur
-  return acc
-}, {})
 
 const manifestJson = require("./src/manifest.ts")
 const version = require("./package.json").version
@@ -27,7 +19,11 @@ module.exports = {
     path: path.resolve(__dirname, "./build"),
     filename: "[name].js",
   },
-  entry: entries,
+  entry: {
+    contentScript: path.resolve(__dirname, "src", "contentScript.ts"),
+    background: path.resolve(__dirname, "src", "background.ts"),
+    options: path.resolve(__dirname, "src", "options.ts"),
+  },
   stats: {
     all: false,
     errors: true,

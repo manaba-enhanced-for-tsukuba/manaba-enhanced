@@ -1,8 +1,5 @@
 "use strict"
 
-import type { StorageSync } from "./types/storage"
-import { getStorage } from "./network/storage"
-
 import checkAssignmentDeadline from "./methods/checkAssignmentDeadline"
 import checkPagePubDeadline from "./methods/checkPagePubDeadline"
 import colorizeDeadline from "./methods/colorizeDeadline"
@@ -11,10 +8,11 @@ import { dragAndDrop } from "./methods/dragAndDrop"
 import { filterCourses } from "./methods/filterCourses"
 import openCodeInRespon from "./methods/openCodeInRespon"
 import removeLinkBalloon from "./methods/removeLinkBalloon"
-import { setUsermemoShortcuts } from "./methods/usermemo"
 import { syncReportText, clearStorage } from "./methods/syncReportText"
-
+import { setUsermemoShortcuts } from "./methods/usermemo"
+import { getStorage } from "./network/storage"
 import colorizeDeadlineStyles from "./style/colorizeDeadline.sass"
+import type { StorageSync } from "./types/storage"
 
 window.addEventListener("DOMContentLoaded", () => {
   getStorage({

@@ -1,11 +1,11 @@
 "use strict"
 
 import { getStorage, setStorage } from "../network/storage"
+import type { SeasonCode, ModuleCode } from "../types/filterCources"
 
 import { checkLang } from "./checkLang"
-let lang: checkLang.langCode
 
-import type { SeasonCode, ModuleCode } from "../types/filterCources"
+let lang: checkLang.langCode
 
 export const filterCourses = (): void => {
   lang = checkLang()

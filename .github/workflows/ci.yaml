@@ -76,5 +76,7 @@ jobs:
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
       - name: Install dependencies
         run: yarn --frozen-lockfile
-      - name: Build
-        run: make build
+      - name: Build for Chrome
+        run: make build.chrome
+      - name: Build for Firefox
+        run: make build.firefox

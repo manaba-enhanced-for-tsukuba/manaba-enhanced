@@ -15,11 +15,17 @@ lint.fix:
 
 autofix: format lint.fix
 
-dev: install
-	NODE_ENV=development yarn run webpack --watch
+dev.chrome: install
+	NODE_ENV=development BROWSER_ENV=chrome yarn run webpack --watch
 
-build: install clear
-	NODE_ENV=production yarn run webpack
+dev.firefox: install
+	NODE_ENV=development BROWSER_ENV=firefox yarn run webpack --watch
+
+build.chrome: install clear
+	NODE_ENV=production BROWSER_ENV=chrome yarn run webpack
+
+build.firefox: install clear
+	NODE_ENV=production BROWSER_ENV=firefox yarn run webpack
 
 clear: install
 	yarn run rimraf build

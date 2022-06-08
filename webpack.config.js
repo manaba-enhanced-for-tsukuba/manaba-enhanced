@@ -17,6 +17,7 @@ const entries = glob.sync("./src/*.ts").reduce((acc, cur) => {
   return acc
 }, {})
 
+const manifestJson = require("./src/manifest.ts")
 const version = require("./package.json").version
 
 /** @type {import('webpack').Configuration} */
@@ -75,6 +76,11 @@ module.exports = {
         {
           from: "**/*",
           context: "public",
+        },
+        {
+          from: "package.json", // dummy
+          to: "manifest.json",
+          transform: () => manifestJson,
         },
       ],
     }),

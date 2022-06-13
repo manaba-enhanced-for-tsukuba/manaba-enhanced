@@ -42,7 +42,7 @@ const withDocumentHead = (storageSync: Partial<StorageSync>) => {
     styleString: colorizeDeadlineStyles.toString(),
   })
 
-  if (storageSync["features-assignments-coloring"]) {
+  if (storageSync.featuresAssignmentsColoring) {
     if (url.includes("home_library_query")) {
       colorizeDeadline({})
     } else if (
@@ -54,7 +54,7 @@ const withDocumentHead = (storageSync: Partial<StorageSync>) => {
     }
   }
 
-  if (storageSync["features-autosave-reports"]) {
+  if (storageSync.featuresAutoSaveReports) {
     if (url.includes("report")) {
       const submitBtn = document.querySelector(
         "input[name='action_ReportStudent_submitdone']"
@@ -87,11 +87,11 @@ const main = (storageSync: Partial<StorageSync>) => {
 
   createLinkToOptions()
 
-  if (storageSync["features-remove-confirmation"]) {
+  if (storageSync.featuresRemoveConfirmation) {
     removeLinkBalloon()
   }
 
-  if (storageSync["features-filter-courses"]) {
+  if (storageSync.featuresFilterCourses) {
     const coursesContainer =
       document.getElementsByClassName("mycourses-body")[0]
 
@@ -100,7 +100,7 @@ const main = (storageSync: Partial<StorageSync>) => {
     }
   }
 
-  if (storageSync["features-deadline-highlighting"]) {
+  if (storageSync.featuresDeadlineHighlighting) {
     const pageLimitView = document.getElementsByClassName(
       "pagelimitview"
     )[0] as HTMLElement

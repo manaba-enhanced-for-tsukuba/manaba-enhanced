@@ -48,11 +48,11 @@ window.onload = () => {
   ).map((dom) => {
     const key = dom.id as keyof Pick<
       StorageSync,
-      | "features-assignments-coloring"
-      | "features-autosave-reports"
-      | "features-deadline-highlighting"
-      | "features-remove-confirmation"
-      | "features-filter-courses"
+      | "featuresAssignmentsColoring"
+      | "featuresAutoSaveReports"
+      | "featuresDeadlineHighlighting"
+      | "featuresRemoveConfirmation"
+      | "featuresFilterCourses"
       | "featuresDragAndDrop"
     >
 
@@ -71,21 +71,6 @@ window.onload = () => {
         kind: "sync",
         items: {
           [key]: target.checked,
-          ...(key === "features-assignments-coloring" && {
-            featuresAssignmentsColoring: target.checked,
-          }),
-          ...(key === "features-autosave-reports" && {
-            featuresAutoSaveReports: target.checked,
-          }),
-          ...(key === "features-deadline-highlighting" && {
-            featuresDeadlineHighlighting: target.checked,
-          }),
-          ...(key === "features-remove-confirmation" && {
-            featuresRemoveConfirmation: target.checked,
-          }),
-          ...(key === "features-filter-courses" && {
-            featuresFilterCourses: target.checked,
-          }),
         },
       })
     })

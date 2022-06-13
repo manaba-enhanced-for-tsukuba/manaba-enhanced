@@ -68,23 +68,14 @@ chrome.runtime.onInstalled.addListener((details) => {
       setStorage({
         kind: "sync",
         items: {
-          "features-assignments-coloring":
-            storage["features-assignments-coloring"] ?? true,
           featuresAssignmentsColoring:
-            storage["features-assignments-coloring"] ?? true,
-          "features-deadline-highlighting":
-            storage["features-deadline-highlighting"] ?? true,
+            storage.featuresAssignmentsColoring ?? true,
           featuresDeadlineHighlighting:
-            storage["features-deadline-highlighting"] ?? true,
-          "features-autosave-reports":
-            storage["features-autosave-reports"] ?? true,
-          featuresAutoSaveReports: storage["features-autosave-reports"] ?? true,
-          "features-remove-confirmation":
-            storage["features-remove-confirmation"] ?? true,
+            storage.featuresDeadlineHighlighting ?? true,
+          featuresAutoSaveReports: storage.featuresAutoSaveReports ?? true,
           featuresRemoveConfirmation:
-            storage["features-remove-confirmation"] ?? true,
-          "features-filter-courses": storage["features-filter-courses"] ?? true,
-          featuresFilterCourses: storage["features-filter-courses"] ?? true,
+            storage.featuresRemoveConfirmation ?? true,
+          featuresFilterCourses: storage.featuresFilterCourses ?? true,
           featuresDragAndDrop: storage.featuresDragAndDrop ?? true,
           featuresDisableForceFileSaving:
             storage.featuresDisableForceFileSaving ?? true,

@@ -12,5 +12,6 @@ npm-debug.log*
 
 .env
 .env.js
+.envrc
 
 size-plugin.json

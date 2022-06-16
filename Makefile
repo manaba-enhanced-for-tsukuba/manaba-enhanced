@@ -27,6 +27,9 @@ build.chrome: install clear
 build.firefox: install clear
 	NODE_ENV=production BROWSER_ENV=firefox yarn run webpack
 
+sign.firefox: install
+	yarn run web-ext sign -s dist --api-key=${AMO_JWT_ISSUER} --api-secret=${AMO_JWT_SECRET}
+
 clear: install
 	yarn run rimraf dist
 

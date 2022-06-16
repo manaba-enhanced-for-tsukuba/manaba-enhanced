@@ -68,9 +68,11 @@ We will not be held responsible for any damages and troubles caused by this soft
 ```sh
 make # Install dependencies
 
-make watch # Run in dev mode
+make dev.chrome # Run in dev mode for Chrome
+make dev.firefox # ...and for Firefox
 
-make build # When the app is ready to publish in store
+make build.chrome # Production build for Chrome
+make build.firefox # ...and for Firefox
 
 make format # Run Prettier
 

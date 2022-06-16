@@ -8,6 +8,7 @@ const ZipPlugin = require("zip-webpack-plugin")
 process.traceDeprecation = true
 
 const nodeEnv = process.env.NODE_ENV
+const browserEnv = process.env.BROWSER_ENV
 
 const version = require("./package.json").version
 const manifestJson = require("./src/manifest.ts")
@@ -86,8 +87,10 @@ module.exports = {
     ...(nodeEnv === "production"
       ? [
           new ZipPlugin({
-            path: path.resolve(__dirname, "./build"),
-            filename: `manabaEnhanced-${version}`,
+            path: path.resolve(__dirname, "./packaged"),
+            filename: `manabaEnhanced-${version}-${
+              browserEnv === "firefox" ? "firefox" : "chrome"
+            }`,
           }),
         ]
       : []),

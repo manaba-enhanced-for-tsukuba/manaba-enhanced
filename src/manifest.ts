@@ -26,7 +26,11 @@ const generateManifest = () => {
         "webRequestBlocking",
         "*://manaba.tsukuba.ac.jp/*",
       ],
-      options_page: "options.html",
+      options_ui: {
+        page: "options.html",
+        browser_style: true,
+        open_in_tab: true,
+      },
       background: {
         scripts: ["background.js"],
         persistent: true,

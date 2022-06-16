@@ -1,0 +1,2 @@
+export AMO_JWT_ISSUER=<JWT issuer>
+export AMO_JWT_SECRET=<JWT secret>

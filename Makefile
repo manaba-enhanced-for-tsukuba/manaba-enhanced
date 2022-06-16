@@ -28,7 +28,7 @@ build.firefox: install clear
 	NODE_ENV=production BROWSER_ENV=firefox yarn run webpack
 
 clear: install
-	yarn run rimraf build
+	yarn run rimraf dist
 
 typecheck: install
 	yarn run tsc --noEmit

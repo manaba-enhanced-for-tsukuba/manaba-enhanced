@@ -17,7 +17,7 @@ const manifestJson = require("./src/manifest.ts")
 module.exports = {
   mode: nodeEnv === "development" ? "development" : "production",
   output: {
-    path: path.resolve(__dirname, "./build"),
+    path: path.resolve(__dirname, "./dist"),
     filename: "[name].js",
   },
   entry: {

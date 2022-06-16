@@ -54,7 +54,7 @@ const generateManifest = () => {
         ? {
             browser_specific_settings: {
               gecko: {
-                id: "{9FD229B7-1BD6-4095-965E-BE30EBFAD40E}",
+                id: "{9FD229B7-1BD6-4095-965E-BE30EBFAD41E}",
               },
             },
           }

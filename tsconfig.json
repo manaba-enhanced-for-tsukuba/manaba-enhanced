@@ -1,5 +1,7 @@
 {
   "include": ["./src/**/*"],
   "extends": "@tsconfig/recommended/tsconfig.json",
-  "compilerOptions": {}
+  "compilerOptions": {
+    "lib": ["DOM", "ES2021"]
+  }
 }

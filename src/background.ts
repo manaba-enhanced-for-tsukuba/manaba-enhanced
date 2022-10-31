@@ -124,3 +124,14 @@ chrome.commands.onCommand.addListener((cmd: string, tab: chrome.tabs.Tab) => {
     }
   }
 })
+
+/* The listener for report template generator */
+chrome.runtime.onMessage.addListener(({ url, filename }) => {
+  chrome.downloads.download({
+    url,
+    filename,
+    conflictAction: "overwrite",
+    saveAs: true,
+  })
+  return true
+})

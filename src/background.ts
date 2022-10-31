@@ -77,6 +77,7 @@ chrome.runtime.onInstalled.addListener((details) => {
             storage.featuresRemoveConfirmation ?? true,
           featuresFilterCourses: storage.featuresFilterCourses ?? true,
           featuresDragAndDrop: storage.featuresDragAndDrop ?? true,
+          featuresReportTemplate: storage.featuresReportTemplate ?? true,
           featuresDisableForceFileSaving:
             storage.featuresDisableForceFileSaving ?? true,
         },

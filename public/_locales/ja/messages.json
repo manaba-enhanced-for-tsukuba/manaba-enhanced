@@ -11,6 +11,10 @@
     "message": "科目名",
     "description": "科目名"
   },
+  "report_title": {
+    "message": "レポートのタイトル",
+    "description": "レポートのタイトル"
+  },
   "student_name": {
     "message": "学生名",
     "description": "学生名"

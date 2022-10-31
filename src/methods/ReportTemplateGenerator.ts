@@ -1,14 +1,11 @@
 class ReportTemplateGenerator {
-  constructor(
-    public readonly filename: string = "",
-    public readonly template: string = ""
-  ) {
-    this.filename ||=
+  constructor() {
+    this.filename =
       `${this.reportInfo.studentName}_${this.reportInfo.courseName}_${this.reportInfo.reportTitle}.tex`.replaceAll(
         /[\\/:*?"<>|]/g,
         "_"
       )
-    this.template ||= reportTemplate(
+    this.template = reportTemplate(
       this.reportInfo.courseName,
       this.reportInfo.reportTitle,
       this.reportInfo.studentName,
@@ -17,11 +14,15 @@ class ReportTemplateGenerator {
     )
   }
 
-  private readonly reportInfo = new ReportInfo(document)
+  private readonly reportInfo = searchReportInfo(document)
+  private filename: string
+  private template: string
 
   public renderReportGeneratorRow() {
-    const button = document.createElement("button")
     const reportTable = document.getElementsByClassName("stdlist-reportV2")[0]
+    if (!reportTable) return
+
+    const button = document.createElement("button")
     const tr = reportTable.appendChild(document.createElement("tr"))
     const th = tr.appendChild(document.createElement("th"))
     const td = tr.appendChild(document.createElement("td"))
@@ -42,42 +43,38 @@ class ReportTemplateGenerator {
   }
 }
 
-class ReportInfo {
-  constructor(document: Document) {
-    if (document === null) {
-      throw new Error("document is not defined")
-    }
-    const courseNameElement = document.getElementById("coursename")
-    const screennameElement = document.getElementById("screenname")
-    const tdElements = document
-      .getElementsByClassName("stdlist-reportV2")[0]
-      .getElementsByTagName("td")
-    const deadlineElement = tdElements && tdElements.item(2)
-    const descriptionElement = tdElements && tdElements.item(0)
-    this.courseName = courseNameElement
-      ? courseNameElement.title
-      : chrome.i18n.getMessage("course_name")
-    this.reportTitle = document
-      .getElementsByClassName("stdlist-reportV2")[0]
-      .getElementsByClassName("title")[0]
-      .getElementsByTagName("th")[0].innerText
-    this.studentName = screennameElement
-      ? screennameElement.innerText
-      : chrome.i18n.getMessage("student_name")
-    this.deadline = new Date(
-      deadlineElement
-        ? deadlineElement.innerText.substring(0, 16)
-        : chrome.i18n.getMessage("deadline")
-    )
-    this.description = descriptionElement
-      ? descriptionElement.innerText
-      : chrome.i18n.getMessage("description")
+const searchReportInfo = (document: Document) => {
+  const courseNameElement = document.getElementById("coursename")
+  const screennameElement = document.getElementById("screenname")
+  const reportTitleElement = document.querySelector<HTMLTableCellElement>(
+    ".stdlist-reportV2 .title th"
+  )
+  const tdElements = document.querySelectorAll<HTMLTableCellElement>(
+    ".stdlist-reportV2 td"
+  )
+  const descriptionElement = tdElements[0]
+  const deadlineElement = tdElements[1]
+
+  const courseName =
+    courseNameElement?.title ?? chrome.i18n.getMessage("course_name")
+  const reportTitle =
+    reportTitleElement?.innerText ?? chrome.i18n.getMessage("report_title")
+  const description =
+    descriptionElement?.innerText ?? chrome.i18n.getMessage("description")
+  const studentName =
+    screennameElement?.innerText ?? chrome.i18n.getMessage("student_name")
+  const deadline = new Date(
+    deadlineElement?.innerText.substring(0, 16) ??
+      chrome.i18n.getMessage("deadline")
+  )
+
+  return {
+    courseName,
+    reportTitle,
+    studentName,
+    deadline,
+    description,
   }
-  public readonly courseName: string
-  public readonly reportTitle: string
-  public readonly studentName: string
-  public readonly deadline: Date
-  public readonly description: string
 }
 
 // TODO: enable users to customize the template

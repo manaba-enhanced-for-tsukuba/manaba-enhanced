@@ -11,6 +11,10 @@
     "message": "Course Name",
     "description": "Course Name"
   },
+  "report_title": {
+    "message": "Report Title",
+    "description": "Report Title"
+  },
   "student_name": {
     "message": "Student Name",
     "description": "Student Name"

@@ -50,6 +50,7 @@ const generateManifest = () => {
           description: "Open selected Respon code in Respon",
         },
       },
+      default_locale: "ja",
       ...(browserEnv === "firefox"
         ? {
             browser_specific_settings: {

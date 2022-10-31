@@ -1,0 +1,26 @@
+{
+  "generate_report_template": {
+    "message": "レポートの雛形を生成",
+    "description": "レポートの雛形を生成する"
+  },
+  "report_template": {
+    "message": "レポート雛形",
+    "description": "レポートの雛形"
+  },
+  "course_name": {
+    "message": "科目名",
+    "description": "科目名"
+  },
+  "student_name": {
+    "message": "学生名",
+    "description": "学生名"
+  },
+  "deadline": {
+    "message": "締切日",
+    "description": "締切日"
+  },
+  "description": {
+    "message": "概要",
+    "description": "概要"
+  }
+}

@@ -3,7 +3,7 @@
 import { getStorage, setStorage } from "./network/storage"
 import type { StorageSync } from "./types/storage"
 
-import "./style/options.sass"
+import "./style/options.scss"
 
 window.onload = () => {
   const query = new URLSearchParams(window.location.search)

@@ -13,6 +13,7 @@ import { syncReportText, clearStorage } from "./methods/syncReportText"
 import { setUsermemoShortcuts } from "./methods/usermemo"
 import { getStorage } from "./network/storage"
 import colorizeDeadlineStyles from "./style/colorizeDeadline.scss"
+import originalButtonStyles from "./style/originalButton.scss"
 import type { StorageSync } from "./types/storage"
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -41,6 +42,9 @@ const withDocumentHead = (storageSync: Partial<StorageSync>) => {
 
   insertStyle({
     styleString: colorizeDeadlineStyles.toString(),
+  })
+  insertStyle({
+    styleString: originalButtonStyles.toString(),
   })
 
   if (storageSync.featuresAssignmentsColoring) {

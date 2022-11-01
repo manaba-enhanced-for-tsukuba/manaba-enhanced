@@ -20,8 +20,13 @@ class ReportTemplateGenerator {
     const tr = reportTable.appendChild(document.createElement("tr"))
     const th = tr.appendChild(document.createElement("th"))
     const td = tr.appendChild(document.createElement("td"))
+    td.classList.add("left")
+
     button.innerText = chrome.i18n.getMessage("generate_report_template")
+    button.classList.add("manabaOriginalButton")
+
     th.innerText = chrome.i18n.getMessage("report_template")
+
     td.appendChild(button)
 
     button.addEventListener("click", () => {

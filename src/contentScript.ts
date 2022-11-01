@@ -12,7 +12,7 @@ import { ReportTemplateGenerator } from "./methods/ReportTemplateGenerator"
 import { syncReportText, clearStorage } from "./methods/syncReportText"
 import { setUsermemoShortcuts } from "./methods/usermemo"
 import { getStorage } from "./network/storage"
-import colorizeDeadlineStyles from "./style/colorizeDeadline.sass"
+import colorizeDeadlineStyles from "./style/colorizeDeadline.scss"
 import type { StorageSync } from "./types/storage"
 
 window.addEventListener("DOMContentLoaded", () => {

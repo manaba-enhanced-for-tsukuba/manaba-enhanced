@@ -42,12 +42,12 @@ module.exports = {
         use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
       {
-        test: /\.sass$/,
-        exclude: /options\.sass$/,
+        test: /\.scss$/,
+        exclude: /options\.scss$/,
         use: ["css-loader", "sass-loader"],
       },
       {
-        test: /options\.sass$/,
+        test: /options\.scss$/,
         use: ["style-loader", "css-loader", "sass-loader"],
       },
       {

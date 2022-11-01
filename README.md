@@ -26,7 +26,9 @@ If you want to use it in your univ., please follow the [instruction](https://git
 
 1. Highlight the publication deadline of course news and course contents
 
-1. Filter of courses in mypage by terms/modules
+1. Filter courses in mypage by terms/modules
+
+1. Generate LaTeX template for reports
 
 1. Drag & Drop file upload
 
@@ -47,6 +49,8 @@ If you want to use it in your univ., please follow the [instruction](https://git
 1. コースニュースやコンテンツの公開期限を強調表示
 
 1. コースのモジュール別フィルタリング
+
+1. レポートの LaTeX テンプレートを生成
 
 1. ドラッグアンドドロップでのファイルアップロード
 

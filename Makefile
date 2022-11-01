@@ -1,17 +1,20 @@
+eslint = yarn run eslint --ignore-path .gitignore
+prettier = yarn run prettier --ignore-path .gitignore
+
 install:
 	yarn install
 
 format:
-	yarn run prettier --write .
+	$(prettier) --write .
 
 format.check:
-	yarn run prettier --check .
+	$(prettier) --check .
 
 lint:
-	yarn run eslint .
+	$(eslint) .
 
 lint.fix:
-	yarn run eslint --fix .
+	$(eslint) --fix .
 
 autofix: format lint.fix
 

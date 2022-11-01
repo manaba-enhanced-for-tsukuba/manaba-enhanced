@@ -9,17 +9,18 @@ Get it via [Chrome Web Store](https://chrome.google.com/webstore/detail/manaba-e
 ![Screenshot](./bin/dist/thumbnail1.png)
 
 ## Supported Univ. / 対応大学
+
 - University of Tsukuba / 筑波大学
 
-If you want to use it in your univ., please follow the [instruction](https://github.com/mkobayashime/manaba-enhanced#how-to-add-support-for-your-univ) below. 
+If you want to use it in your univ., please follow the [instruction](https://github.com/mkobayashime/manaba-enhanced#how-to-add-support-for-your-univ) below.
 
 ## Features
 
 1. Color assignments with colors according to the time remaining
 
-    Red: 1 day remaining  
-    Yellow: 3 days remaining  
-    Green: 7 days remaining
+   Red: 1 day remaining  
+   Yellow: 3 days remaining  
+   Green: 7 days remaining
 
 1. Auto-save report text
 
@@ -37,9 +38,9 @@ If you want to use it in your univ., please follow the [instruction](https://git
 
 1. 締め切りまでの時間による課題一覧の色分け
 
-    赤: 期限まであと1日  
-    黄: 期限まであと3日  
-    緑: 期限まであと7日
+   赤: 期限まであと 1 日  
+   黄: 期限まであと 3 日  
+   緑: 期限まであと 7 日
 
 1. レポート入力画面でのレポート自動保存
 
@@ -51,7 +52,7 @@ If you want to use it in your univ., please follow the [instruction](https://git
 
 1. 外部リンククリック時の確認ダイアログ排除
 
-1. 出席コードをResponで開く右クリックメニューを追加
+1. 出席コードを Respon で開く右クリックメニューを追加
 
 ## Disclaimer / 免責事項
 
@@ -83,17 +84,17 @@ make typecheck # Run typecheck
 
 ## How to add support for your univ.
 
-If your univ. is using manaba and there is *Assignments* tab in the mypage, please follow the instruction below to use this extension.
+If your univ. is using manaba and there is _Assignments_ tab in the mypage, please follow the instruction below to use this extension.
 
 1. Fork this repository.
 1. Replace `matches` of `content_scripts` in `manifest.json` with the url of manaba of your univ..
 1. Build and install in Chrome.
 
-あなたの大学がmanabaを導入しており、マイページに「未提出課題」タブが存在する場合、以下の手順で対応が可能です。
+あなたの大学が manaba を導入しており、マイページに「未提出課題」タブが存在する場合、以下の手順で対応が可能です。
 
 1. このレポジトリをフォークする。
-1. `manifest.json`に記述されている`content_scripts`の`matches`をあなたの大学のmanabaのURLに変更する。
-1. ビルドしChromeにインストールする。
+1. `manifest.json`に記述されている`content_scripts`の`matches`をあなたの大学の manaba の URL に変更する。
+1. ビルドし Chrome にインストールする。
 
 ## Contribution
 

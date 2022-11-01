@@ -1,0 +1,30 @@
+{
+  "generate_report_template": {
+    "message": "Generate Report Template",
+    "description": "Generate Report Template"
+  },
+  "report_template": {
+    "message": "Report Template",
+    "description": "Report Template"
+  },
+  "course_name": {
+    "message": "Course Name",
+    "description": "Course Name"
+  },
+  "report_title": {
+    "message": "Report Title",
+    "description": "Report Title"
+  },
+  "student_name": {
+    "message": "Student Name",
+    "description": "Student Name"
+  },
+  "deadline": {
+    "message": "Deadline",
+    "description": "Deadline"
+  },
+  "description": {
+    "message": "Description",
+    "description": "Description"
+  }
+}

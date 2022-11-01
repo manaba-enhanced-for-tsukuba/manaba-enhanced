@@ -54,6 +54,7 @@ window.onload = () => {
       | "featuresRemoveConfirmation"
       | "featuresFilterCourses"
       | "featuresDragAndDrop"
+      | "featuresReportTemplate"
     >
 
     getStorage({

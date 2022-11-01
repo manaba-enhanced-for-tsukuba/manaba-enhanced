@@ -8,6 +8,7 @@ import { dragAndDrop } from "./methods/dragAndDrop"
 import { filterCourses } from "./methods/filterCourses"
 import openCodeInRespon from "./methods/openCodeInRespon"
 import removeLinkBalloon from "./methods/removeLinkBalloon"
+import { ReportTemplateGenerator } from "./methods/ReportTemplateGenerator"
 import { syncReportText, clearStorage } from "./methods/syncReportText"
 import { setUsermemoShortcuts } from "./methods/usermemo"
 import { getStorage } from "./network/storage"
@@ -116,6 +117,14 @@ const main = (storageSync: Partial<StorageSync>) => {
 
   if (storageSync.featuresDragAndDrop) {
     dragAndDrop()
+  }
+
+  if (storageSync.featuresReportTemplate) {
+    const regex = new RegExp(/course_\d+_report_\d*/)
+    if (regex.test(window.location.href.split("/").pop() || "")) {
+      const reportTemplateGenerator = new ReportTemplateGenerator()
+      reportTemplateGenerator.renderReportGeneratorRow()
+    }
   }
 
   if (window.location.href.includes("usermemo")) {

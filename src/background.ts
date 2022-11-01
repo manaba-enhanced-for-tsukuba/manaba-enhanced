@@ -77,6 +77,7 @@ chrome.runtime.onInstalled.addListener((details) => {
             storage.featuresRemoveConfirmation ?? true,
           featuresFilterCourses: storage.featuresFilterCourses ?? true,
           featuresDragAndDrop: storage.featuresDragAndDrop ?? true,
+          featuresReportTemplate: storage.featuresReportTemplate ?? true,
           featuresDisableForceFileSaving:
             storage.featuresDisableForceFileSaving ?? true,
         },
@@ -122,4 +123,15 @@ chrome.commands.onCommand.addListener((cmd: string, tab: chrome.tabs.Tab) => {
       break
     }
   }
+})
+
+/* The listener for report template generator */
+chrome.runtime.onMessage.addListener(({ url, filename }) => {
+  chrome.downloads.download({
+    url,
+    filename,
+    conflictAction: "overwrite",
+    saveAs: true,
+  })
+  return true
 })

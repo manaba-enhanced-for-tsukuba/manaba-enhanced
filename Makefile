@@ -1,5 +1,6 @@
 eslint = yarn run eslint --ignore-path .gitignore
 prettier = yarn run prettier --ignore-path .gitignore
+stylelint = yarn run stylelint --ignore-path .gitignore
 
 install:
 	yarn install
@@ -12,9 +13,11 @@ format.check:
 
 lint:
 	$(eslint) .
+	$(stylelint) '**/*.{css,scss}'
 
 lint.fix:
 	$(eslint) --fix .
+	$(stylelint) --fix '**/*.{css,scss}'
 
 autofix: format lint.fix
 

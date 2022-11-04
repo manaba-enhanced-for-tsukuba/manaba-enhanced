@@ -1,28 +1,40 @@
 import { ReportTemplateGenerator } from "./ReportTemplateGenerator"
 
 describe("ReportTemplateGenerator module", () => {
-  afterEach(() => {
-    jest.restoreAllMocks()
-  })
+  const reportInfo = {
+    courseName: `The Great Course`,
+    reportTitle: `The Great Report/2`,
+    studentName: `Tsukuba Taro`,
+    deadline: new Date(`2021-01-01 00:00:00`),
+    description: `Show how great the university of Tsukuba is.`,
+  }
+  const getReportTemplate = (userTemplate: string) =>
+    new ReportTemplateGenerator("", userTemplate, reportInfo).template
+  const getFilename = (userFilename: string) =>
+    new ReportTemplateGenerator(userFilename, "", reportInfo).filename
 
-  test("replace expressions with report info", () => {
-    const reportInfo = {
-      courseName: `The Great Course`,
-      reportTitle: `The Great Report`,
-      studentName: `Tsukuba Taro`,
-      deadline: new Date(`2021-01-01 00:00:00`),
-      description: `Show how great the university of Tsukuba is.`,
-    }
-    const userFilename = `{{studentName}}_{{courseName}}_{{reportTitle}}.tex`
-    const userTemplate = `The report whose title is {{report-title}} is due to {{deadline}}`
-    const expectedUserTemplate = `The report whose title is The Great Report is due to 2021/1/1 0:00:00`
-
-    jest
-      .spyOn(ReportTemplateGenerator.prototype as any, "searchReportInfo")
-      .mockReturnValue(reportInfo)
-
+  it("replaces expressions in report template with report info", () =>
     expect(
-      new ReportTemplateGenerator(userFilename, userTemplate).template
-    ).toBe(expectedUserTemplate)
-  })
+      getReportTemplate(
+        `The report whose title is {{report-title}} is due to {{deadline}}`
+      )
+    ).toBe(
+      `The report whose title is The Great Report/2 is due to 2021/1/1 0:00:00`
+    ))
+
+  it("replaces expressions in filenames with report info", () =>
+    expect(
+      getFilename(`{{student-name}}_{{course-name}}_{{report-title}}.tex`)
+    ).toBe(`Tsukuba Taro_The Great Course_The Great Report_2.tex`))
+
+  it("removes slashes from a filename", () =>
+    expect(
+      getFilename(`{{student-name}}/{{course-name}}/{{report-title}}.tex`)
+    ).toBe(`Tsukuba Taro_The Great Course_The Great Report_2.tex`))
+
+  test("templates should not be empty even if user template is empty", () =>
+    expect(getReportTemplate("")).toBeTruthy())
+
+  test("filenames should not be empty even if user filename is empty", () =>
+    expect(getFilename("")).toBeTruthy())
 })

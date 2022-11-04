@@ -1,17 +1,22 @@
 class ReportTemplateGenerator {
-  constructor(rawFilename: string, rawTemplate: string) {
+  constructor(
+    rawFilename: string,
+    rawTemplate: string,
+    public readonly reportInfo: Pick<
+      ReportInfo,
+      "courseName" | "deadline" | "description" | "reportTitle" | "studentName"
+    > = new ReportInfo(document)
+  ) {
     this.filename = this.parseFilename(
       rawFilename || ReportTemplateGenerator.defaultFilename
     )
     this.template = this.parseTemplate(
       rawTemplate || ReportTemplateGenerator.defaultTemplate
     )
-    this.reportInfo = this.searchReportInfo(document)
   }
 
   public readonly filename: string
   public readonly template: string
-  public readonly reportInfo: ReturnType<typeof this.searchReportInfo>
 
   public renderReportGeneratorRow() {
     const reportTable = document.getElementsByClassName("stdlist-reportV2")[0]
@@ -42,48 +47,17 @@ class ReportTemplateGenerator {
     })
   }
 
-  private searchReportInfo = (document: Document) => {
-    const courseNameElement = document.getElementById("coursename")
-    const screennameElement = document.getElementById("screenname")
-    const reportTitleElement = document.querySelector<HTMLTableCellElement>(
-      ".stdlist-reportV2 .title th"
-    )
-    const tdElements = document.querySelectorAll<HTMLTableCellElement>(
-      ".stdlist-reportV2 td"
-    )
-    const descriptionElement = tdElements[0]
-    const deadlineElement = tdElements[1]
-
-    const courseName =
-      courseNameElement?.title ?? chrome.i18n.getMessage("course_name")
-    const reportTitle =
-      reportTitleElement?.innerText ?? chrome.i18n.getMessage("report_title")
-    const description =
-      descriptionElement?.innerText ?? chrome.i18n.getMessage("description")
-    const studentName =
-      screennameElement?.innerText ?? chrome.i18n.getMessage("student_name")
-    const deadline = new Date(
-      deadlineElement?.innerText.substring(0, 16) ??
-        chrome.i18n.getMessage("deadline")
-    )
-
-    return {
-      courseName,
-      reportTitle,
-      studentName,
-      deadline,
-      description,
-    }
-  }
-
   private injectReportInfoIntoRawText = (
     rawText: string,
-    reportInfo: ReturnType<typeof this.searchReportInfo>
+    reportInfo: Pick<
+      ReportInfo,
+      "courseName" | "deadline" | "description" | "reportTitle" | "studentName"
+    >
   ) =>
     Object.entries(reportInfo).reduce(
       (acc, [key, value]) =>
         acc.replaceAll(
-          `{{${key}}}`,
+          `{{${this.camelcaseToKebabcase(key)}}}`,
           typeof value === "string" ? value : value.toLocaleString()
         ),
       rawText
@@ -97,6 +71,9 @@ class ReportTemplateGenerator {
 
   private parseTemplate = (rawTemplate: string) =>
     this.injectReportInfoIntoRawText(rawTemplate, this.reportInfo)
+
+  private camelcaseToKebabcase = (camelcase: string) =>
+    camelcase.replace(/([a-z0-9]|(?=[A-Z]))([A-Z])/g, "$1-$2").toLowerCase()
 
   static defaultFilename = `{{studentName}}_{{courseName}}_{{reportTitle}}.tex`
 
@@ -128,5 +105,42 @@ class ReportTemplateGenerator {
 `
 }
 
+class ReportInfo {
+  constructor(private document: Document) {
+    this.courseName =
+      this.courseNameElement?.title ?? chrome.i18n.getMessage("course_name")
+    this.reportTitle =
+      this.reportTitleElement?.innerText ??
+      chrome.i18n.getMessage("report_title")
+    this.description =
+      this.descriptionElement?.innerText ??
+      chrome.i18n.getMessage("description")
+    this.studentName =
+      this.screennameElement?.innerText ??
+      chrome.i18n.getMessage("student_name")
+    this.deadline = new Date(
+      this.deadlineElement?.innerText.substring(0, 16) ??
+        chrome.i18n.getMessage("deadline")
+    )
+  }
+
+  public courseName
+  public reportTitle
+  public studentName
+  public deadline
+  public description
+
+  private courseNameElement = this.document.getElementById("coursename")
+  private screennameElement = this.document.getElementById("screenname")
+  private reportTitleElement =
+    this.document.querySelector<HTMLTableCellElement>(
+      ".stdlist-reportV2 .title th"
+    )
+  private tdElements = this.document.querySelectorAll<HTMLTableCellElement>(
+    ".stdlist-reportV2 td"
+  )
+  private descriptionElement = this.tdElements[0]
+  private deadlineElement = this.tdElements[1]
+}
 
 export { ReportTemplateGenerator }

@@ -41,7 +41,8 @@
     "zip-webpack-plugin": "4.0.1"
   },
   "scripts": {
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test": "jest"
   },
   "lint-staged": {
     "*": [

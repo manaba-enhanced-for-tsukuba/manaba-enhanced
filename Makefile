@@ -48,3 +48,6 @@ typecheck: node_modules
 
 typecheck.watch: node_modules
 	$(typecheck) --watch
+
+test: node_modules
+	yarn run test

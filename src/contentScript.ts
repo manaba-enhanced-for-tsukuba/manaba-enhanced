@@ -125,10 +125,18 @@ const main = (storageSync: Partial<StorageSync>) => {
 
   if (storageSync.featuresReportTemplate) {
     const regex = new RegExp(/course_\d+_report_\d*/)
-    if (regex.test(window.location.href.split("/").pop() || "")) {
-      const reportTemplateGenerator = new ReportTemplateGenerator()
-      reportTemplateGenerator.renderReportGeneratorRow()
-    }
+    if (regex.test(window.location.href.split("/").pop() || ""))
+      chrome.storage.sync.get(
+        ["reportFilename", "reportTemplate"],
+        (result) => {
+          const { reportFilename, reportTemplate } = result
+          const reportTemplateGenerator = new ReportTemplateGenerator(
+            reportFilename || "",
+            reportTemplate || ""
+          )
+          reportTemplateGenerator.renderReportGeneratorRow()
+        }
+      )
   }
 
   if (window.location.href.includes("usermemo")) {

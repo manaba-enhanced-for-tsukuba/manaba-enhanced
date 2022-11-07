@@ -1,5 +1,6 @@
 "use strict"
 
+import { ReportTemplateFormHandler } from "./methods/handleReportTemplateForm"
 import { getStorage, setStorage } from "./network/storage"
 import type { StorageSync } from "./types/storage"
 
@@ -77,3 +78,5 @@ window.onload = () => {
     })
   })
 }
+
+new ReportTemplateFormHandler().start()

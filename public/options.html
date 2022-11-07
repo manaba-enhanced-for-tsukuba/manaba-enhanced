@@ -213,6 +213,48 @@
           <a href="" id="link-to-shortcuts-settings">here</a>
         </p>
       </section>
+      <section class="section-keys section-report-template-preferences">
+        <h2>Report template</h2>
+        <form id="save-report-template" method="post">
+          <p>
+            You can set your favorite LaTeX template and its filename here.
+            Report templates are downloadable on the manaba report page.
+          </p>
+          <div class="input-wrapper">
+            <label for="report-template">LaTeX document</label>
+            <small
+              >You can insert the report attributes into the template:
+              <code>{{course-name}}</code>, <code>{{deadline}}</code>,
+              <code>{{description}}</code>, <code>{{report-title}}</code> and
+              <code>{{student-name}}</code> by only writing them like
+              "<code>\title{{{course-name}}}</code>". If nothing is specified,
+              we use the default template.</small
+            >
+            <textarea
+              name="report-template"
+              id="report-template"
+              rows="10"
+            ></textarea>
+          </div>
+          <div class="input-wrapper">
+            <label for="report-filename">Filename</label>
+            <small
+              >You can insert the report attributes into the filename:
+              <code>{{course-name}}</code>, <code>{{deadline}}</code>,
+              <code>{{description}}</code>, <code>{{report-title}}</code> and
+              <code>{{student-name}}</code> by only writing them like
+              "<code>{{course-name}}.tex</code>". If nothing is specified, we
+              use the default filename.</small
+            >
+            <textarea
+              name="report-filename"
+              id="report-filename"
+              rows="1"
+            ></textarea>
+          </div>
+          <input type="submit" value="Save" />
+        </form>
+      </section>
       <section class="section-disclaimer">
         <h2>Disclaimer</h2>
         <p>

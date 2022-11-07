@@ -27,6 +27,12 @@ module.exports = {
       "contentScript",
       "main.ts"
     ),
+    "contentScript/reportTemplate": path.resolve(
+      __dirname,
+      "src",
+      "contentScript",
+      "reportTemplate.ts"
+    ),
     background: path.resolve(__dirname, "src", "background.ts"),
     options: path.resolve(__dirname, "src", "options.ts"),
   },

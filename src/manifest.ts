@@ -42,6 +42,11 @@ const generateManifest = () => {
           run_at: "document_start",
           js: ["contentScript/main.js"],
         },
+        {
+          matches: ["https://manaba.tsukuba.ac.jp/*"],
+          include_globs: ["https://manaba.tsukuba.ac.jp/ct/course_*_report_*"],
+          js: ["contentScript/reportTemplate.js"],
+        },
       ],
       commands: {
         "manaba-enhanced:open-in-respon": {

@@ -1,20 +1,20 @@
 "use strict"
 
-import checkAssignmentDeadline from "./methods/checkAssignmentDeadline"
-import checkPagePubDeadline from "./methods/checkPagePubDeadline"
-import colorizeDeadline from "./methods/colorizeDeadline"
-import createLinkToOptions from "./methods/createLinkToOptions"
-import { dragAndDrop } from "./methods/dragAndDrop"
-import { filterCourses } from "./methods/filterCourses"
-import openCodeInRespon from "./methods/openCodeInRespon"
-import removeLinkBalloon from "./methods/removeLinkBalloon"
-import { ReportTemplateGenerator } from "./methods/ReportTemplateGenerator"
-import { syncReportText, clearStorage } from "./methods/syncReportText"
-import { setUsermemoShortcuts } from "./methods/usermemo"
-import { getStorage } from "./network/storage"
-import colorizeDeadlineStyles from "./style/colorizeDeadline.scss"
-import originalButtonStyles from "./style/originalButton.scss"
-import type { StorageSync } from "./types/storage"
+import checkAssignmentDeadline from "../methods/checkAssignmentDeadline"
+import checkPagePubDeadline from "../methods/checkPagePubDeadline"
+import colorizeDeadline from "../methods/colorizeDeadline"
+import createLinkToOptions from "../methods/createLinkToOptions"
+import { dragAndDrop } from "../methods/dragAndDrop"
+import { filterCourses } from "../methods/filterCourses"
+import openCodeInRespon from "../methods/openCodeInRespon"
+import removeLinkBalloon from "../methods/removeLinkBalloon"
+import { syncReportText, clearStorage } from "../methods/syncReportText"
+import { setUsermemoShortcuts } from "../methods/usermemo"
+import { getStorage } from "../network/storage"
+import type { StorageSync } from "../types/storage"
+
+import colorizeDeadlineStyles from "./../style/colorizeDeadline.scss"
+import originalButtonStyles from "./../style/originalButton.scss"
 
 window.addEventListener("DOMContentLoaded", () => {
   getStorage({
@@ -121,22 +121,6 @@ const main = (storageSync: Partial<StorageSync>) => {
 
   if (storageSync.featuresDragAndDrop) {
     dragAndDrop()
-  }
-
-  if (storageSync.featuresReportTemplate) {
-    const regex = new RegExp(/course_\d+_report_\d*/)
-    if (regex.test(window.location.href.split("/").pop() || ""))
-      chrome.storage.sync.get(
-        ["reportFilename", "reportTemplate"],
-        (result) => {
-          const { reportFilename, reportTemplate } = result
-          const reportTemplateGenerator = new ReportTemplateGenerator(
-            reportFilename || "",
-            reportTemplate || ""
-          )
-          reportTemplateGenerator.renderReportGeneratorRow()
-        }
-      )
   }
 
   if (window.location.href.includes("usermemo")) {

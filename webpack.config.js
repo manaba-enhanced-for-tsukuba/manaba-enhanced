@@ -21,7 +21,12 @@ module.exports = {
     filename: "[name].js",
   },
   entry: {
-    contentScript: path.resolve(__dirname, "src", "contentScript.ts"),
+    "contentScript/main": path.resolve(
+      __dirname,
+      "src",
+      "contentScript",
+      "main.ts"
+    ),
     background: path.resolve(__dirname, "src", "background.ts"),
     options: path.resolve(__dirname, "src", "options.ts"),
   },

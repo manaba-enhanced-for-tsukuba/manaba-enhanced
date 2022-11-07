@@ -40,7 +40,7 @@ const generateManifest = () => {
         {
           matches: ["https://manaba.tsukuba.ac.jp/*"],
           run_at: "document_start",
-          js: ["contentScript.js"],
+          js: ["contentScript/main.js"],
         },
       ],
       commands: {

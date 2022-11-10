@@ -6,6 +6,9 @@ on:
       - main
   pull_request:
 
+env:
+  MAKE_YARN_FROZEN_LOCKFILE: 1
+
 jobs:
   Lint:
     name: Lint
@@ -20,8 +23,6 @@ jobs:
         with:
           path: "**/node_modules"
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      - name: Install dependencies
-        run: yarn --frozen-lockfile
       - name: Run ESLint
         run: make lint
       - name: Run Prettier
@@ -42,8 +43,6 @@ jobs:
         with:
           path: "**/node_modules"
           key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn.lock') }}
-      - name: Install dependencies
-        run: yarn --frozen-lockfile
       - name: Build for Chrome
         run: make build.chrome
       - name: Build for Firefox

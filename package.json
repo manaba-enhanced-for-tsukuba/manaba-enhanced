@@ -8,6 +8,7 @@
     "@swc/jest": "^0.2.23",
     "@tsconfig/recommended": "1.0.1",
     "@types/chrome": "0.0.200",
+    "@types/dexie": "^1.3.1",
     "@types/jest": "^29.2.1",
     "@types/lodash-es": "4.17.6",
     "@types/node": "18.11.9",
@@ -51,5 +52,8 @@
     "*.{js,jsx,ts,tsx}": [
       "eslint"
     ]
+  },
+  "dependencies": {
+    "dexie": "^3.2.2"
   }
 }

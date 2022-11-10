@@ -26,5 +26,13 @@
   "description": {
     "message": "概要",
     "description": "概要"
+  },
+  "test": {
+    "message": "小テスト",
+    "description": "小テスト"
+  },
+  "assignment": {
+    "message": "レポート",
+    "description": "レポート"
   }
 }

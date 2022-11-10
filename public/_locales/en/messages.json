@@ -26,5 +26,13 @@
   "description": {
     "message": "Description",
     "description": "Description"
+  },
+  "test": {
+    "message": "Test",
+    "description": "Test"
+  },
+  "assignment": {
+    "message": "Assignment",
+    "description": "Assignment"
   }
 }

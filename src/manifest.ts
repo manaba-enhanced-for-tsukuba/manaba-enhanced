@@ -62,6 +62,8 @@ const generateManifest = () => {
             browser_specific_settings: {
               gecko: {
                 id: "{9FD229B7-1BD6-4095-965E-BE30EBFAD42E}",
+                update_url:
+                  "https://raw.githubusercontent.com/mkobayashime/manaba-enhanced-dist-firefox/main/updates.json",
               },
             },
           }

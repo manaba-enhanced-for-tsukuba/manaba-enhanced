@@ -53,7 +53,13 @@ build.all: build.chrome build.firefox
 
 .PHONY: sign.firefox
 sign.firefox: node_modules
-	yarn run web-ext sign -s dist --api-key=${AMO_JWT_ISSUER} --api-secret=${AMO_JWT_SECRET}
+	yarn run web-ext sign -s dist --channel unlisted --api-key=${AMO_JWT_ISSUER} --api-secret=${AMO_JWT_SECRET}
+
+.PHONY: publish.firefox
+publish.firefox: build.firefox sign.firefox
+	rm -rf dist-firefox
+	git clone git@github.com:mkobayashime/manaba-enhanced-dist-firefox.git dist-firefox
+	./bin/publishFirefoxVersion.sh
 
 .PHONY: clear
 clear: node_modules

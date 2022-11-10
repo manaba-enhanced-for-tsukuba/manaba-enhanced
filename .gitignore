@@ -17,3 +17,4 @@ npm-debug.log*
 size-plugin.json
 
 web-ext-artifacts
+dist-firefox

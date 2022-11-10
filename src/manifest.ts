@@ -25,6 +25,7 @@ const generateManifest = () => {
         "webRequest",
         "webRequestBlocking",
         "downloads",
+        "notifications",
         "*://manaba.tsukuba.ac.jp/*",
       ],
       options_ui: {

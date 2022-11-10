@@ -1,5 +1,6 @@
 "use strict"
 
+import { AssignmentManager } from "../methods/AssignmentManager"
 import checkAssignmentDeadline from "../methods/checkAssignmentDeadline"
 import checkPagePubDeadline from "../methods/checkPagePubDeadline"
 import colorizeDeadline from "../methods/colorizeDeadline"
@@ -123,6 +124,10 @@ const main = (storageSync: Partial<StorageSync>) => {
     dragAndDrop()
   }
 
+  if (storageSync.featuresAssignmentDeadlineNotification) {
+    new AssignmentManager().init()
+  }
+
   if (window.location.href.includes("usermemo")) {
     setUsermemoShortcuts()
   }
@@ -136,4 +141,12 @@ const main = (storageSync: Partial<StorageSync>) => {
       }
     }
   })
+
+  chrome.runtime.onMessage.addListener(
+    ({ kind, id }, _sender, sendResponse) => {
+      if (kind === "getAssignmentData")
+        new AssignmentManager().getAssignmentData(id).then(sendResponse)
+      return true
+    }
+  )
 }

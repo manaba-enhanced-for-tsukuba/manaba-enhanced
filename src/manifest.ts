@@ -35,7 +35,10 @@ const generateManifest = () => {
         open_in_tab: true,
       },
       background: {
-        scripts: ["background/main.js"],
+        scripts: [
+          "background/main.js",
+          "background/assignmentDeadlineNotifier.js",
+        ],
         persistent: true,
       },
       content_scripts: [

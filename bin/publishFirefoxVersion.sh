@@ -43,7 +43,7 @@ git add -N .
 
 if ! git diff --exit-code; then
   git add .
-  git commit -m "Release"
+  git commit -m "Release: v$version"
   git pull origin main
   git push origin main
 fi

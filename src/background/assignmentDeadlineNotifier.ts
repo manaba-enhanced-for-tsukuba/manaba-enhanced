@@ -37,6 +37,11 @@ const getCurrentTab = (callback: (tab: chrome.tabs.Tab) => void) =>
     callback(tab)
   )
 
+const createManabaTab = (notificationId: string) =>
+  chrome.tabs.create({
+    url: `https://manaba.tsukuba.ac.jp/ct/${notificationId}`,
+  })
+
 chrome.runtime.onMessage.addListener(
   ({ action, assignmentData }) =>
     action === "assignmentDeadlineNotification" &&
@@ -58,13 +63,9 @@ chrome.alarms.onAlarm.addListener(({ name }) =>
 
 // TODO: Avoidance of the `notificationId` collision of event listeners for `chrome.notifications`.
 chrome.notifications.onButtonClicked.addListener((notificationId) =>
-  chrome.tabs.create({
-    url: `https://manaba.tsukuba.ac.jp/ct/${notificationId}`,
-  })
+  createManabaTab(notificationId)
 )
 
 chrome.notifications.onClicked.addListener((notificationId) =>
-  chrome.tabs.create({
-    url: `https://manaba.tsukuba.ac.jp/ct/${notificationId}`,
-  })
+  createManabaTab(notificationId)
 )

@@ -33,7 +33,13 @@ module.exports = {
       "contentScript",
       "reportTemplate.ts"
     ),
-    background: path.resolve(__dirname, "src", "background.ts"),
+    "background/main": path.resolve(__dirname, "src", "background", "main.ts"),
+    "background/assignmentDeadlineNotifier": path.resolve(
+      __dirname,
+      "src",
+      "background",
+      "assignmentDeadlineNotifier.ts"
+    ),
     options: path.resolve(__dirname, "src", "options.ts"),
   },
   stats: {

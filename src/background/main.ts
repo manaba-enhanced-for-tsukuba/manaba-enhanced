@@ -1,6 +1,6 @@
 "use strict"
 
-import { getStorage, setStorage, onStorageChanged } from "./network/storage"
+import { getStorage, setStorage, onStorageChanged } from "../network/storage"
 
 const removeAttachmentHeader = (
   details: chrome.webRequest.WebResponseHeadersDetails
@@ -80,6 +80,8 @@ chrome.runtime.onInstalled.addListener((details) => {
           featuresReportTemplate: storage.featuresReportTemplate ?? true,
           featuresDisableForceFileSaving:
             storage.featuresDisableForceFileSaving ?? true,
+          featuresAssignmentDeadlineNotification:
+            storage.featuresAssignmentDeadlineNotification ?? false,
         },
       })
 

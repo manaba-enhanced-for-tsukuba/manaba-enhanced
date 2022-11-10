@@ -34,7 +34,7 @@ const generateManifest = () => {
         open_in_tab: true,
       },
       background: {
-        scripts: ["background.js"],
+        scripts: ["background/main.js"],
         persistent: true,
       },
       content_scripts: [

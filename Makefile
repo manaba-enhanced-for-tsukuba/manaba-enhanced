@@ -32,6 +32,18 @@ lint.fix: node_modules
 .PHONY: autofix
 autofix: format lint.fix
 
+.PHONY: typecheck
+typecheck: node_modules
+	$(typecheck)
+
+.PHONY: typecheck.watch
+typecheck.watch: node_modules
+	$(typecheck) --watch
+
+.PHONY: test
+test: node_modules
+	yarn run test
+
 .PHONY: dev.chrome
 dev.chrome: node_modules
 	NODE_ENV=development BROWSER_ENV=chrome yarn run webpack --watch
@@ -64,15 +76,3 @@ publish.firefox: build.firefox sign.firefox
 .PHONY: clear
 clear: node_modules
 	yarn run rimraf dist
-
-.PHONY: typecheck
-typecheck: node_modules
-	$(typecheck)
-
-.PHONY: typecheck.watch
-typecheck.watch: node_modules
-	$(typecheck) --watch
-
-.PHONY: test
-test: node_modules
-	yarn run test

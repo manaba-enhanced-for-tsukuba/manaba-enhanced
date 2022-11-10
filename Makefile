@@ -4,7 +4,11 @@ stylelint = yarn run stylelint --ignore-path .gitignore
 typecheck = yarn run tsc --noEmit
 
 node_modules: package.json yarn.lock
+ifeq ($(MAKE_YARN_FROZEN_LOCKFILE), 1)
+	yarn install --frozen-lockfile
+else
 	yarn install
+endif
 	@touch node_modules
 
 .PHONY: format

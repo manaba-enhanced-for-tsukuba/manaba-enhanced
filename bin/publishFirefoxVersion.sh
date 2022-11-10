@@ -37,6 +37,8 @@ jq --arg version "$version" --arg xpi_file "https://raw.githubusercontent.com/mk
   updates.json > updated.json
 mv updated.json updates.json
 
+./bin/updateReadme.sh "$version"
+
 git add -N .
 
 if ! git diff --exit-code; then

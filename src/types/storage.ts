@@ -11,6 +11,7 @@ export type StorageSync = Readonly<{
   featuresDragAndDrop: boolean
   featuresReportTemplate: boolean
   featuresDisableForceFileSaving?: boolean
+  featuresAssignmentDeadlineNotification?: boolean
   filterConfigForModule?: ModuleCode
 }>
 

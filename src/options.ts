@@ -56,6 +56,7 @@ window.onload = () => {
       | "featuresFilterCourses"
       | "featuresDragAndDrop"
       | "featuresReportTemplate"
+      | "featuresAssignmentDeadlineNotification"
     >
 
     getStorage({

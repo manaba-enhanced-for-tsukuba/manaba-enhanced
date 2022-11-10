@@ -8,7 +8,7 @@ Get it via [Chrome Web Store](https://chrome.google.com/webstore/detail/manaba-e
 
 **For students of University of Tsukuba.**
 
-![Screenshot](./bin/dist/thumbnail1.png)
+![Screenshot](./img/dist/thumbnail1.png)
 
 ## Supported Univ. / 対応大学
 

@@ -14,8 +14,8 @@ if [[ ! -f "web-ext-artifacts/$xpi_file" ]]; then
   exit 1
 fi
 
-existing_release=$(jq -r --arg version \
-  "$version" '.addons."{9FD229B7-1BD6-4095-965E-BE30EBFAD42E}".updates[] | select(.version == $version) | .version' \
+existing_release=$(jq -r --arg version "$version" \
+  '.addons."{9FD229B7-1BD6-4095-965E-BE30EBFAD42E}".updates[] | select(.version == $version) | .version' \
   dist-firefox/updates.json)
 if [[ "$existing_release" ]]; then
   echo "Version $version is already published."
@@ -27,7 +27,8 @@ cp "web-ext-artifacts/$xpi_file" dist-firefox/versions
 
 cd dist-firefox || exit 1
 
-jq --arg version "$version" --arg xpi_file "https://raw.githubusercontent.com/mkobayashime/manaba-enhanced-dist-firefox/main/versions/$xpi_file" \
+jq --arg version "$version" \
+  --arg xpi_file "https://raw.githubusercontent.com/mkobayashime/manaba-enhanced-dist-firefox/main/versions/$xpi_file" \
   '.addons."{9FD229B7-1BD6-4095-965E-BE30EBFAD42E}".updates += [
     {
       "version": $version,

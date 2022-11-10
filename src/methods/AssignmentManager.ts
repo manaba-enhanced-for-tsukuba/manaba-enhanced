@@ -1,7 +1,3 @@
-/**
- * @description The consistency of assignment data relys on the identity of the primary key of the database.
- */
-
 import Dexie, { Table } from "dexie"
 
 type AssignmentData = {
@@ -31,6 +27,9 @@ class AssignmentDatabase extends Dexie {
   }
 }
 
+/**
+ * @class The `AssignmentManager` class is responsible for managing the assignment information and stores it in the IndexedDB. The consistency of assignment data relies on the identity of the primary key of the database.
+ */
 class AssignmentManager {
   init() {
     this.storeAssignmentData()

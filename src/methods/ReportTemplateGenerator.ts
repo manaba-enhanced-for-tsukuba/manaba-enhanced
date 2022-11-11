@@ -64,10 +64,9 @@ class ReportTemplateGenerator {
     )
 
   private parseFilename = (rawFilename: string) =>
-    this.injectReportInfoIntoRawText(rawFilename, this.reportInfo).replaceAll(
-      /[\\/:*?"<>|]/g,
-      "_"
-    )
+    this.injectReportInfoIntoRawText(rawFilename, this.reportInfo)
+      .replaceAll(/[\\/:*?"<>|]/g, "_")
+      .trim()
 
   private parseTemplate = (rawTemplate: string) =>
     this.injectReportInfoIntoRawText(rawTemplate, this.reportInfo)

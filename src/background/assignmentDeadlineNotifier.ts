@@ -4,6 +4,8 @@
 
 import { AssignmentData } from "../methods/AssignmentManager"
 
+import { getCurrentTab } from "./main"
+
 const setAssignmentNotification = (data: AssignmentData) =>
   data.id &&
   data.deadline &&
@@ -31,11 +33,6 @@ const createAssignmentNotification = (data: AssignmentData) =>
 
 const calcNotificationTime = (deadline: Date, timeDay: number): number =>
   deadline.getTime() - 1000 * 60 * 60 * 24 * timeDay
-
-const getCurrentTab = (callback: (tab: chrome.tabs.Tab) => void) =>
-  chrome.tabs.query({ active: true, lastFocusedWindow: true }, ([tab]) =>
-    callback(tab)
-  )
 
 const createManabaTab = (notificationId: string) =>
   chrome.tabs.create({

@@ -137,3 +137,9 @@ chrome.runtime.onMessage.addListener(({ url, filename }) => {
   })
   return true
 })
+const getCurrentTab = (callback: (tab: chrome.tabs.Tab) => void) =>
+  chrome.tabs.query({ active: true, lastFocusedWindow: true }, ([tab]) =>
+    callback(tab)
+  )
+
+export { getCurrentTab }

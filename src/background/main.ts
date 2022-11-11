@@ -137,6 +137,26 @@ chrome.runtime.onMessage.addListener(({ url, filename }) => {
   })
   return true
 })
+
+chrome.runtime.onMessage.addListener(
+  ({ action, data }) =>
+    action === "alarm-delete-assignment-from-db" &&
+    chrome.alarms.create(`delete-assignment-${data.id}`, {
+      when: data.deadline.getTime() + 1000 * 60 * 60 * 24,
+    })
+)
+
+chrome.alarms.onAlarm.addListener(({ name }) => {
+  if (name.startsWith("delete-assignment-")) {
+    const id = name.replace("delete-assignment-", "")
+    getCurrentTab(
+      (tab) =>
+        tab.id &&
+        chrome.tabs.sendMessage(tab.id, { kind: "delete-assignment", id })
+    )
+  }
+})
+
 const getCurrentTab = (callback: (tab: chrome.tabs.Tab) => void) =>
   chrome.tabs.query({ active: true, lastFocusedWindow: true }, ([tab]) =>
     callback(tab)

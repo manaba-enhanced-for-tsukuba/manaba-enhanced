@@ -108,11 +108,14 @@ class AssignmentManager {
     data.forEach((datum) => {
       db.assignments.add(datum).then((id) => {
         db.assignments.get(id).then((data) => {
-          data &&
-            chrome.runtime.sendMessage({
-              action: "assignmentDeadlineNotification",
-              assignmentData: data,
-            })
+          chrome.runtime.sendMessage({
+            action: "assignmentDeadlineNotification",
+            assignmentData: data,
+          })
+          chrome.runtime.sendMessage({
+            action: "alarm-delete-assignment-from-db",
+            data,
+          })
         })
       })
     })
@@ -120,6 +123,9 @@ class AssignmentManager {
 
   public getAssignmentData = (id: string) =>
     new AssignmentDatabase().assignments.get(id)
+
+  public deleteAssignmentData = (id: string) =>
+    new AssignmentDatabase().assignments.delete(id)
 
   public storeAssignmentData = () =>
     this.assignmentPageDOM()

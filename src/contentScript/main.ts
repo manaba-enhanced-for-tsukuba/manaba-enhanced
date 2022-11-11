@@ -144,9 +144,15 @@ const main = (storageSync: Partial<StorageSync>) => {
 
   chrome.runtime.onMessage.addListener(
     ({ kind, id }, _sender, sendResponse) => {
-      if (kind === "getAssignmentData")
+      kind === "getAssignmentData" &&
         new AssignmentManager().getAssignmentData(id).then(sendResponse)
       return true
     }
+  )
+
+  chrome.runtime.onMessage.addListener(
+    ({ kind, id }) =>
+      kind === "delete-assignment" &&
+      new AssignmentManager().deleteAssignmentData(id)
   )
 }

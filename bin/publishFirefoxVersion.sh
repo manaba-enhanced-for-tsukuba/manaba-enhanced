@@ -28,7 +28,7 @@ cp "web-ext-artifacts/$xpi_file" dist-firefox/versions
 cd dist-firefox || exit 1
 
 jq --arg version "$version" \
-  --arg xpi_file "https://raw.githubusercontent.com/mkobayashime/manaba-enhanced-dist-firefox/main/versions/$xpi_file" \
+  --arg xpi_file "https://raw.githubusercontent.com/manaba-enhanced-for-tsukuba/dist-firefox/main/versions/$xpi_file" \
   '.addons."{9FD229B7-1BD6-4095-965E-BE30EBFAD42E}".updates += [
     {
       "version": $version,

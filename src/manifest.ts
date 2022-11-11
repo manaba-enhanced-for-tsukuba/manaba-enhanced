@@ -63,7 +63,7 @@ const generateManifest = () => {
               gecko: {
                 id: "{9FD229B7-1BD6-4095-965E-BE30EBFAD42E}",
                 update_url:
-                  "https://raw.githubusercontent.com/mkobayashime/manaba-enhanced-dist-firefox/main/updates.json",
+                  "https://raw.githubusercontent.com/manaba-enhanced-for-tsukuba/dist-firefox/main/updates.json",
               },
             },
           }

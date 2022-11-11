@@ -1,3 +1,5 @@
+import { getStorage, setStorage } from "../network/storage"
+
 import { ReportTemplateGenerator } from "./ReportTemplateGenerator"
 
 class ReportTemplateFormHandler {
@@ -61,21 +63,28 @@ class ReportTemplateFormHandler {
       e.preventDefault()
       const reportTemplate = reportTemplateTextarea.value
       const reportFilename = reportFilenameTextarea.value
-      chrome.storage.sync.set({ reportTemplate, reportFilename }, () =>
-        alert(
-          "Successfully saved!\nYour settings will be synced across your Chrome."
-        )
-      )
+      setStorage({
+        kind: "sync",
+        items: { reportTemplate, reportFilename },
+        callback: () => {
+          alert(
+            "Successfully saved!\nYour settings will be synced across your Chrome."
+          )
+        },
+      })
     })
 
   private renderUserReportTemplate = (
     reportTemplateTextarea: HTMLTextAreaElement,
     reportFilenameTextarea: HTMLTextAreaElement
   ) =>
-    chrome.storage.sync.get(["reportTemplate", "reportFilename"], (storage) => {
-      const { reportTemplate, reportFilename } = storage
-      if (reportTemplate) reportTemplateTextarea.value = reportTemplate
-      if (reportFilename) reportFilenameTextarea.value = reportFilename
+    getStorage({
+      kind: "sync",
+      keys: ["reportTemplate", "reportFilename"],
+      callback: ({ reportTemplate, reportFilename }) => {
+        if (reportTemplate) reportTemplateTextarea.value = reportTemplate
+        if (reportFilename) reportFilenameTextarea.value = reportFilename
+      },
     })
 
   private placeholdDefaultTemplate = (

@@ -111,3 +111,15 @@ export const onStorageChanged = ({
     }
   })
 }
+
+export const getBytesInUse = ({
+  kind,
+}: {
+  kind: StorageKind
+}): Promise<number> =>
+  new Promise((resolve) => {
+    if (kind === "sync") {
+      chrome.storage.sync.getBytesInUse(resolve)
+    }
+    chrome.storage.local.getBytesInUse(resolve)
+  })

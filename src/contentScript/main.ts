@@ -10,7 +10,7 @@ import openCodeInRespon from "../methods/openCodeInRespon"
 import removeLinkBalloon from "../methods/removeLinkBalloon"
 import { syncReportText, clearStorage } from "../methods/syncReportText"
 import { setUsermemoShortcuts } from "../methods/usermemo"
-import { getStorage } from "../network/storage"
+import { getBytesInUse, getStorage } from "../network/storage"
 import type { StorageSync } from "../types/storage"
 
 import colorizeDeadlineStyles from "./../style/colorizeDeadline.scss"
@@ -37,7 +37,7 @@ const insertStyle = ({
   document.head.appendChild(style)
 }
 
-const withDocumentHead = (storageSync: Partial<StorageSync>) => {
+const withDocumentHead = async (storageSync: Partial<StorageSync>) => {
   const url = window.location.href
 
   insertStyle({
@@ -67,11 +67,10 @@ const withDocumentHead = (storageSync: Partial<StorageSync>) => {
       if (submitBtn) {
         syncReportText()
 
-        chrome.storage.local.getBytesInUse((bytesInUse) => {
-          if (bytesInUse > 4500000) {
-            clearStorage()
-          }
-        })
+        const bytesInUse = await getBytesInUse({ kind: "local" })
+        if (bytesInUse > 4500000) {
+          clearStorage()
+        }
       }
     }
   }

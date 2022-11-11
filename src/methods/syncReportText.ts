@@ -2,7 +2,7 @@
 
 import { throttle } from "lodash-es"
 
-import { getStorage, setStorage } from "../network/storage"
+import { getBytesInUse, getStorage, setStorage } from "../network/storage"
 
 const syncReportText = (): void => {
   const textarea = document.getElementsByTagName("textarea")[0]
@@ -53,21 +53,27 @@ const clearStorage = (): void => {
   let curOldestKey: string
   let curMinModified = 99999999999999
 
-  chrome.storage.local.get("reportText", (result) => {
-    for (const key of Object.keys(result.reportText)) {
-      if (result.reportText[key].modified < curMinModified) {
-        curOldestKey = key
-        curMinModified = result.reportText[key].modified
-      }
-    }
-    delete result.reportText[curOldestKey]
-    chrome.storage.local.set(result)
+  getStorage({
+    kind: "local",
+    keys: "reportText",
+    callback: ({ reportText }) => {
+      if (!reportText) return
 
-    chrome.storage.local.getBytesInUse((bytesInUse) => {
-      if (bytesInUse > 4500000) {
-        clearStorage()
+      for (const key of Object.keys(reportText)) {
+        if (reportText[key].modified < curMinModified) {
+          curOldestKey = key
+          curMinModified = reportText[key].modified
+        }
       }
-    })
+      delete reportText[curOldestKey]
+      setStorage({ kind: "local", items: { reportText } })
+
+      getBytesInUse({ kind: "local" }).then((bytesInUse) => {
+        if (bytesInUse > 4500000) {
+          clearStorage()
+        }
+      })
+    },
   })
 }
 

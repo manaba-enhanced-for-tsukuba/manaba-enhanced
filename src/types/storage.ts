@@ -12,6 +12,8 @@ export type StorageSync = Readonly<{
   featuresReportTemplate: boolean
   featuresDisableForceFileSaving?: boolean
   filterConfigForModule?: ModuleCode
+  reportTemplate?: string
+  reportFilename?: string
 }>
 
 export type StorageLocal = Readonly<{

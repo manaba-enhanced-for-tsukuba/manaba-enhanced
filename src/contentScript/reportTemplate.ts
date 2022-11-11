@@ -1,19 +1,24 @@
 import { ReportTemplateGenerator } from "../methods/ReportTemplateGenerator"
+import { getStorage } from "../network/storage"
 
-chrome.storage.sync.get(
-  ["featuresReportTemplate"],
-  (featuresReportTemplate) => {
+getStorage({
+  kind: "sync",
+  keys: "featuresReportTemplate",
+  callback: ({ featuresReportTemplate }) => {
     if (featuresReportTemplate) renderReportTemplate()
-  }
-)
+  },
+})
 
 const renderReportTemplate = () => {
-  chrome.storage.sync.get(["reportFilename", "reportTemplate"], (result) => {
-    const { reportFilename, reportTemplate } = result
-    const reportTemplateGenerator = new ReportTemplateGenerator(
-      reportFilename || "",
-      reportTemplate || ""
-    )
-    reportTemplateGenerator.renderReportGeneratorRow()
+  getStorage({
+    kind: "sync",
+    keys: ["reportTemplate", "reportFilename"],
+    callback: ({ reportTemplate, reportFilename }) => {
+      const reportTemplateGenerator = new ReportTemplateGenerator(
+        reportFilename || "",
+        reportTemplate || ""
+      )
+      reportTemplateGenerator.renderReportGeneratorRow()
+    },
   })
 }

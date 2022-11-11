@@ -70,7 +70,7 @@ sign.firefox: node_modules
 .PHONY: publish.firefox
 publish.firefox: build.firefox sign.firefox
 	rm -rf dist-firefox
-	git clone git@github.com:mkobayashime/manaba-enhanced-dist-firefox.git dist-firefox
+	git clone git@github.com:manaba-enhanced-for-tsukuba/dist-firefox.git dist-firefox
 	./bin/publishFirefoxVersion.sh
 
 .PHONY: clear

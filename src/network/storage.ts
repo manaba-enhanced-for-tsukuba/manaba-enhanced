@@ -1,22 +1,51 @@
 import type { StorageKind, StorageSync, StorageLocal } from "../types/storage"
 
-export const getStorage = <
+export function getStorage<K extends keyof StorageSync>(params: {
+  kind: "sync"
+  keys: K
+  callback: (storage: Partial<Pick<StorageSync, K>>) => void
+}): void
+export function getStorage<K extends Array<keyof StorageSync>>(params: {
+  kind: "sync"
+  keys: K
+  callback: (storage: Partial<Pick<StorageSync, K[number]>>) => void
+}): void
+export function getStorage(params: {
+  kind: "sync"
+  keys: null
+  callback: (storage: Partial<StorageSync>) => void
+}): void
+export function getStorage<K extends keyof StorageLocal>(params: {
+  kind: "local"
+  keys: K
+  callback: (storage: Partial<Pick<StorageLocal, K>>) => void
+}): void
+export function getStorage<K extends Array<keyof StorageLocal>>(params: {
+  kind: "local"
+  keys: K
+  callback: (storage: Partial<Pick<StorageLocal, K[number]>>) => void
+}): void
+export function getStorage(params: {
+  kind: "local"
+  keys: null
+  callback: (storage: Partial<StorageLocal>) => void
+}): void
+export function getStorage<
   KS extends keyof StorageSync,
   KL extends keyof StorageLocal
 >(
-  // 分割代入すると callback がうまく推論されない
   params:
     | {
-        kind: Extract<StorageKind, "sync">
+        kind: "sync"
         keys: KS | KS[] | null
         callback: (storage: Partial<StorageSync>) => void
       }
     | {
-        kind: Extract<StorageKind, "local">
+        kind: "local"
         keys: KL | KL[] | null
         callback: (storage: Partial<StorageLocal>) => void
       }
-): void => {
+): void {
   if (params.kind === "sync") {
     chrome.storage.sync.get(params.keys, (storage: Partial<StorageSync>) => {
       params.callback(storage)

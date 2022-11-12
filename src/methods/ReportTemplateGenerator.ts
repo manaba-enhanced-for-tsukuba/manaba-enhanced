@@ -144,7 +144,7 @@ class ReportInfo {
     ".stdlist-reportV2 td"
   )
   private descriptionElement = this.tdElements[0]
-  private deadlineElement = this.tdElements[1]
+  private deadlineElement = this.tdElements[2]
 }
 
 export { ReportTemplateGenerator }

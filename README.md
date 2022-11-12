@@ -30,7 +30,7 @@ If you want to use it in your univ., please follow the [instruction](https://git
 
 1. Filter courses in mypage by terms/modules
 
-1. Generate LaTeX template for reports
+1. Generate $\LaTeX$ template for reports
 
 1. Drag & Drop file upload
 
@@ -52,7 +52,7 @@ If you want to use it in your univ., please follow the [instruction](https://git
 
 1. コースのモジュール別フィルタリング
 
-1. レポートの LaTeX テンプレートを生成
+1. レポートの $\LaTeX$ テンプレートを生成
 
 1. ドラッグアンドドロップでのファイルアップロード
 

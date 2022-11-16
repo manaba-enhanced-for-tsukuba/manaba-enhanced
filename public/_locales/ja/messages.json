@@ -26,5 +26,11 @@
   "description": {
     "message": "概要",
     "description": "概要"
+  },
+  "report_template_introduction_section_title": {
+    "message": "はじめに"
+  },
+  "report_template_student_code": {
+    "message": "（学籍番号：〈学籍番号〉）"
   }
 }

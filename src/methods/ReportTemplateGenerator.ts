@@ -80,7 +80,6 @@ ${template}`
 
   static defaultFilename = `{{student-name}}_{{course-name}}_{{report-title}}.tex`
 
-  // TODO: internationalize the template
   static defaultTemplate = `% The deadline is {{deadline}}.
 
 \\documentclass{ltjsarticle}
@@ -88,7 +87,9 @@ ${template}`
 
 \\begin{document}
 \\title{{{course-name}}\\\\{{report-title}}}
-\\author{{{student-name}}\\\\（学籍番号：〈学籍番号〉）}
+\\author{{{student-name}}\\\\${chrome.i18n.getMessage(
+    "report_template_student_code"
+  )}}
 \\lstset{
 numbers=left,
 frame=single,
@@ -99,11 +100,9 @@ breaklines=true,
 
 % {{description}}
 
-\\section{序論}
-
-\\section{本論}
-
-\\section{結論}
+% \\section{${chrome.i18n.getMessage(
+    "report_template_introduction_section_title"
+  )}}
 
 \\end{document}
 `

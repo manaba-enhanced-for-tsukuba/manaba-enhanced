@@ -26,5 +26,11 @@
   "description": {
     "message": "Description",
     "description": "Description"
+  },
+  "report_template_introduction_section_title": {
+    "message": "Introduction"
+  },
+  "report_template_student_code": {
+    "message": "(Student Code: <Student Code>)"
   }
 }

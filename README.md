@@ -1,5 +1,7 @@
 # manaba Enhanced for Tsukuba
 
+![Chrome Web Store](https://img.shields.io/chrome-web-store/users/fldngcbchlbfgbccilklplmhljilhfch)
+![Chrome Web Store](https://img.shields.io/chrome-web-store/stars/fldngcbchlbfgbccilklplmhljilhfch)
 <a href="https://codeclimate.com/github/mkobayashime/manaba-enhanced/maintainability"><img src="https://api.codeclimate.com/v1/badges/ca9e30f13ce1f3f96754/maintainability" /></a>
 
 Make your manaba a little bit more comfortable.

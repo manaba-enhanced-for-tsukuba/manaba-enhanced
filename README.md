@@ -4,7 +4,7 @@
 
 Make your manaba a little bit more comfortable.
 
-Get it via [Chrome Web Store](https://chrome.google.com/webstore/detail/manaba-enhanced-for-tsuku/fldngcbchlbfgbccilklplmhljilhfch).
+[Chrome](https://chrome.google.com/webstore/detail/manaba-enhanced-for-tsuku/fldngcbchlbfgbccilklplmhljilhfch) / [Firefox](https://github.com/manaba-enhanced-for-tsukuba/dist-firefox)
 
 **For students of University of Tsukuba.**
 

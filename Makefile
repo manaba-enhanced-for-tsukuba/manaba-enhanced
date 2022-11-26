@@ -60,9 +60,6 @@ build.chrome: node_modules clear
 build.firefox: node_modules clear
 	NODE_ENV=production BROWSER_ENV=firefox yarn run webpack
 
-.PHONY: build.all
-build.all: build.chrome build.firefox
-
 .PHONY: sign.firefox
 sign.firefox: node_modules
 	yarn run web-ext sign -s dist --channel unlisted --api-key=${AMO_JWT_ISSUER} --api-secret=${AMO_JWT_SECRET}

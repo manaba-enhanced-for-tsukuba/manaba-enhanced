@@ -7,6 +7,19 @@ import { checkLang } from "./checkLang"
 
 let lang: checkLang.langCode
 
+const translations = {
+  ja: {
+    spring: "春",
+    autumn: "秋",
+    allModules: "すべてのモジュール",
+  },
+  en: {
+    spring: "Spring",
+    autumn: "Autumn",
+    allModules: "All modules",
+  },
+}
+
 export const filterCourses = (): void => {
   lang = checkLang()
 
@@ -56,28 +69,8 @@ const parseModuleCode = (
  * @param {string} seasonCode "spring" or "autumn"
  * @return {string} "春", "Spring", etc...
  */
-const seasonCodeToText = (seasonCode: SeasonCode) => {
-  switch (seasonCode) {
-    case "spring": {
-      if (lang === "ja") {
-        return "春"
-      } else if (lang === "en") {
-        return "Spring"
-      } else {
-        return ""
-      }
-    }
-    case "autumn": {
-      if (lang === "ja") {
-        return "秋"
-      } else if (lang === "en") {
-        return "Autumn"
-      } else {
-        return ""
-      }
-    }
-  }
-}
+const seasonCodeToText = (lang: checkLang.langCode, seasonCode: SeasonCode) =>
+  translations[lang][seasonCode]
 
 const createModuleSelector = () => {
   const selectorsContainer = document.querySelector(
@@ -98,17 +91,10 @@ const createModuleSelector = () => {
   ]
 
   const moduleCodeToText = (moduleCode: ModuleCode) => {
-    if (moduleCode === "all") {
-      if (lang === "ja") {
-        return "すべてのモジュール"
-      } else if (lang === "en") {
-        return "All modules"
-      }
-    }
+    if (moduleCode === "all") return translations[lang].allModules
 
     const parsedModuleCode = parseModuleCode(moduleCode)
-
-    const season = seasonCodeToText(parsedModuleCode.season)
+    const season = seasonCodeToText(lang, parsedModuleCode.season)
 
     return `${season}${parsedModuleCode.module.toUpperCase()}`
   }
@@ -135,27 +121,18 @@ const createModuleSelector = () => {
 }
 
 const applyFilter = (moduleCode: ModuleCode): void => {
-  let viewMode: "list" | "thumbnail"
-  let courses: HTMLElement[]
-
-  const coursesListContainer = document.querySelector(".courselist tbody")
-  const coursesThumbnailContainer = document.querySelector(
+  const coursesListContainer =
+    document.querySelector<HTMLElement>(".courselist tbody")
+  const coursesThumbnailContainer = document.querySelector<HTMLElement>(
     ".mycourses-body .section"
   )
+  const coursesContainer = coursesListContainer ?? coursesThumbnailContainer
 
-  if (coursesListContainer) {
-    viewMode = "list"
+  if (!coursesContainer || (coursesListContainer && coursesThumbnailContainer))
+    return
 
-    courses = Array.from(coursesListContainer.children) as HTMLElement[]
-    courses.shift()
-  } else if (coursesThumbnailContainer) {
-    viewMode = "thumbnail"
-
-    courses = Array.from(coursesThumbnailContainer.children) as HTMLElement[]
-    courses.pop()
-  } else {
-    throw "invalid viewMode"
-  }
+  const viewMode = coursesListContainer ? "list" : "thumbnail"
+  const courses = getCourses(coursesContainer, viewMode)
 
   /**
    * Parse course info string on the UI
@@ -282,3 +259,13 @@ const applyFilter = (moduleCode: ModuleCode): void => {
     })
   }
 }
+
+const getCourses = (coursesContainer: HTMLElement, viewMode: string) =>
+  (Array.from(coursesContainer.children) as HTMLElement[]).filter(
+    (_, i) =>
+      i !==
+      rowIndexToBeExcluded(viewMode, coursesContainer.childElementCount - 1)
+  )
+
+const rowIndexToBeExcluded = (viewMode: string, lastIndex: number) =>
+  viewMode === "list" ? 0 : lastIndex

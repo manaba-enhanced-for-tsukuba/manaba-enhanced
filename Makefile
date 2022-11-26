@@ -2,6 +2,7 @@ eslint = yarn run eslint --ignore-path .gitignore
 prettier = yarn run prettier --ignore-path .gitignore
 stylelint = yarn run stylelint --ignore-path .gitignore
 typecheck = yarn run tsc --noEmit
+web-ext = yarn run web-ext -s dist
 
 node_modules: package.json yarn.lock
 ifeq ($(MAKE_YARN_FROZEN_LOCKFILE), 1)
@@ -60,9 +61,13 @@ build.chrome: node_modules clear
 build.firefox: node_modules clear
 	NODE_ENV=production BROWSER_ENV=firefox yarn run webpack
 
+.PHONY: lint.web-ext
+lint.web-ext: node_modules
+	$(web-ext) lint --self-hosted
+
 .PHONY: sign.firefox
 sign.firefox: node_modules
-	yarn run web-ext sign -s dist --channel unlisted --api-key=${AMO_JWT_ISSUER} --api-secret=${AMO_JWT_SECRET}
+	$(web-ext) sign --channel unlisted --api-key=${AMO_JWT_ISSUER} --api-secret=${AMO_JWT_SECRET}
 
 .PHONY: publish.firefox
 publish.firefox: build.firefox sign.firefox

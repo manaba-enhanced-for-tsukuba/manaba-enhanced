@@ -40,8 +40,6 @@ If you want to use it in your univ., please follow the [instruction](https://git
 
 1. Add a context menu to open the attend code in Respon
 
-1. Open the unsubmmited assignments page with `Alt/Option + A`
-
 ## 機能
 
 1. 締め切りまでの時間による課題一覧の色分け

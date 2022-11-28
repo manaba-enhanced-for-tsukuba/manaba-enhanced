@@ -56,9 +56,6 @@ const generateManifest = () => {
           description: "Open selected Respon code in Respon",
         },
         "manaba-enhanced:open-assignments-page": {
-          suggested_key: {
-            default: "Alt+A",
-          },
           description: "Open unsubmitted assignments page",
         },
       },

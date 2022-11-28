@@ -80,6 +80,8 @@ chrome.runtime.onInstalled.addListener((details) => {
           featuresReportTemplate: storage.featuresReportTemplate ?? true,
           featuresDisableForceFileSaving:
             storage.featuresDisableForceFileSaving ?? true,
+          featuresRelativeGradesPosition:
+            storage.featuresRelativeGradesPosition ?? false,
         },
       })
 
@@ -120,6 +122,14 @@ chrome.commands.onCommand.addListener((cmd: string, tab: chrome.tabs.Tab) => {
   switch (cmd) {
     case "manaba-enhanced:open-in-respon": {
       if (tab.id) chrome.tabs.sendMessage(tab.id, { kind: "open-in-respon" })
+      break
+    }
+    case "manaba-enhanced:open-assignments-page": {
+      chrome.tabs.create({
+        active: true,
+        index: tab.index + 1,
+        url: "https://manaba.tsukuba.ac.jp/ct/home_library_query",
+      })
       break
     }
   }

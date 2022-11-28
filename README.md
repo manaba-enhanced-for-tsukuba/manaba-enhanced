@@ -1,12 +1,18 @@
+<div align="center">
+
 # manaba Enhanced for Tsukuba
 
-<a href="https://codeclimate.com/github/mkobayashime/manaba-enhanced/maintainability"><img src="https://api.codeclimate.com/v1/badges/ca9e30f13ce1f3f96754/maintainability" /></a>
+![Chrome Web Store](https://img.shields.io/chrome-web-store/users/fldngcbchlbfgbccilklplmhljilhfch)
+![Chrome Web Store](https://img.shields.io/chrome-web-store/stars/fldngcbchlbfgbccilklplmhljilhfch)
+<a href="https://codeclimate.com/github/manaba-enhanced-for-tsukuba/manaba-enhanced/maintainability"><img src="https://api.codeclimate.com/v1/badges/f8747aeeec34ea931430/maintainability" /></a>
 
 Make your manaba a little bit more comfortable.
 
-Get it via [Chrome Web Store](https://chrome.google.com/webstore/detail/manaba-enhanced-for-tsuku/fldngcbchlbfgbccilklplmhljilhfch).
+[Chrome](https://chrome.google.com/webstore/detail/manaba-enhanced-for-tsuku/fldngcbchlbfgbccilklplmhljilhfch) / [Firefox](https://github.com/manaba-enhanced-for-tsukuba/dist-firefox)
 
 **For students of University of Tsukuba.**
+
+</div>
 
 ![Screenshot](./img/dist/thumbnail1.png)
 
@@ -27,6 +33,8 @@ If you want to use it in your univ., please follow the [instruction](https://git
 1. Auto-save report text
 
 1. Highlight the publication deadline of course news and course contents
+
+1. Display the relative position of the grades in the courses
 
 1. Filter courses in mypage by terms/modules
 
@@ -49,6 +57,8 @@ If you want to use it in your univ., please follow the [instruction](https://git
 1. レポート入力画面でのレポート自動保存
 
 1. コースニュースやコンテンツの公開期限を強調表示
+
+1. 成績の位置を百分率で表示
 
 1. コースのモジュール別フィルタリング
 

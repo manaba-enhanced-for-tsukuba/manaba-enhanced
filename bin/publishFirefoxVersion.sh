@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+if ! command -v jq &> /dev/null; then
+  echo "jq must be installed." 1>&2
+  exit 1
+fi
+
 version=$(jq -r '.version' package.json)
 
 if [[ -z "$version" ]]; then

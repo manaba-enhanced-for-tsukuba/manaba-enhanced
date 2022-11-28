@@ -1,6 +1,6 @@
 <div align="center">
 
-<h1>manaba Enhanced for Tsukuba</h1>
+# manaba Enhanced for Tsukuba
 
 ![Chrome Web Store](https://img.shields.io/chrome-web-store/users/fldngcbchlbfgbccilklplmhljilhfch)
 ![Chrome Web Store](https://img.shields.io/chrome-web-store/stars/fldngcbchlbfgbccilklplmhljilhfch)

@@ -47,6 +47,11 @@ const generateManifest = () => {
           include_globs: ["https://manaba.tsukuba.ac.jp/ct/course_*_report_*"],
           js: ["contentScript/reportTemplate.js"],
         },
+        {
+          matches: ["https://manaba.tsukuba.ac.jp/*"],
+          include_globs: ["https://manaba.tsukuba.ac.jp/ct/course_*_grade"],
+          js: ["contentScript/showRelativeGradesPosition.js"],
+        },
       ],
       commands: {
         "manaba-enhanced:open-in-respon": {

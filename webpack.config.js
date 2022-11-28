@@ -33,6 +33,12 @@ module.exports = {
       "contentScript",
       "reportTemplate.ts"
     ),
+    "contentScript/showRelativeGradesPosition": path.resolve(
+      __dirname,
+      "src",
+      "contentScript",
+      "showRelativeGradesPosition.ts"
+    ),
     background: path.resolve(__dirname, "src", "background.ts"),
     options: path.resolve(__dirname, "src", "options.ts"),
   },

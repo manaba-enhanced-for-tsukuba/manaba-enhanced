@@ -1,4 +1,6 @@
-# manaba Enhanced for Tsukuba
+<div align="center">
+
+<h1>manaba Enhanced for Tsukuba</h1>
 
 ![Chrome Web Store](https://img.shields.io/chrome-web-store/users/fldngcbchlbfgbccilklplmhljilhfch)
 ![Chrome Web Store](https://img.shields.io/chrome-web-store/stars/fldngcbchlbfgbccilklplmhljilhfch)
@@ -9,6 +11,8 @@ Make your manaba a little bit more comfortable.
 [Chrome](https://chrome.google.com/webstore/detail/manaba-enhanced-for-tsuku/fldngcbchlbfgbccilklplmhljilhfch) / [Firefox](https://github.com/manaba-enhanced-for-tsukuba/dist-firefox)
 
 **For students of University of Tsukuba.**
+
+</div>
 
 ![Screenshot](./img/dist/thumbnail1.png)
 

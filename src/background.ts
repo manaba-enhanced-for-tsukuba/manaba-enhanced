@@ -80,6 +80,8 @@ chrome.runtime.onInstalled.addListener((details) => {
           featuresReportTemplate: storage.featuresReportTemplate ?? true,
           featuresDisableForceFileSaving:
             storage.featuresDisableForceFileSaving ?? true,
+          featuresRelativeGradesPosition:
+            storage.featuresRelativeGradesPosition ?? false,
         },
       })
 

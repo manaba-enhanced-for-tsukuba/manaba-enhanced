@@ -30,6 +30,8 @@ If you want to use it in your univ., please follow the [instruction](https://git
 
 1. Highlight the publication deadline of course news and course contents
 
+1. Display the relative position of the grades in the courses
+
 1. Filter courses in mypage by terms/modules
 
 1. Generate $\LaTeX$ template for reports
@@ -51,6 +53,8 @@ If you want to use it in your univ., please follow the [instruction](https://git
 1. レポート入力画面でのレポート自動保存
 
 1. コースニュースやコンテンツの公開期限を強調表示
+
+1. 成績の位置を百分率で表示
 
 1. コースのモジュール別フィルタリング
 

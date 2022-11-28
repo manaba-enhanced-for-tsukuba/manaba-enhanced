@@ -35,14 +35,3 @@ body:
       description: Add any other context or screenshots about the feature proposal here.
     validations:
       required: false
-  - type: checkboxes
-    id: tasks
-    attributes:
-      label: Tasks
-      description: This is an example task list
-      options:
-        - label: This is an incomplete task
-          required: true
-        - label: This is a complete task
-          required: true
-          checked: true

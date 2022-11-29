@@ -57,6 +57,7 @@ window.onload = () => {
       | "featuresDragAndDrop"
       | "featuresReportTemplate"
       | "featuresRelativeGradesPosition"
+      | "featuresCourseCodesTokDB"
     >
 
     getStorage({

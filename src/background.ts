@@ -82,6 +82,7 @@ chrome.runtime.onInstalled.addListener((details) => {
             storage.featuresDisableForceFileSaving ?? true,
           featuresRelativeGradesPosition:
             storage.featuresRelativeGradesPosition ?? false,
+          featuresCourseCodesTokDB: storage.featuresCourseCodesTokDB ?? true,
         },
       })
 

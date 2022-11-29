@@ -46,6 +46,8 @@ If you want to use it in your univ., please follow the [instruction](https://git
 
 1. Add a context menu to open the attend code in Respon
 
+1. Link the course codes to kDB syllabi
+
 ## 機能
 
 1. 締め切りまでの時間による課題一覧の色分け
@@ -69,6 +71,8 @@ If you want to use it in your univ., please follow the [instruction](https://git
 1. 外部リンククリック時の確認ダイアログ排除
 
 1. 出席コードを Respon で開く右クリックメニューを追加
+
+1. 科目コードに kDB シラバスへのリンクを追加
 
 ## Disclaimer / 免責事項
 
@@ -115,6 +119,10 @@ If your univ. is using manaba and there is _Assignments_ tab in the mypage, plea
 ## Contribution
 
 Suggestions and pull requests are welcomed!
+
+## Notices
+
+See the [NOTICE](./NOTICE.md) file.
 
 ## License
 

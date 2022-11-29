@@ -13,6 +13,7 @@ export type StorageSync = Readonly<{
   featuresDisableForceFileSaving?: boolean
   featuresRelativeGradesPosition?: boolean
   filterConfigForModule?: ModuleCode
+  featuresCourseCodesTokDB?: boolean
   reportTemplate?: string
   reportFilename?: string
 }>

@@ -39,6 +39,12 @@ module.exports = {
       "contentScript",
       "showRelativeGradesPosition.ts"
     ),
+    "contentScript/linkCourseCodesTokDB": path.resolve(
+      __dirname,
+      "src",
+      "contentScript",
+      "linkCourseCodesTokDB.ts"
+    ),
     background: path.resolve(__dirname, "src", "background.ts"),
     options: path.resolve(__dirname, "src", "options.ts"),
   },

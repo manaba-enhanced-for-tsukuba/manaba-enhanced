@@ -3,7 +3,7 @@ import { getStorage } from "../network/storage"
 
 getStorage({
   kind: "sync",
-  keys: "featuresCourseCodesTokDBe",
+  keys: "featuresCourseCodesTokDB",
   callback: ({ featuresCourseCodesTokDB }) => {
     if (featuresCourseCodesTokDB) linkCourseCodesTokDB()
   },

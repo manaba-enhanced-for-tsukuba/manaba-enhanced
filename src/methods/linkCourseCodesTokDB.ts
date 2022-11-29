@@ -26,7 +26,7 @@ const replaceCourseCode = (
 const linkCourseCodesTokDB = () => {
   const courseCodeElement = document.querySelector<HTMLElement>(".coursecode")
   const courseDataInfoElement =
-    document.querySelector<HTMLElement>(".coursedatainfo")
+    document.querySelector<HTMLElement>(".coursedata-info")
   if (!courseCodeElement || !courseDataInfoElement) return
 
   const courseCode = getCourseCode(courseCodeElement)

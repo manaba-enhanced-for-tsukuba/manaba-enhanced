@@ -1,9 +1,6 @@
 #!/usr/bin/env bash
 
-if ! command -v jq &> /dev/null; then
-  echo "jq must be installed." 1>&2
-  exit 1
-fi
+set -e
 
 version=$(jq -r '.version' package.json)
 
@@ -19,6 +16,6 @@ if [[ ! -f "$xpi_file" ]]; then
   exit 1
 fi
 
-cd dist-firefox || exit 1
+cd dist-firefox
 
 ./bin/publishVersion.sh "$version" "$xpi_file"

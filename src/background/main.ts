@@ -139,10 +139,10 @@ chrome.runtime.onMessage.addListener(({ url, filename }) => {
 })
 
 chrome.runtime.onMessage.addListener(
-  ({ action, data }) =>
+  ({ action, assignmentData }) =>
     action === "alarm-delete-assignment-from-db" &&
-    chrome.alarms.create(`delete-assignment-${data.id}`, {
-      when: data.deadline.getTime() + 1000 * 60 * 60 * 24,
+    chrome.alarms.create(`delete-assignment-${assignmentData.id}`, {
+      when: assignmentData.deadline.getTime() + 1000 * 60 * 60 * 24,
     })
 )
 

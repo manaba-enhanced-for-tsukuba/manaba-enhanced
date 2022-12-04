@@ -1,6 +1,6 @@
 "use strict"
 
-import { AssignmentManager } from "../methods/AssignmentManager"
+import { AssignmentSync } from "../methods/AssignmentSync"
 import checkAssignmentDeadline from "../methods/checkAssignmentDeadline"
 import checkPagePubDeadline from "../methods/checkPagePubDeadline"
 import colorizeDeadline from "../methods/colorizeDeadline"
@@ -124,9 +124,19 @@ const main = (storageSync: Partial<StorageSync>) => {
     dragAndDrop()
   }
 
-  if (storageSync.featuresAssignmentDeadlineNotification) {
-    new AssignmentManager().init()
-  }
+  if (storageSync.featuresAssignmentDeadlineNotification)
+    new AssignmentSync().sync(
+      (assignmentData) =>
+        chrome.runtime.sendMessage({
+          action: "assignmentDeadlineNotification",
+          assignmentData,
+        }),
+      (assignmentData) =>
+        chrome.runtime.sendMessage({
+          action: "alarm-delete-assignment-from-db",
+          assignmentData,
+        })
+    )
 
   if (window.location.href.includes("usermemo")) {
     setUsermemoShortcuts()
@@ -145,7 +155,7 @@ const main = (storageSync: Partial<StorageSync>) => {
   chrome.runtime.onMessage.addListener(
     ({ kind, id }, _sender, sendResponse) => {
       kind === "getAssignmentData" &&
-        new AssignmentManager().getAssignmentData(id).then(sendResponse)
+        new AssignmentSync().getAssignmentData(id).then(sendResponse)
       return true
     }
   )
@@ -153,6 +163,6 @@ const main = (storageSync: Partial<StorageSync>) => {
   chrome.runtime.onMessage.addListener(
     ({ kind, id }) =>
       kind === "delete-assignment" &&
-      new AssignmentManager().deleteAssignmentData(id)
+      new AssignmentSync().deleteAssignmentData(id)
   )
 }

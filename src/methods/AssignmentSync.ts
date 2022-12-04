@@ -30,11 +30,7 @@ class AssignmentDatabase extends Dexie {
 /**
  * @class The `AssignmentManager` class is responsible for managing the assignment information and stores it in the IndexedDB. The consistency of assignment data relies on the identity of the primary key of the database.
  */
-class AssignmentManager {
-  init() {
-    this.storeAssignmentData()
-  }
-
+class AssignmentSync {
   static manabaAssignmentURL =
     "https://manaba.tsukuba.ac.jp/ct/home_library_query"
 
@@ -49,16 +45,15 @@ class AssignmentManager {
       .then((text) => new DOMParser().parseFromString(text, "text/html"))
 
   private assignmentPageDOM = async () =>
-    await this.parseRawText(AssignmentManager.manabaAssignmentURL)
+    await this.parseRawText(AssignmentSync.manabaAssignmentURL)
 
   private assignmentPageTable = (assignmentPageDOM: Document) =>
     assignmentPageDOM.querySelector<HTMLTableElement>(".contentbody-l table")
 
-  private getAssignmentDataFromTable = (table: HTMLTableElement | null) =>
-    table &&
+  private getAssignmentDataFromTable = (table: HTMLTableElement) =>
     Array.from(table.rows)
       .filter((row) =>
-        AssignmentManager.targetAssignmentType.has(this.getAssignmentType(row))
+        AssignmentSync.targetAssignmentType.has(this.getAssignmentType(row))
       )
       .filter((row) => this.getAssignmentDeadline(row))
       .map((row) => this.assignmentData(row))
@@ -91,35 +86,56 @@ class AssignmentManager {
    *
    * @todo You can extend this function to return more data.
    */
-  private assignmentData = (row: HTMLTableRowElement): AssignmentData => {
-    return {
-      id: this.getAssignmentID(row),
-      type: this.getAssignmentType(row),
-      title: this.getAssignmentTitle(row),
-      course: this.getAssignmentCourse(row),
-      deadline: this.getAssignmentDeadline(row),
-    }
-  }
+  private assignmentData = (row: HTMLTableRowElement): AssignmentData => ({
+    id: this.getAssignmentID(row),
+    type: this.getAssignmentType(row),
+    title: this.getAssignmentTitle(row),
+    course: this.getAssignmentCourse(row),
+    deadline: this.getAssignmentDeadline(row),
+  })
 
-  private putAssignmentData = (data: AssignmentData[] | null) => {
-    if (!data) return
-
-    const db = new AssignmentDatabase()
-    data.forEach((datum) => {
-      db.assignments.add(datum).then((id) => {
-        db.assignments.get(id).then((data) => {
-          chrome.runtime.sendMessage({
-            action: "assignmentDeadlineNotification",
-            assignmentData: data,
-          })
-          chrome.runtime.sendMessage({
-            action: "alarm-delete-assignment-from-db",
-            data,
-          })
-        })
+  private syncAssignmentData = (
+    assignmentData: AssignmentData[],
+    putCallback?: (assignmentData: AssignmentData) => void,
+    deleteCallback?: (assignmentData: AssignmentData) => void,
+    db = new AssignmentDatabase()
+  ) =>
+    db.assignments
+      .bulkPut(assignmentData, { allKeys: true })
+      .then(async (keys) => {
+        db.assignments
+          .bulkGet(keys)
+          .then((assignmentData) =>
+            assignmentData.forEach((data) => data && putCallback?.(data))
+          )
+        db.assignments.bulkDelete(
+          this.deletableIDs(
+            keys,
+            await db.assignments.orderBy("id").primaryKeys()
+          )
+        )
+        this.deletableIDs(
+          keys,
+          await db.assignments.orderBy("id").primaryKeys()
+        ).forEach((key) =>
+          db.assignments.get(key).then((data) => data && deleteCallback?.(data))
+        )
       })
-    })
-  }
+
+  public putAssignmentData = (
+    data: AssignmentData[],
+    putCallback?: (assignmentData: AssignmentData) => void,
+    deleteCallback?: (assignmentData: AssignmentData) => void,
+    db = new AssignmentDatabase()
+  ) =>
+    data.forEach((datum) =>
+      db.assignments.add(datum).then((id) =>
+        db.assignments.get(id).then((data) => {
+          data && putCallback?.(data)
+          data && deleteCallback?.(data)
+        })
+      )
+    )
 
   public getAssignmentData = (id: string) =>
     new AssignmentDatabase().assignments.get(id)
@@ -127,11 +143,23 @@ class AssignmentManager {
   public deleteAssignmentData = (id: string) =>
     new AssignmentDatabase().assignments.delete(id)
 
-  public storeAssignmentData = () =>
+  public sync = (
+    putCallback?: (assignmentData: AssignmentData) => void,
+    deleteCallback?: (assignmentData: AssignmentData) => void
+  ) =>
     this.assignmentPageDOM()
       .then((DOM) => this.assignmentPageTable(DOM))
-      .then((table) => this.getAssignmentDataFromTable(table))
-      .then((assignmentData) => this.putAssignmentData(assignmentData))
+      .then((table) => table && this.getAssignmentDataFromTable(table))
+      .then(
+        (assignmentData) =>
+          assignmentData &&
+          this.syncAssignmentData(assignmentData, putCallback, deleteCallback)
+      )
+
+  private deletableIDs = (
+    newAssignmentIDs: string[],
+    oldAssignmentIDs: string[]
+  ) => oldAssignmentIDs.filter((id) => !newAssignmentIDs.includes(id))
 }
 
-export { AssignmentManager, AssignmentData }
+export { AssignmentSync, AssignmentData }

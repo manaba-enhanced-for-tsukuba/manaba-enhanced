@@ -2,7 +2,7 @@
  * @see {@link https://developer.chrome.com/docs/extensions/reference/notifications/#type-NotificationOptions | Chrome Notifications API}
  */
 
-import { AssignmentData } from "../methods/AssignmentManager"
+import { AssignmentData } from "../methods/AssignmentSync"
 
 import { getCurrentTab } from "./main"
 

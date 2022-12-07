@@ -15,21 +15,11 @@ const checkAssignmentDeadline = (): void => {
     document.querySelectorAll(".stdlist th")
   ) as HTMLElement[]
 
-  const notSubmitted = (
-    ths.find(
-      (th) => th.innerText === trans[lang].status && th.nextElementSibling
-    )?.nextElementSibling as HTMLElement
-  )?.innerText.includes(trans[lang].notSubmitted)
-
-  const deadlineString = (
-    ths.find(
-      (th) => th.innerText === trans[lang].deadline && th.nextElementSibling
-    )?.nextElementSibling as HTMLElement
-  )?.innerText
-
-  const deadlineTh = ths.find(
-    (th) => th.innerText === trans[lang].deadline && th.nextElementSibling
+  const notSubmitted = getTableBodyText(ths, "status", lang).includes(
+    trans[lang].notSubmitted
   )
+  const deadlineString = getTableBodyText(ths, "deadline", lang)
+  const deadlineTh = getTableHeaderElement(ths, "deadline", lang)
   if (!deadlineTh) return
 
   if (notSubmitted && validateDeadlineString(deadlineString)) {
@@ -113,13 +103,31 @@ const createMessageOnDiff = (
   (diff.value > 0
     ? createMessage(
         trans[lang].remaining(diff.value, diff.unit),
-        diff.unit === "day"
-          ? diff.value > 2
-            ? "normal"
-            : "caution"
-          : "danger",
+        messageStatus(diff),
         deadlineTh
       )
-    : createMessage(trans[lang].deadlineOver, "danger", deadlineTh))
+    : createMessage(trans[lang].deadlineOver, messageStatus(diff), deadlineTh))
+
+const messageStatus = (diff: ReturnType<typeof evalDiff>) =>
+  diff.unit === "day" || diff.value <= 0
+    ? diff.value > 2
+      ? "normal"
+      : "caution"
+    : "danger"
+
+const getTableHeaderElement = (
+  ths: HTMLElement[],
+  type: "status" | "deadline",
+  lang: ReturnType<typeof checkLang>
+) =>
+  ths.find((th) => th.innerText === trans[lang][type] && th.nextElementSibling)
+
+const getTableBodyText = (
+  ths: HTMLElement[],
+  type: "status" | "deadline",
+  lang: ReturnType<typeof checkLang>
+) =>
+  (getTableHeaderElement(ths, type, lang)?.nextElementSibling as HTMLElement)
+    .innerText
 
 export default checkAssignmentDeadline

@@ -1,5 +1,6 @@
 {
   "extends": ["config:base"],
   "automerge": true,
-  "automergeStrategy": "merge-commit"
+  "automergeStrategy": "merge-commit",
+  "rangeStrategy": "pin"
 }

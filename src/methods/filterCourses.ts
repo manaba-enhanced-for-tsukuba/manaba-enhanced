@@ -7,7 +7,11 @@ import { checkLang } from "./checkLang"
 
 let lang: checkLang.langCode
 
-type ViewMode = "list" | "thumbnail"
+const viewModeValues = ["list", "thumbnail"] as const
+type ViewMode = typeof viewModeValues[number]
+const ViewMode = {
+  is: (str: string): str is ViewMode => viewModeValues.includes(str as any),
+}
 
 const translations = {
   ja: {
@@ -113,11 +117,14 @@ const createModuleSelector = () => {
   return moduleSelector
 }
 
-const getViewModeQuery = () =>
-  document
-    .querySelector<HTMLAnchorElement>(".my-infolist-mycourses .current a")
-    ?.href.split("?")
-    .pop()
+const getViewModeQuery = () => {
+  const currentModeElement = document.querySelector<HTMLAnchorElement>(
+    ".my-infolist-mycourses .current a"
+  )
+  if (!currentModeElement || !currentModeElement.href) return
+
+  return new URL(currentModeElement.href).searchParams
+}
 
 const applyFilter = (moduleCode: ModuleCode): void => {
   const coursesListContainer =
@@ -126,11 +133,9 @@ const applyFilter = (moduleCode: ModuleCode): void => {
     ".mycourses-body .section"
   )
   const coursesContainer = coursesListContainer ?? coursesThumbnailContainer
-  const viewMode = new URLSearchParams(getViewModeQuery()).get(
-    "chglistformat"
-  ) as ViewMode | null
+  const viewMode = getViewModeQuery()?.get("chglistformat")
 
-  if (!coursesContainer || !viewMode) return
+  if (!coursesContainer || !viewMode || !ViewMode.is(viewMode)) return
 
   const courses = getCourses(coursesContainer, viewMode)
 

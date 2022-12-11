@@ -8,10 +8,10 @@ export const checkLang = (): checkLang.langCode => {
   const mylang = document.getElementById("mylang")
   if (!mylang) return "ja"
 
-  return checkLangByClassName(mylang) ?? checkLangByInnerText(mylang) ?? "ja"
+  return checkLangByDOMElement(mylang) ?? "ja"
 }
 
-const checkLangByClassName = (
+const checkLangByDOMElement = (
   mylang: HTMLElement
 ): checkLang.langCode | undefined => {
   switch (mylang.className) {
@@ -19,20 +19,12 @@ const checkLangByClassName = (
       return "ja"
     case "mylang-en":
       return "en"
-    default:
-      return undefined
   }
-}
 
-const checkLangByInnerText = (
-  mylang: HTMLElement
-): checkLang.langCode | undefined => {
   switch (mylang.innerText) {
     case "日本語":
       return "ja"
     case "English":
       return "en"
-    default:
-      return undefined
   }
 }

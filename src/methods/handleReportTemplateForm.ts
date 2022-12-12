@@ -91,7 +91,8 @@ class ReportTemplateFormHandler {
     reportTemplateTextarea: HTMLTextAreaElement,
     reportFilenameTextarea: HTMLTextAreaElement
   ) => {
-    reportTemplateTextarea.placeholder = ReportTemplateGenerator.defaultTemplate
+    reportTemplateTextarea.placeholder =
+      ReportTemplateGenerator.getDefaultTemplate()
     reportFilenameTextarea.placeholder = ReportTemplateGenerator.defaultFilename
   }
 }

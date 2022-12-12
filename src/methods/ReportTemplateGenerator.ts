@@ -11,7 +11,9 @@ class ReportTemplateGenerator {
       rawFilename || ReportTemplateGenerator.defaultFilename
     )
     this.template = ReportTemplateGenerator.addSignature(
-      this.parseTemplate(rawTemplate || ReportTemplateGenerator.defaultTemplate)
+      this.parseTemplate(
+        rawTemplate || ReportTemplateGenerator.getDefaultTemplate()
+      )
     )
   }
 
@@ -28,10 +30,10 @@ class ReportTemplateGenerator {
     const td = tr.appendChild(document.createElement("td"))
     td.classList.add("left")
 
-    button.innerText = chrome.i18n.getMessage("generate_report_template")
+    button.innerText = global.chrome.i18n.getMessage("generate_report_template")
     button.classList.add("manaba-original-button")
 
-    th.innerText = chrome.i18n.getMessage("report_template")
+    th.innerText = global.chrome.i18n.getMessage("report_template")
 
     td.appendChild(button)
 
@@ -40,7 +42,7 @@ class ReportTemplateGenerator {
         type: "application/x-tex",
       })
       const url = window.webkitURL.createObjectURL(blob)
-      chrome.runtime.sendMessage({
+      global.chrome.runtime.sendMessage({
         url,
         filename: this.filename,
       })
@@ -80,14 +82,14 @@ ${template}`
 
   static defaultFilename = `{{student-name}}_{{course-name}}_{{report-title}}.tex`
 
-  static defaultTemplate = `% The deadline is {{deadline}}.
+  static getDefaultTemplate = () => `% The deadline is {{deadline}}.
 
 \\documentclass{ltjsarticle}
 \\usepackage{listings}
 
 \\begin{document}
 \\title{{{course-name}}\\\\{{report-title}}}
-\\author{{{student-name}}\\\\${chrome.i18n.getMessage(
+\\author{{{student-name}}\\\\${global.chrome.i18n.getMessage(
     "report_template_student_code"
   )}}
 \\lstset{
@@ -100,7 +102,7 @@ breaklines=true,
 
 % {{description}}
 
-% \\section{${chrome.i18n.getMessage(
+% \\section{${global.chrome.i18n.getMessage(
     "report_template_introduction_section_title"
   )}}
 
@@ -111,19 +113,20 @@ breaklines=true,
 class ReportInfo {
   constructor(private document: Document) {
     this.courseName =
-      this.courseNameElement?.title ?? chrome.i18n.getMessage("course_name")
+      this.courseNameElement?.title ??
+      global.chrome.i18n.getMessage("course_name")
     this.reportTitle =
       this.reportTitleElement?.innerText ??
-      chrome.i18n.getMessage("report_title")
+      global.chrome.i18n.getMessage("report_title")
     this.description =
       this.descriptionElement?.innerText ??
-      chrome.i18n.getMessage("description")
+      global.chrome.i18n.getMessage("description")
     this.studentName =
       this.screennameElement?.innerText ??
-      chrome.i18n.getMessage("student_name")
+      global.chrome.i18n.getMessage("student_name")
     this.deadline = new Date(
       this.deadlineElement?.innerText.substring(0, 16) ??
-        chrome.i18n.getMessage("deadline")
+        global.chrome.i18n.getMessage("deadline")
     )
   }
 

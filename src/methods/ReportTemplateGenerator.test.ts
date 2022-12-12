@@ -1,4 +1,17 @@
+import enMessages from "../../public/_locales/en/messages.json"
+
 import { ReportTemplateGenerator } from "./ReportTemplateGenerator"
+
+const mockedI18n: Pick<typeof chrome.i18n, "getMessage"> = {
+  getMessage: (messageName) => {
+    if (messageName in enMessages) {
+      return (enMessages as { [key: string]: { message: string } })[messageName]
+        .message
+    }
+    return ""
+  },
+}
+Object.assign(global, { chrome: { i18n: mockedI18n } })
 
 describe("ReportTemplateGenerator module", () => {
   const reportInfo = {

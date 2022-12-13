@@ -1,15 +1,10 @@
 "use strict"
 
-export declare namespace checkLang {
+declare namespace checkLang {
   type langCode = "ja" | "en"
 }
 
-export const checkLang = (): checkLang.langCode => {
-  const mylang = document.getElementById("mylang")
-  if (!mylang) return "ja"
-
-  return checkLangByDOMElement(mylang) ?? "ja"
-}
+const getCheckLangElement = () => document.getElementById("mylang")
 
 const checkLangByDOMElement = (
   mylang: HTMLElement
@@ -19,3 +14,10 @@ const checkLangByDOMElement = (
   if (mylang.innerText.includes("日本語")) return "ja"
   if (mylang.innerText.includes("English")) return "en"
 }
+
+const checkLang = (
+  checkLangElement: HTMLElement | null = getCheckLangElement()
+): checkLang.langCode =>
+  (checkLangElement && checkLangByDOMElement(checkLangElement)) ?? "ja"
+
+export { checkLang }

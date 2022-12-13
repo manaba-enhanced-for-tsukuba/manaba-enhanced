@@ -1,5 +1,5 @@
 {
-  "extends": ["config:base"],
+  "extends": ["config:base", ":semanticCommitsDisabled"],
   "automerge": true,
   "automergeStrategy": "merge-commit",
   "rangeStrategy": "pin"

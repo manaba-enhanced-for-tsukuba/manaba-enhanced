@@ -21,8 +21,12 @@ describe("ReportTemplateGenerator module", () => {
     deadline: new Date(`2021-01-01 00:00:00`),
     description: `Show how great the university of Tsukuba is.`,
   }
-  const getReportTemplate = (userTemplate: string) =>
-    new ReportTemplateGenerator("", userTemplate, reportInfo).template
+  const getReportTemplate = (userTemplate: string) => {
+    const foo = new ReportTemplateGenerator("", userTemplate, reportInfo)
+      .template
+    console.log(foo)
+    return foo
+  }
   const getFilename = (userFilename: string) =>
     new ReportTemplateGenerator(userFilename, "", reportInfo).filename
 

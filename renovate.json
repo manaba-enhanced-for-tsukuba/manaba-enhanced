@@ -2,5 +2,11 @@
   "extends": ["config:base", ":semanticCommitsDisabled"],
   "automerge": true,
   "automergeStrategy": "merge-commit",
-  "rangeStrategy": "pin"
+  "rangeStrategy": "pin",
+  "packageRules": [
+    {
+      "matchPackagePatterns": ["node"],
+      "rangeStrategy": "replace"
+    }
+  ]
 }

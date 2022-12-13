@@ -42,7 +42,8 @@
   },
   "scripts": {
     "prepare": "husky install",
-    "test": "jest"
+    "test": "jest",
+    "test:watch": "jest --watch"
   },
   "lint-staged": {
     "*": [

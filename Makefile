@@ -45,6 +45,10 @@ typecheck.watch: node_modules
 test: node_modules
 	yarn run test
 
+.PHONY: test.watch
+test.watch: node_modules
+	yarn run test:watch
+
 .PHONY: dev.chrome
 dev.chrome: node_modules
 	NODE_ENV=development BROWSER_ENV=chrome yarn run webpack --watch

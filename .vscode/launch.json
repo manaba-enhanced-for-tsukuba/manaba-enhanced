@@ -1,0 +1,12 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "Launch Chrome against manaba",
+      "url": "https://manaba.tsukuba.ac.jp/ct/home",
+      "runtimeArgs": ["--load-extension=./dist"]
+    }
+  ]
+}

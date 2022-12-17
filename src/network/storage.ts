@@ -57,26 +57,25 @@ export function getStorage<
   }
 }
 
-export const setStorage = ({
-  kind,
-  items,
-  callback,
-}:
-  | {
-      kind: Extract<StorageKind, "sync">
-      items: Partial<StorageSync>
-      callback?: () => void
-    }
-  | {
-      kind: Extract<StorageKind, "local">
-      items: Partial<StorageLocal>
-      callback?: () => void
-    }): void => {
-  if (kind === "sync") {
-    chrome.storage.sync.set(items, callback)
-  } else {
-    chrome.storage.local.set(items, callback)
-  }
+export function setStorage<T extends StorageSync>(params: {
+  kind: StorageKind
+  items: T
+  callback?: () => void
+}): void
+export function setStorage(
+  params:
+    | {
+        kind: "sync"
+        items: Partial<StorageSync>
+        callback?: () => void
+      }
+    | {
+        kind: "local"
+        items: Partial<StorageLocal>
+        callback?: () => void
+      }
+): void {
+  chrome.storage[params.kind].set(params.items, params.callback)
 }
 
 export const onStorageChanged = ({

@@ -2,7 +2,7 @@
 
 import checkAssignmentDeadline from "../methods/checkAssignmentDeadline"
 import checkPagePubDeadline from "../methods/checkPagePubDeadline"
-import colorizeDeadline from "../methods/colorizeDeadline"
+import { colorizeDeadline } from "../methods/colorizeDeadline"
 import createLinkToOptions from "../methods/createLinkToOptions"
 import { dragAndDrop } from "../methods/dragAndDrop"
 import { filterCourses } from "../methods/filterCourses"

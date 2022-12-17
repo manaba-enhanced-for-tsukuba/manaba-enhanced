@@ -16,35 +16,16 @@ const trans = {
   },
 }
 
-const colorizeDeadline = ({ checkStatus = false }): void => {
-  const now = dayjs()
-  const lang = checkLang()
-
-  Array.from<HTMLElement>(assignmentRowElements(document))
-    .map((row) => ({
-      row,
-      deadline: getDeadline(row),
-      status: checkStatus ? getStatus(row) : null,
-    }))
-    .filter(({ deadline }) => deadline)
-    .filter(
-      ({ status }) =>
-        !status ||
-        (status &&
-          status.includes(trans[lang].notSubmitted) &&
-          !status.includes(trans[lang].closed))
-    )
-    .forEach(({ row, deadline }) => addClassNameToRow(row, deadline, now))
+const enum AsgNegColumn {
+  Status = 6,
+  Deadline = 2,
 }
 
-const assignmentRowElements = (document: Document) =>
+const asgAttrs = (row: HTMLElement, column: AsgNegColumn) =>
+  (row.childNodes[row.childNodes.length - column] as HTMLElement).innerText
+
+const getAsgRowElements = (document: Document) =>
   document.querySelectorAll<HTMLElement>(".row0, .row1, .row")
-
-const getDeadline = (row: HTMLElement) =>
-  (row.childNodes[row.childNodes.length - 2] as HTMLElement).innerHTML
-
-const getStatus = (row: HTMLElement) =>
-  (row.childNodes[row.childNodes.length - 6] as HTMLElement).innerHTML
 
 const addClassNameToRow = (row: HTMLElement, deadline: string, now: Dayjs) => {
   const target = dayjs(deadline, "YYYY-MM-DD HH:mm")
@@ -59,4 +40,25 @@ const classNameFromDiffDays = (diffDays: number): string | undefined =>
     { days: 7, className: "seven-days-before" },
   ].find(({ days }) => diffDays < days)?.className
 
-export default colorizeDeadline
+const colorizeDeadline = ({ checkStatus = false }): void => {
+  const now = dayjs()
+  const lang = checkLang()
+
+  Array.from<HTMLElement>(getAsgRowElements(document))
+    .map((row) => ({
+      row,
+      deadline: asgAttrs(row, AsgNegColumn.Deadline),
+      status: checkStatus ? asgAttrs(row, AsgNegColumn.Status) : undefined,
+    }))
+    .filter(({ deadline }) => deadline)
+    .filter(
+      ({ status }) =>
+        !status ||
+        (status &&
+          status.includes(trans[lang].notSubmitted) &&
+          !status.includes(trans[lang].closed))
+    )
+    .forEach(({ row, deadline }) => addClassNameToRow(row, deadline, now))
+}
+
+export { colorizeDeadline }

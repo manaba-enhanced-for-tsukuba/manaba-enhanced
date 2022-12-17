@@ -49,11 +49,11 @@ const colorizeDeadline = ({ checkStatus = false }): void => {
       deadline: asgAttrs(row, AsgNegColumn.Deadline),
       status: checkStatus ? asgAttrs(row, AsgNegColumn.Status) : undefined,
     }))
+    .filter(({ deadline }) => deadline)
     .map((attrs) => ({
       ...attrs,
       deadline: dayjs(attrs.deadline, "YYYY-MM-DD HH:mm"),
     }))
-    .filter(({ deadline }) => deadline)
     .filter(
       ({ status }) =>
         !status ||

@@ -1,28 +1,22 @@
 "use strict"
 
-export declare namespace checkLang {
+declare namespace checkLang {
   type langCode = "ja" | "en"
 }
 
-export const checkLang = (): checkLang.langCode => {
-  const mylang = document.getElementById("mylang")
-
-  if (mylang) {
-    if (mylang.className.includes("mylang-ja")) {
-      return "ja"
-    } else if (mylang.className.includes("mylang-en")) {
-      return "en"
-    } else if (mylang.innerText.includes("English")) {
-      // mylangのクラス名がサービス側で変更されたケースがあったため、フォールバック
-      return "ja"
-    } else if (mylang.innerText.includes("日本語")) {
-      // mylangのクラス名がサービス側で変更されたケースがあったため、フォールバック
-      return "en"
-    } else {
-      // 日本語をデフォルトに
-      return "ja"
-    }
-  }
-
-  return "ja"
+const checkLangByDOMElement = (
+  mylang: HTMLElement
+): checkLang.langCode | undefined => {
+  if (mylang.classList.contains("mylang-ja")) return "ja"
+  if (mylang.classList.contains("mylang-en")) return "en"
+  /* The fallback for the case where the service changes the class name */
+  if (mylang.innerText.includes("日本語")) return "ja"
+  if (mylang.innerText.includes("English")) return "en"
 }
+
+const checkLang = (): checkLang.langCode => {
+  const checkLangElement = document.getElementById("mylang")
+  return (checkLangElement && checkLangByDOMElement(checkLangElement)) ?? "ja"
+}
+
+export { checkLang }

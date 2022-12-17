@@ -2,6 +2,7 @@
 
 import { ReportTemplateFormHandler } from "./methods/handleReportTemplateForm"
 import { getStorage, setStorage } from "./network/storage"
+import { Feature } from "./types/feature"
 import type { StorageSync } from "./types/storage"
 
 import "./style/options.scss"
@@ -49,14 +50,7 @@ window.onload = () => {
   ).map((dom) => {
     const key = dom.id as keyof Pick<
       StorageSync,
-      | "featuresAssignmentsColoring"
-      | "featuresAutoSaveReports"
-      | "featuresDeadlineHighlighting"
-      | "featuresRemoveConfirmation"
-      | "featuresFilterCourses"
-      | "featuresDragAndDrop"
-      | "featuresReportTemplate"
-      | "featuresRelativeGradesPosition"
+      Exclude<Feature, "featuresDisableForceFileSaving">
     >
 
     getStorage({

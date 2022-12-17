@@ -52,13 +52,11 @@ const addClassNameToRow = (row: HTMLElement, deadline: string, now: Dayjs) => {
   if (className) row.classList.add(className)
 }
 
-const classNameFromDiffDays = (diffDays: number): string | null =>
-  diffDays < 1
-    ? "one-day-before"
-    : diffDays < 3
-    ? "three-days-before"
-    : diffDays < 7
-    ? "seven-days-before"
-    : null
+const classNameFromDiffDays = (diffDays: number): string | undefined =>
+  [
+    { days: 1, className: "one-day-before" },
+    { days: 3, className: "three-days-before" },
+    { days: 7, className: "seven-days-before" },
+  ].find(({ days }) => diffDays < days)?.className
 
 export default colorizeDeadline

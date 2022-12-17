@@ -27,9 +27,8 @@ const asgAttrs = (row: HTMLElement, column: AsgNegColumn) =>
 const getAsgRowElements = (document: Document) =>
   document.querySelectorAll<HTMLElement>(".row0, .row1, .row")
 
-const addClassNameToRow = (row: HTMLElement, deadline: string, now: Dayjs) => {
-  const target = dayjs(deadline, "YYYY-MM-DD HH:mm")
-  const className = classNameFromDiffDays(target.diff(now, "day"))
+const addClassNameToRow = (row: HTMLElement, deadline: Dayjs, now: Dayjs) => {
+  const className = classNameFromDiffDays(deadline.diff(now, "day"))
   if (className) row.classList.add(className)
 }
 
@@ -49,6 +48,10 @@ const colorizeDeadline = ({ checkStatus = false }): void => {
       row,
       deadline: asgAttrs(row, AsgNegColumn.Deadline),
       status: checkStatus ? asgAttrs(row, AsgNegColumn.Status) : undefined,
+    }))
+    .map((attrs) => ({
+      ...attrs,
+      deadline: dayjs(attrs.deadline, "YYYY-MM-DD HH:mm"),
     }))
     .filter(({ deadline }) => deadline)
     .filter(

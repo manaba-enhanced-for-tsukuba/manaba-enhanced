@@ -58,19 +58,19 @@ export function getStorage<
 }
 
 export function setStorage<T extends StorageSync | StorageLocal>(params: {
-  kind: T extends StorageSync ? "sync" : "local"
+  kind: Extract<StorageKind, T extends StorageSync ? "sync" : "local">
   items: T
   callback?: () => void
 }): void
 export function setStorage(
   params:
     | {
-        kind: "sync"
+        kind: Extract<StorageKind, "sync">
         items: Partial<StorageSync>
         callback?: () => void
       }
     | {
-        kind: "local"
+        kind: Extract<StorageKind, "local">
         items: Partial<StorageLocal>
         callback?: () => void
       }

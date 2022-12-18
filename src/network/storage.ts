@@ -57,13 +57,8 @@ export function getStorage<
   }
 }
 
-export function setStorage<T extends StorageSync>(params: {
-  kind: "sync"
-  items: T
-  callback?: () => void
-}): void
-export function setStorage<T extends StorageLocal>(params: {
-  kind: "local"
+export function setStorage<T extends StorageSync | StorageLocal>(params: {
+  kind: T extends StorageSync ? "sync" : "local"
   items: T
   callback?: () => void
 }): void

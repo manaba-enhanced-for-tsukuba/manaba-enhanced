@@ -27,6 +27,14 @@
     "message": "Description",
     "description": "Description"
   },
+  "test": {
+    "message": "Test",
+    "description": "Test"
+  },
+  "assignment": {
+    "message": "Assignment",
+    "description": "Assignment"
+  },
   "report_template_introduction_section_title": {
     "message": "Introduction"
   },

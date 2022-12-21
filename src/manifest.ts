@@ -38,6 +38,10 @@ const generateManifest = () => {
       },
       content_scripts: [
         {
+          matches: ["https://manaba.tsukuba.ac.jp/ct/home"],
+          js: ["contentScript/unsubmittedAssignmentsOnHome.js"],
+        },
+        {
           matches: ["https://manaba.tsukuba.ac.jp/*"],
           run_at: "document_start",
           js: ["contentScript/main.js"],

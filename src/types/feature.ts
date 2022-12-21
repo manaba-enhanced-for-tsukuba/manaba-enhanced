@@ -8,6 +8,7 @@ const Feature = [
   "featuresReportTemplate",
   "featuresRelativeGradesPosition",
   "featuresDisableForceFileSaving",
+  "featuresUnsubmittedAssignmentsOnHome",
 ] as const
 
 type Feature = typeof Feature[number]

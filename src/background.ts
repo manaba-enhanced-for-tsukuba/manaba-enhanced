@@ -85,6 +85,8 @@ chrome.runtime.onInstalled.addListener((details) => {
             storage.featuresDisableForceFileSaving ?? true,
           featuresRelativeGradesPosition:
             storage.featuresRelativeGradesPosition ?? false,
+          featuresUnsubmittedAssignmentsOnHome:
+            storage.featuresUnsubmittedAssignmentsOnHome ?? true,
         },
       })
 

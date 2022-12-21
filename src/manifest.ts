@@ -38,10 +38,6 @@ const generateManifest = () => {
       },
       content_scripts: [
         {
-          matches: ["https://manaba.tsukuba.ac.jp/ct/home"],
-          js: ["contentScript/unsubmittedAssignmentsOnHome.js"],
-        },
-        {
           matches: ["https://manaba.tsukuba.ac.jp/*"],
           run_at: "document_start",
           js: ["contentScript/main.js"],
@@ -55,6 +51,10 @@ const generateManifest = () => {
           matches: ["https://manaba.tsukuba.ac.jp/*"],
           include_globs: ["https://manaba.tsukuba.ac.jp/ct/course_*_grade"],
           js: ["contentScript/showRelativeGradesPosition.js"],
+        },
+        {
+          matches: ["https://manaba.tsukuba.ac.jp/ct/home"],
+          js: ["contentScript/unsubmittedAssignmentsOnHome.js"],
         },
       ],
       commands: {

@@ -32,6 +32,11 @@ const addClassNameToRow = (row: HTMLElement, deadline: Dayjs, now: Dayjs) => {
   if (className) row.classList.add(className)
 }
 
+const shouldColorize = (status: string | undefined, lang: checkLang.langCode) =>
+  !status ||
+  (status.includes(trans[lang].notSubmitted) &&
+    !status.includes(trans[lang].closed))
+
 const classNameFromDiffDays = (diffDays: number): string | undefined =>
   [
     { days: 1, className: "one-day-before" },
@@ -39,10 +44,15 @@ const classNameFromDiffDays = (diffDays: number): string | undefined =>
     { days: 7, className: "seven-days-before" },
   ].find(({ days }) => diffDays < days)?.className
 
-const colorizeDeadline = ({ checkStatus = false }): void => {
-  const now = dayjs()
-  const lang = checkLang()
-
+const colorizeDeadline = ({
+  checkStatus = false,
+  now,
+  lang,
+}: {
+  checkStatus?: boolean
+  now: Dayjs
+  lang: checkLang.langCode
+}): void =>
   Array.from<HTMLElement>(getAsgRowElements(document))
     .map((row) => ({
       row,
@@ -54,14 +64,7 @@ const colorizeDeadline = ({ checkStatus = false }): void => {
       ...attrs,
       deadline: dayjs(attrs.deadline, "YYYY-MM-DD HH:mm"),
     }))
-    .filter(
-      ({ status }) =>
-        !status ||
-        (status &&
-          status.includes(trans[lang].notSubmitted) &&
-          !status.includes(trans[lang].closed))
-    )
+    .filter(({ status }) => shouldColorize(status, lang))
     .forEach(({ row, deadline }) => addClassNameToRow(row, deadline, now))
-}
 
 export { colorizeDeadline }

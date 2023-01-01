@@ -40,7 +40,7 @@ module.exports = {
       "showRelativeGradesPosition.ts"
     ),
     background: path.resolve(__dirname, "src", "background.ts"),
-    options: path.resolve(__dirname, "src", "options.ts"),
+    options: path.resolve(__dirname, "src", "optionsPage", "index.tsx"),
   },
   stats: {
     all: false,
@@ -51,7 +51,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.ts$/,
+        test: /\.tsx?$/,
         use: [
           {
             loader: "ts-loader",
@@ -89,7 +89,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: [".js", ".ts"],
+    extensions: [".js", ".ts", ".tsx"],
   },
   plugins: [
     new CopyWebpackPlugin({

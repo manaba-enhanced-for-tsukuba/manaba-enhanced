@@ -1,5 +1,6 @@
-import { useEffect } from "react"
+import { useEffect, useMemo } from "react"
 
+import { NoticeEventType, Notice } from "./components/Notice"
 import { startLegacyHandler } from "./legacyHandler"
 import "../style/options.scss"
 
@@ -8,12 +9,17 @@ export const App = () => {
     startLegacyHandler()
   }, [])
 
+  const noticeEvent = useMemo(() => {
+    const query = new URLSearchParams(window.location.search)
+    return query.get("event")
+  }, [])
+
   return (
     <>
       <header>
-        <section className="section-notice">
-          <p id="notice"></p>
-        </section>
+        {noticeEvent && NoticeEventType.is(noticeEvent) && (
+          <Notice event={noticeEvent} />
+        )}
         <section>
           <h1>
             <img src="./icons/icon.svg" alt="logo" className="logo" />

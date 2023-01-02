@@ -29,7 +29,7 @@ class ReportTemplateGenerator {
     td.classList.add("left")
 
     button.innerText = chrome.i18n.getMessage("generate_report_template")
-    button.classList.add("manabaOriginalButton")
+    button.classList.add("manaba-original-button")
 
     th.innerText = chrome.i18n.getMessage("report_template")
 

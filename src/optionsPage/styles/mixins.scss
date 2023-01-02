@@ -29,3 +29,7 @@
     box-shadow: 0 10px 15px 0 rgb(0 0 0 / 5%);
   }
 }
+
+@mixin bold {
+  font-weight: 700;
+}

@@ -67,11 +67,11 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        exclude: /options\.scss$/,
+        exclude: [/\.module\.scss$/, /options\.scss$/],
         use: ["css-loader", "sass-loader"],
       },
       {
-        test: /options\.scss$/,
+        test: [/\.module\.scss$/, /options\.scss$/],
         use: ["style-loader", "css-loader", "sass-loader"],
       },
       {

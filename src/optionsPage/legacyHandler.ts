@@ -1,13 +1,17 @@
 "use strict"
 
-import { ReportTemplateFormHandler } from "./methods/handleReportTemplateForm"
-import { getStorage, setStorage } from "./network/storage"
-import { Feature } from "./types/feature"
-import type { StorageSync } from "./types/storage"
+/**
+ * Don't add DOM handling procedures to this file.
+ * Follow the React way instead.
+ */
 
-import "./style/options.scss"
+import { ReportTemplateFormHandler } from "../methods/handleReportTemplateForm"
+import { getStorage, setStorage } from "../network/storage"
+import type { StorageSync } from "../types/storage"
 
-window.onload = () => {
+import "../style/options.scss"
+
+export const startLegacyHandler = () => {
   const query = new URLSearchParams(window.location.search)
   const queryEvent = query.get("event")
 
@@ -72,6 +76,6 @@ window.onload = () => {
       })
     })
   })
-}
 
-new ReportTemplateFormHandler().start()
+  new ReportTemplateFormHandler().start()
+}

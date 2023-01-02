@@ -46,7 +46,7 @@ module.exports = {
       "unsubmittedAssignmentsOnHome.ts"
     ),
     background: path.resolve(__dirname, "src", "background.ts"),
-    options: path.resolve(__dirname, "src", "options.ts"),
+    options: path.resolve(__dirname, "src", "optionsPage", "index.tsx"),
   },
   stats: {
     all: false,
@@ -57,7 +57,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.ts$/,
+        test: /\.tsx?$/,
         use: [
           {
             loader: "ts-loader",
@@ -73,11 +73,11 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        exclude: /options\.scss$/,
+        exclude: [/\.module\.scss$/, /options\.scss$/],
         use: ["css-loader", "sass-loader"],
       },
       {
-        test: /options\.scss$/,
+        test: [/\.module\.scss$/, /options\.scss$/],
         use: ["style-loader", "css-loader", "sass-loader"],
       },
       {
@@ -95,7 +95,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: [".js", ".ts"],
+    extensions: [".js", ".ts", ".tsx"],
   },
   plugins: [
     new CopyWebpackPlugin({

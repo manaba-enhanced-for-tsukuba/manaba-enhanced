@@ -1,5 +1,6 @@
 import { useEffect, useMemo } from "react"
 
+import styles from "./app.module.scss"
 import { NoticeEventType, Notice } from "./components/Notice"
 import { startLegacyHandler } from "./legacyHandler"
 import "../style/options.scss"
@@ -15,11 +16,11 @@ export const App = () => {
   }, [])
 
   return (
-    <>
+    <div className={styles.root}>
+      {noticeEvent && NoticeEventType.is(noticeEvent) && (
+        <Notice event={noticeEvent} />
+      )}
       <header>
-        {noticeEvent && NoticeEventType.is(noticeEvent) && (
-          <Notice event={noticeEvent} />
-        )}
         <section>
           <h1>
             <img src="./icons/icon.svg" alt="logo" className="logo" />
@@ -330,6 +331,6 @@ export const App = () => {
           </a>
         </section>
       </main>
-    </>
+    </div>
   )
 }

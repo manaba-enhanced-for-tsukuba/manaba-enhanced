@@ -63,7 +63,6 @@ body {
   }
 }
 
-header,
 main {
   max-width: 50rem;
   margin: 0 auto;
@@ -78,74 +77,6 @@ section {
   @include light {
     box-shadow: 0 10px 15px 0 rgb(0 0 0 / 5%);
   }
-}
-
-header {
-  margin-top: 3rem;
-
-  section {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    h1 {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-
-      img {
-        height: 4em;
-        margin-right: 1.5rem;
-      }
-
-      .logotype {
-        p {
-          font-size: 2.5rem;
-        }
-
-        p:first-child {
-          font-weight: 400;
-          margin-bottom: -0.3rem;
-        }
-
-        p:last-child {
-          font-weight: 700;
-        }
-      }
-    }
-
-    .store,
-    .version,
-    .maintainer {
-      margin-top: 1.5rem;
-      text-align: center;
-
-      a {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        margin: 0;
-        color: var(--color-text-default);
-
-        svg {
-          width: 1.5rem;
-          height: 1.5rem;
-          margin-right: 0.3rem;
-          fill: var(--color-text-default);
-        }
-      }
-    }
-
-    .maintainer {
-      margin-bottom: 0.5rem;
-    }
-  }
-}
-
-main {
-  margin-bottom: 3rem;
 }
 
 .section-features,

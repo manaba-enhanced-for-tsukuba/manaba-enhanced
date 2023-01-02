@@ -1,0 +1,59 @@
+@import "../../styles/mixins";
+
+.wrapper {
+  @include section-panel;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.extensionName {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.logoImage {
+  height: 6rem;
+  margin-right: 1.5rem;
+}
+
+.logotype {
+  font-size: 2.5rem;
+}
+
+.section {
+  text-align: center;
+  margin-bottom: 1.5rem;
+
+  &:last-child {
+    margin-bottom: 0.5rem;
+  }
+}
+
+.versionNumber {
+  @include bold;
+}
+
+.linkWithIcon {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 0;
+  color: var(--color-text-default);
+}
+
+.linkWithIconIcon {
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 0.3rem;
+  fill: var(--color-text-default);
+}
+
+.maintainerHeading {
+  @include bold;
+}

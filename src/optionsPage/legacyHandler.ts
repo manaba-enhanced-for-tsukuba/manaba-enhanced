@@ -33,9 +33,6 @@ export const startLegacyHandler = () => {
     }
   }
 
-  const versionNumDom = document.getElementById("version-number")
-  if (versionNumDom) versionNumDom.innerText = versionNum
-
   const linkToShortcutsSettings = document.getElementById(
     "link-to-shortcuts-settings"
   )

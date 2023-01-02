@@ -1,0 +1,8 @@
+@import "../../styles/mixins";
+
+.wrapper {
+  @include section-panel;
+
+  border: 2px solid var(--color-primary);
+  background-color: var(--color-primary-low-three);
+}

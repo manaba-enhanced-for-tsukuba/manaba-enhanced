@@ -48,7 +48,7 @@ export const Header = memo(() => (
       </a>
     </div>
     <div className={styles.section}>
-      <p className={styles.versionNumber} id="version-number"></p>
+      <p className={styles.sectionHeading} id="version-number"></p>
       <a
         className={styles.linkWithIcon}
         href="https://github.com/mkobayashime/manaba-enhanced"
@@ -67,7 +67,7 @@ export const Header = memo(() => (
       </a>
     </div>
     <div className={styles.section}>
-      <p className={styles.maintainerHeading}>Maintainer</p>
+      <p className={styles.sectionHeading}>Maintainer</p>
       <a
         className={styles.linkWithIcon}
         href="https://twitter.com/mkobayashime"

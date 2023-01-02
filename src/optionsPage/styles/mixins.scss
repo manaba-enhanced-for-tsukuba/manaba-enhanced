@@ -1,0 +1,22 @@
+@mixin light {
+  @media (prefers-color-scheme: light) {
+    @content;
+  }
+}
+
+@mixin dark {
+  @media (prefers-color-scheme: dark) {
+    @content;
+  }
+}
+
+@mixin section-panel {
+  padding: 2rem;
+  margin: 2rem 0;
+  background-color: var(--color-bg-card);
+  border-radius: 0.5rem;
+
+  @include light {
+    box-shadow: 0 10px 15px 0 rgb(0 0 0 / 5%);
+  }
+}

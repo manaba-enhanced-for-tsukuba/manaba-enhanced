@@ -1,4 +1,17 @@
+import enMessages from "../../public/_locales/en/messages.json"
+
 import { ReportTemplateGenerator } from "./ReportTemplateGenerator"
+
+const mockedI18n: Pick<typeof chrome.i18n, "getMessage"> = {
+  getMessage: (messageName) => {
+    if (messageName in enMessages) {
+      return (enMessages as { [key: string]: { message: string } })[messageName]
+        .message
+    }
+    return ""
+  },
+}
+Object.assign(global, { chrome: { i18n: mockedI18n } })
 
 describe("ReportTemplateGenerator module", () => {
   const reportInfo = {
@@ -8,8 +21,12 @@ describe("ReportTemplateGenerator module", () => {
     deadline: new Date(`2021-01-01 00:00:00`),
     description: `Show how great the university of Tsukuba is.`,
   }
-  const getReportTemplate = (userTemplate: string) =>
-    new ReportTemplateGenerator("", userTemplate, reportInfo).template
+  const getReportTemplate = (userTemplate: string) => {
+    const foo = new ReportTemplateGenerator("", userTemplate, reportInfo)
+      .template
+    console.log(foo)
+    return foo
+  }
   const getFilename = (userFilename: string) =>
     new ReportTemplateGenerator(userFilename, "", reportInfo).filename
 

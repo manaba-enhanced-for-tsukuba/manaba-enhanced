@@ -48,7 +48,7 @@ class ReportTemplateGenerator {
     })
   }
 
-  public renderReportGeneratorRow = () => {
+  public appendReportGeneratorRow = () => {
     const tbodyQueryString = ".stdlist-reportV2 tbody"
     const tbody = document.querySelector<HTMLElement>(tbodyQueryString)
     if (!tbody) return

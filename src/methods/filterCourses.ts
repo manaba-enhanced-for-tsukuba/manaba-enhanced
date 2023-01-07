@@ -8,7 +8,7 @@ import { checkLang } from "./checkLang"
 let lang: checkLang.langCode
 
 const viewModeValues = ["list", "thumbnail"] as const
-type ViewMode = typeof viewModeValues[number]
+type ViewMode = (typeof viewModeValues)[number]
 const ViewMode = {
   is: (str: string): str is ViewMode => viewModeValues.includes(str as any),
 }

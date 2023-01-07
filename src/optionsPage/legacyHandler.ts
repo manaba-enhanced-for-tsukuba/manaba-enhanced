@@ -12,17 +12,6 @@ import type { StorageSync } from "../types/storage"
 import "../style/options.scss"
 
 export const startLegacyHandler = () => {
-  const linkToShortcutsSettings = document.getElementById(
-    "link-to-shortcuts-settings"
-  )
-  if (linkToShortcutsSettings) {
-    linkToShortcutsSettings.onclick = (e) => {
-      e.preventDefault()
-      chrome.tabs.create({ url: "chrome://extensions/shortcuts" })
-      return false
-    }
-  }
-
   ;(
     Array.from(
       document.getElementsByClassName("checkbox-features")

@@ -176,7 +176,14 @@ export const App = () => {
           <h2>Shortcuts</h2>
           <p>
             Shortcuts are customizable{" "}
-            <a href="" id="link-to-shortcuts-settings">
+            <a
+              href=""
+              onClick={(e) => {
+                e.preventDefault()
+                chrome.tabs.create({ url: "chrome://extensions/shortcuts" })
+                return false
+              }}
+            >
               here
             </a>
           </p>

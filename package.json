@@ -8,6 +8,16 @@
       "email": "contact@mkobayashi.me"
     }
   ],
+  "contributors": [
+    {
+      "name": "Yusei Ito",
+      "email": "me@yuseiito.com"
+    },
+    {
+      "name": "Yuzuki Arai",
+      "email": "arai@yudukikun5120.me"
+    }
+  ],
   "private": true,
   "devDependencies": {
     "@commitlint/cli": "17.4.0",

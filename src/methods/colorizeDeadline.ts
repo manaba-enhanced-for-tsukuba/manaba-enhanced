@@ -21,7 +21,7 @@ const enum AsgNegColumn {
   Deadline = 2,
 }
 
-const asgAttrs = (row: HTMLElement, column: AsgNegColumn) =>
+const getAsgAttrs = (row: HTMLElement, column: AsgNegColumn) =>
   (row.childNodes[row.childNodes.length - column] as HTMLElement).innerText
 
 const getAsgRowElements = (document: Document) =>
@@ -56,8 +56,8 @@ const colorizeDeadline = ({
   Array.from<HTMLElement>(getAsgRowElements(document))
     .map((row) => ({
       row,
-      deadline: asgAttrs(row, AsgNegColumn.Deadline),
-      status: checkStatus ? asgAttrs(row, AsgNegColumn.Status) : undefined,
+      deadline: getAsgAttrs(row, AsgNegColumn.Deadline),
+      status: checkStatus ? getAsgAttrs(row, AsgNegColumn.Status) : undefined,
     }))
     .filter(({ deadline }) => deadline)
     .map((attrs) => ({

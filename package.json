@@ -2,6 +2,12 @@
   "name": "manaba-enhanced-for-tsukuba",
   "version": "3.3.1",
   "description": "Make your manaba a little bit more comfortable",
+  "maintainers": [
+    {
+      "name": "Masaki Kobayashi",
+      "email": "contact@mkobayashi.me"
+    }
+  ],
   "private": true,
   "devDependencies": {
     "@commitlint/cli": "17.4.0",

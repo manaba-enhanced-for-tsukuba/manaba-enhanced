@@ -3,6 +3,7 @@ import { useEffect, useMemo } from "react"
 import styles from "./app.module.scss"
 import { Header } from "./components/Header"
 import { NoticeEventType, Notice } from "./components/Notice"
+import { ReleaseNote } from "./components/ReleaseNote"
 import { startLegacyHandler } from "./legacyHandler"
 import "../style/options.scss"
 
@@ -240,33 +241,7 @@ export const App = () => {
             responsible for any damages and troubles caused by this extension.
           </p>
         </section>
-        <section className="section-release-note">
-          <h2>3.3.0</h2>
-          <p>Display the relative position of the grades in the courses</p>
-          <p>Shortcut key for opening assignments page can be set</p>
-          <h2>3.2.0</h2>
-          <p>Customizable report template</p>
-          <p>Publish Firefox version officially</p>
-          <h2>3.1.0</h2>
-          <p>Generate LaTeX template for reports</p>
-          <h2>2.9.0</h2>
-          <p>Submit usermemo with Ctrl+Enter / Meta+Enter shortcut</p>
-          <h2>2.8.0</h2>
-          <p>Supported files can be opened in browser without saving</p>
-          <h2>2.7.0</h2>
-          <p>Drag & Drop file uploads</p>
-          <h2>2.6.0</h2>
-          <p>manaba Enhanced is now written in TypeScript</p>
-          <p>Stability improvements in course filtering</p>
-          <a
-            href="https://github.com/mkobayashime/manaba-enhanced/releases"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="older"
-          >
-            Older versions
-          </a>
-        </section>
+        <ReleaseNote />
       </main>
     </div>
   )

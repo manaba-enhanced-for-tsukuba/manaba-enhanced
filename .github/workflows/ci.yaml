@@ -28,7 +28,7 @@ jobs:
       - name: Install dependencies
         run: make node_modules
       - uses: wagoid/commitlint-github-action@v5
-      - name: Run ESLint
+      - name: Run Lint
         run: make lint
       - name: Run Prettier
         run: make format.check

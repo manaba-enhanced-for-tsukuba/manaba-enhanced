@@ -1,0 +1,21 @@
+@import "../../styles/mixins";
+
+.wrapper {
+  @include section-panel;
+}
+
+.versionWrapper {
+  &:not(:first-child) {
+    margin-top: 2rem;
+  }
+}
+
+.descriptionLine {
+  margin: 1rem 0;
+}
+
+.older {
+  display: inline-block;
+  margin-top: 1rem;
+  color: var(--color-text-default);
+}

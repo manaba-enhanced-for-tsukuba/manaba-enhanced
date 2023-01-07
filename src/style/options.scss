@@ -180,22 +180,6 @@ section {
   }
 }
 
-.section-release-note {
-  h2:not(:first-child) {
-    margin-top: 2rem;
-  }
-
-  p {
-    margin: 1rem 0;
-  }
-
-  .older {
-    display: inline-block;
-    margin-top: 1rem;
-    color: var(--color-text-default);
-  }
-}
-
 .checkboxLabel {
   cursor: pointer;
   flex-grow: 1;

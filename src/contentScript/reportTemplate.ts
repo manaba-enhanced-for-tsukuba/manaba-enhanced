@@ -18,7 +18,7 @@ const renderReportTemplate = () => {
         reportFilename || "",
         reportTemplate || ""
       )
-      reportTemplateGenerator.renderReportGeneratorRow()
+      reportTemplateGenerator.appendReportGeneratorRow()
     },
   })
 }

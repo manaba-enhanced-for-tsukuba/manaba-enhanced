@@ -1,3 +1,6 @@
+import { ReactElement } from "react"
+import ReactDOM from "react-dom"
+
 class ReportTemplateGenerator {
   constructor(
     rawFilename: string,
@@ -18,33 +21,53 @@ class ReportTemplateGenerator {
   public readonly filename: string
   public readonly template: string
 
-  public renderReportGeneratorRow() {
-    const reportTable = document.getElementsByClassName("stdlist-reportV2")[0]
-    if (!reportTable) return
+  private GenerateButton = ({
+    template,
+    filename,
+  }: {
+    template: string
+    filename: string
+  }) => (
+    <button
+      type="button"
+      onClick={() => this.downloadReportTemplate(template, filename)}
+      className="manaba-original-button"
+    >
+      {chrome.i18n.getMessage("generate_report_template")}
+    </button>
+  )
 
-    const button = document.createElement("button")
-    const tr = reportTable.appendChild(document.createElement("tr"))
-    const th = tr.appendChild(document.createElement("th"))
-    const td = tr.appendChild(document.createElement("td"))
-    td.classList.add("left")
-
-    button.innerText = chrome.i18n.getMessage("generate_report_template")
-    button.classList.add("manaba-original-button")
-
-    th.innerText = chrome.i18n.getMessage("report_template")
-
-    td.appendChild(button)
-
-    button.addEventListener("click", () => {
-      const blob = new Blob([this.template], {
-        type: "application/x-tex",
-      })
-      const url = window.webkitURL.createObjectURL(blob)
-      chrome.runtime.sendMessage({
-        url,
-        filename: this.filename,
-      })
+  private downloadReportTemplate = (template: string, filename: string) => {
+    const blob = new Blob([template], {
+      type: "application/x-tex",
     })
+    const url = URL.createObjectURL(blob)
+    chrome.runtime.sendMessage({
+      url,
+      filename,
+    })
+  }
+
+  public appendReportGeneratorRow = () => {
+    const tbodyQueryString = ".stdlist-reportV2 tbody"
+    const tbody = document.querySelector<HTMLElement>(tbodyQueryString)
+    if (!tbody) return
+
+    const containerRow = document.createElement("tr")
+    tbody.appendChild(containerRow)
+
+    ReactDOM.render(
+      <RowContent
+        header={chrome.i18n.getMessage("report_template")}
+        data={
+          <this.GenerateButton
+            template={this.template}
+            filename={this.filename}
+          />
+        }
+      />,
+      containerRow
+    )
   }
 
   private injectReportInfoIntoRawText = (
@@ -146,4 +169,17 @@ class ReportInfo {
   private deadlineElement = this.tdElements[2]
 }
 
-export { ReportTemplateGenerator }
+const RowContent = ({
+  header,
+  data,
+}: {
+  header: string
+  data: ReactElement | string
+}) => (
+  <>
+    <th>{header}</th>
+    <td className="left">{data}</td>
+  </>
+)
+
+export { ReportTemplateGenerator, RowContent }

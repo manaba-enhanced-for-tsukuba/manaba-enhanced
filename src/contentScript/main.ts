@@ -1,8 +1,11 @@
 "use strict"
 
+import dayjs from "dayjs"
+
 import checkAssignmentDeadline from "../methods/checkAssignmentDeadline"
+import { checkLang } from "../methods/checkLang"
 import checkPagePubDeadline from "../methods/checkPagePubDeadline"
-import colorizeDeadline from "../methods/colorizeDeadline"
+import { colorizeDeadline } from "../methods/colorizeDeadline"
 import createLinkToOptions from "../methods/createLinkToOptions"
 import { dragAndDrop } from "../methods/dragAndDrop"
 import { filterCourses } from "../methods/filterCourses"
@@ -48,14 +51,17 @@ const withDocumentHead = async (storageSync: Partial<StorageSync>) => {
   })
 
   if (storageSync.featuresAssignmentsColoring) {
+    const now = dayjs()
+    const lang = checkLang()
+
     if (url.includes("home_library_query")) {
-      colorizeDeadline({})
+      colorizeDeadline({ checkStatus: false, now, lang })
     } else if (
       url.endsWith("query") ||
       url.endsWith("survey") ||
       url.endsWith("report")
     ) {
-      colorizeDeadline({ checkStatus: true })
+      colorizeDeadline({ checkStatus: true, now, lang })
     }
   }
 

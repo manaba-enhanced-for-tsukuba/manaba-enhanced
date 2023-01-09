@@ -10,6 +10,8 @@ const Feature = [
   "featuresDisableForceFileSaving",
 ] as const
 
-type Feature = typeof Feature[number]
+type Feature = (typeof Feature)[number]
 
-export { Feature }
+const isFeature = (key: string): key is Feature => key in Feature
+
+export { Feature, isFeature }

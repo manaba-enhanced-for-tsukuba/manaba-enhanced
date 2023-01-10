@@ -12,6 +12,7 @@ const Feature = [
 
 type Feature = (typeof Feature)[number]
 
-const isFeature = (key: string): key is Feature => key in Feature
+const isFeature = (key: string): key is Feature =>
+  Feature.find((feature) => feature === key) !== undefined
 
 export { Feature, isFeature }

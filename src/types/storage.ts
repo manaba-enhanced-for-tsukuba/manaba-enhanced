@@ -1,21 +1,15 @@
+import { Feature } from "./feature"
 import type { ModuleCode } from "./filterCources"
 
 export type StorageKind = "sync" | "local"
 
-export type StorageSync = Readonly<{
-  featuresAssignmentsColoring?: boolean
-  featuresDeadlineHighlighting?: boolean
-  featuresAutoSaveReports?: boolean
-  featuresRemoveConfirmation?: boolean
-  featuresFilterCourses?: boolean
-  featuresDragAndDrop: boolean
-  featuresReportTemplate: boolean
-  featuresDisableForceFileSaving?: boolean
-  featuresRelativeGradesPosition?: boolean
-  filterConfigForModule?: ModuleCode
-  reportTemplate?: string
-  reportFilename?: string
-}>
+export type StorageSync = Readonly<
+  { [key in Feature]?: boolean } & {
+    filterConfigForModule?: ModuleCode
+    reportTemplate?: string
+    reportFilename?: string
+  }
+>
 
 export type StorageLocal = Readonly<{
   reportText?: {

@@ -7,9 +7,8 @@
 
 import { ReportTemplateFormHandler } from "../methods/handleReportTemplateForm"
 import { getStorage, setStorage } from "../network/storage"
-import type { StorageSync } from "../types/storage"
-
 import "../style/options.scss"
+import { isFeature } from "../types/feature"
 
 export const startLegacyHandler = () => {
   ;(
@@ -17,17 +16,8 @@ export const startLegacyHandler = () => {
       document.getElementsByClassName("checkbox-features")
     ) as HTMLInputElement[]
   ).map((dom) => {
-    const key = dom.id as keyof Pick<
-      StorageSync,
-      | "featuresAssignmentsColoring"
-      | "featuresAutoSaveReports"
-      | "featuresDeadlineHighlighting"
-      | "featuresRemoveConfirmation"
-      | "featuresFilterCourses"
-      | "featuresDragAndDrop"
-      | "featuresReportTemplate"
-      | "featuresRelativeGradesPosition"
-    >
+    const key = dom.id
+    if (!isFeature(key)) return
 
     getStorage({
       kind: "sync",

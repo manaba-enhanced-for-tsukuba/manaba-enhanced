@@ -24,7 +24,6 @@ const asgTableColumn = {
 const targetAsgType = new Set([
   chrome.i18n.getMessage("test"),
   chrome.i18n.getMessage("assignment"),
-  "アンケート",
 ])
 
 const parseRawDOM = async (url: string) =>

@@ -1,4 +1,5 @@
 import dayjs from "dayjs"
+import ReactDOM from "react-dom"
 
 import { homeLibraryQuery, assignmentIcon } from "../json/uri.json"
 
@@ -23,6 +24,7 @@ const asgTableColumn = {
 const targetAsgType = new Set([
   chrome.i18n.getMessage("test"),
   chrome.i18n.getMessage("assignment"),
+  "アンケート",
 ])
 
 const parseRawDOM = async (url: string) =>
@@ -83,48 +85,46 @@ const renderUnsubmittedAsgsOnHome = (
   )
   if (!container) return
 
-  const asgTable = document.createElement("table")
-  asgTable.classList.add("eventlist")
-  const asgTableBody = document.createElement("tbody")
-  asgTable.appendChild(asgTableBody)
-  assignments.forEach((asg) => {
-    const asgTableHeader = document.createElement("tr")
-    asgTableHeader.classList.add("bordertop")
-    const asgTableHeaderDate = document.createElement("td")
-    asgTableHeaderDate.classList.add("center", "eventlist-day")
-    asgTableHeaderDate.textContent = dayjs(
-      asg.deadline.toLocaleDateString()
-    ).format("MM/DD")
-    asgTableHeader.appendChild(asgTableHeaderDate)
-    const asgTableHeaderTitle = document.createElement("td")
-    asgTableHeaderTitle.classList.add("event-title")
-    const asgTableHeaderTitleTime = document.createElement("span")
-    asgTableHeaderTitleTime.classList.add("eventlist-day")
-    asgTableHeaderTitleTime.textContent = dayjs(asg.deadline.toString()).format(
-      "HH:mm"
-    )
-    asgTableHeaderTitle.appendChild(asgTableHeaderTitleTime)
-    const asgTableHeaderTitleLink = document.createElement("a")
-    asgTableHeaderTitleLink.href =
-      "course_" + asg.id.split("_").slice(1).join("_")
-    asgTableHeaderTitleLink.textContent = asg.title
-    asgTableHeaderTitle.appendChild(asgTableHeaderTitleLink)
-    const asgTableHeaderTitleIcon = document.createElement("img")
-    asgTableHeaderTitleIcon.src = assignmentIcon
-    asgTableHeaderTitleIcon.alt = "assignment icon"
-    asgTableHeaderTitleIcon.classList.add("inline")
-    asgTableHeaderTitleIcon.style.marginRight = "0.3em"
-    asgTableHeaderTitleIcon.title = asg.type
-    asgTableHeaderTitleLink.prepend(asgTableHeaderTitleIcon)
-    const asgTableHeaderTitleCourse = document.createElement("a")
-    asgTableHeaderTitleCourse.href = "course_" + asg.id.split("_")[1]
-    asgTableHeaderTitleCourse.textContent = `[${asg.course}]`
-    asgTableHeaderTitle.appendChild(asgTableHeaderTitleCourse)
-    asgTableHeader.appendChild(asgTableHeaderTitle)
-    asgTableBody.appendChild(asgTableHeader)
-  })
+  const tableContainer = document.createElement("div")
   const showmoreElement = container.querySelector("div.showmore")
-  container.insertBefore(asgTable, showmoreElement)
+  container.insertBefore(tableContainer, showmoreElement)
+
+  ReactDOM.render(asgTable({ assignments }), tableContainer)
 }
+
+const asgTable = ({ assignments }: { assignments: Assignment[] }) => (
+  <table className="eventlist">
+    <tbody>
+      {assignments.map((asg) => (
+        <tr className="bordertop">
+          <td className="center eventlist-day">
+            {dayjs(asg.deadline.toDateString()).format("MM/DD")}
+          </td>
+          <td className="event-title">
+            <span className="eventlist-day">
+              {dayjs(asg.deadline.toString()).format("HH:mm")}
+            </span>
+            <a href={getAssignmentPath(asg)}>
+              <img
+                src={assignmentIcon}
+                alt="assignment icon"
+                className="inline"
+                style={{ marginRight: "0.3em" }}
+                title={asg.type}
+              />
+              {asg.title}
+            </a>
+            <a href={getCoursePath(asg)}>[{asg.course}]</a>
+          </td>
+        </tr>
+      ))}
+    </tbody>
+  </table>
+)
+
+const getAssignmentPath = (asg: Assignment) =>
+  "course_" + asg.id.split("_").slice(1).join("_")
+
+const getCoursePath = (asg: Assignment) => "course_" + asg.id.split("_")[1]
 
 export { fetchAssignments, renderUnsubmittedAsgsOnHome }

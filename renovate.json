@@ -1,9 +1,13 @@
 {
-  "extends": ["config:base", ":semanticCommitsDisabled"],
+  "extends": ["config:base"],
   "automerge": true,
   "automergeStrategy": "merge-commit",
   "rangeStrategy": "pin",
   "packageRules": [
+    {
+      "matchUpdateTypes": ["patch"],
+      "groupName": "patch upgrades"
+    },
     {
       "matchPackagePatterns": ["node"],
       "rangeStrategy": "replace"

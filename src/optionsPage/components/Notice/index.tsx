@@ -3,7 +3,7 @@ import { memo } from "react"
 import styles from "./index.module.scss"
 
 const noticeEventTypeValues = ["install", "update"] as const
-export type NoticeEventType = typeof noticeEventTypeValues[number]
+export type NoticeEventType = (typeof noticeEventTypeValues)[number]
 export const NoticeEventType = {
   is: (str: string): str is NoticeEventType =>
     noticeEventTypeValues.includes(str as never),

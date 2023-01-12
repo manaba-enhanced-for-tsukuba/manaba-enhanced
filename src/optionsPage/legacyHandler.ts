@@ -19,14 +19,7 @@ export const startLegacyHandler = () => {
   ).map((dom) => {
     const key = dom.id as keyof Pick<
       StorageSync,
-      | "featuresAssignmentsColoring"
-      | "featuresAutoSaveReports"
-      | "featuresDeadlineHighlighting"
-      | "featuresRemoveConfirmation"
-      | "featuresFilterCourses"
-      | "featuresDragAndDrop"
-      | "featuresReportTemplate"
-      | "featuresRelativeGradesPosition"
+      Exclude<Feature, "featuresDisableForceFileSaving">
     >
 
     getStorage({

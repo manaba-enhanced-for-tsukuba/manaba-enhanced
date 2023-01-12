@@ -1,6 +1,7 @@
 "use strict"
 
 import { getStorage, setStorage, onStorageChanged } from "./network/storage"
+import { Feature } from "./types/feature"
 
 const removeAttachmentHeader = (
   details: chrome.webRequest.WebResponseHeadersDetails
@@ -65,7 +66,9 @@ chrome.runtime.onInstalled.addListener((details) => {
     kind: "sync",
     keys: null,
     callback: (storage) => {
-      setStorage({
+      setStorage<{
+        [key in Feature]: boolean
+      }>({
         kind: "sync",
         items: {
           featuresAssignmentsColoring:
@@ -82,6 +85,8 @@ chrome.runtime.onInstalled.addListener((details) => {
             storage.featuresDisableForceFileSaving ?? true,
           featuresRelativeGradesPosition:
             storage.featuresRelativeGradesPosition ?? false,
+          featuresUnsubmittedAssignmentsOnHome:
+            storage.featuresUnsubmittedAssignmentsOnHome ?? true,
         },
       })
 

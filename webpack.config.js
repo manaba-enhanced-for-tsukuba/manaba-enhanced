@@ -39,6 +39,12 @@ module.exports = {
       "contentScript",
       "showRelativeGradesPosition.ts"
     ),
+    "contentScript/unsubmittedAssignmentsOnHome": path.resolve(
+      __dirname,
+      "src",
+      "contentScript",
+      "unsubmittedAssignmentsOnHome.ts"
+    ),
     background: path.resolve(__dirname, "src", "background.ts"),
     options: path.resolve(__dirname, "src", "optionsPage", "index.tsx"),
   },

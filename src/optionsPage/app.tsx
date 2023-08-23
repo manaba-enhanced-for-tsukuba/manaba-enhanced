@@ -200,11 +200,11 @@ export const App = () => {
               <label htmlFor="report-template">LaTeX document</label>
               <small>
                 You can insert the report attributes into the template:{" "}
-                <code>{"{{course-name}}"}</code>, <code>{"{{deadline}}"}</code>,{" "}
+                <code>{"{{courseName}}"}</code>, <code>{"{{deadline}}"}</code>,{" "}
                 <code>{"{{description}}"}</code>,{" "}
-                <code>{"{{report-title}}"}</code> and{" "}
-                <code>{"{{student-name}}"}</code> by only writing them like "{" "}
-                <code>\title{"{{{course-name}}}"}</code>". If nothing is
+                <code>{"{{reportTitle}}"}</code> and{" "}
+                <code>{"{{studentName}}"}</code> by only writing them like "{" "}
+                <code>\title{"{{{courseName}}}"}</code>". If nothing is
                 specified, we use the default template.
               </small>
               <textarea
@@ -217,11 +217,11 @@ export const App = () => {
               <label htmlFor="report-filename">Filename</label>
               <small>
                 You can insert the report attributes into the filename:{" "}
-                <code>{"{{course-name}}"}</code>, <code>{"{{deadline}}"}</code>,{" "}
+                <code>{"{{courseName}}"}</code>, <code>{"{{deadline}}"}</code>,{" "}
                 <code>{"{{description}}"}</code>,{" "}
-                <code>{"{{report-title}}"}</code> and{" "}
-                <code>{"{{student-name}}"}</code> by only writing them like "
-                <code>{"{{course-name}}"}.tex</code>". If nothing is specified,
+                <code>{"{{reportTitle}}"}</code> and{" "}
+                <code>{"{{studentName}}"}</code> by only writing them like "
+                <code>{"{{courseName}}"}.tex</code>". If nothing is specified,
                 we use the default filename.
               </small>
               <textarea

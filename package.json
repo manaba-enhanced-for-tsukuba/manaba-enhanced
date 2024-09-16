@@ -36,7 +36,7 @@
     "copy-webpack-plugin": "11.0.0",
     "css-loader": "6.7.3",
     "dayjs": "1.11.7",
-    "eslint": "8.31.0",
+    "eslint": "8.57.1",
     "eslint-config-prettier": "8.6.0",
     "eslint-plugin-import": "2.26.0",
     "file-loader": "6.2.0",
